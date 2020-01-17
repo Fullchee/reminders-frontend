@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ReactPlayer from "react-player";
 
 import "./App.css";
 
@@ -39,11 +40,14 @@ function App() {
       setData(result);
     };
     fetchData();
-  }, []);
+  }, []); // []: just run on load
+
   return (
     <div className="App">
       <header className="App-header">
-        <p>{data.title}</p>
+        <ReactPlayer url={data.url} playing />
+        <a href={data.url}>{data.title}</a>
+        <p>{data.takeaways}</p>
       </header>
     </div>
   );
