@@ -12,7 +12,16 @@ async function getRandomLink() {
     categories
   }
 }`;
-  return await fetchQuery(randomLinkQuery);
+  const result = await fetchQuery(randomLinkQuery);
+  return result.randomLink;
+}
+
+function linkToString(link) {
+  let result = "";
+  for (let key in link) {
+    result += `${key}: "${link[key]}", `;
+  }
+  return result.slice(0, -2);
 }
 
 class Form extends Component {
@@ -45,6 +54,19 @@ class Form extends Component {
     // TODO: add a toast
     // TODO: graphql req
     console.log(this.state);
+    const createUpdateQuery = stringLink => {
+      return `mutation{
+        updateLink(${stringLink}) {
+          id
+        }
+      }`;
+    };
+    const updateQuery = createUpdateQuery(linkToString(this.state.link));
+
+    console.log(updateQuery);
+    fetchQuery(updateQuery).then(data => {
+      console.log(data);
+    });
   };
 
   render() {

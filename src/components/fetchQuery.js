@@ -11,7 +11,7 @@ async function fetchQuery(query) {
 
   const res = await fetch(`http://localhost:5000/`, options);
   const { data } = await res.json();
-  return data.randomLink;
+  return data;
 }
 
 export default fetchQuery;
