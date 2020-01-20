@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-function Edit() {
+import Form from "./Form";
+function Add() {
   return <div></div>;
 }
 
-export default Edit;
+export default Add;

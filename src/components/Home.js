@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
+import fetchQuery from "./fetchQuery";
+import Form from "./Form";
 
-async function graphQLReq() {
+async function getRandomLink() {
   const randomLinkQuery = `query {
   randomLink{
     id
@@ -11,30 +13,18 @@ async function graphQLReq() {
     categories
   }
 }`;
-  const options = {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      query: randomLinkQuery
-    })
-  };
-
-  const res = await fetch(`http://localhost:5000/`, options);
-  const { data } = await res.json();
-  return data.randomLink;
+  return await fetchQuery(randomLinkQuery);
 }
 
 function Home() {
-  const [data, setData] = useState({ hits: [] });
+  const [data, setData] = useState({});
 
   /*
    * Runs when component mounts & updates
    */
   useEffect(() => {
     const fetchData = async () => {
-      const result = await graphQLReq();
+      const result = await getRandomLink();
       setData(result);
     };
     fetchData();
@@ -43,10 +33,8 @@ function Home() {
   return (
     <div className="App">
       <header className="App-header">
-        <button>Edit</button>
-        <a href={data.url}>{data.title}</a>
         <ReactPlayer url={data.url} />
-        <p>{data.takeaways}</p>
+        <Form link={data}></Form>
       </header>
     </div>
   );
