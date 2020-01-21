@@ -15,8 +15,7 @@ async function getRandomLink() {
   const result = await fetchQuery(randomLinkQuery);
   console.log(JSON.stringify(result.randomLink));
   return result.randomLink;
-  // return JSON.parse(`{"id":"48","takeaways":"the nature of randomness","title":"What is NOT Random","url":"https://https://www.youtube.com/watch?v=sMb00lz-IfE","datesAccessed":["2018-04-02"]}
-`);
+  // return JSON.parse(`{"id":"48","takeaways":"the nature of randomness","title":"What is NOT Random","url":"https://https://www.youtube.com/watch?v=sMb00lz-IfE","datesAccessed":["2018-04-02"]}`);
 }
 
 function linkToString(link) {
