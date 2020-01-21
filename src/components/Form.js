@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import fetchQuery from "./fetchQuery";
-import ReactPlayer from "react-player";
+import MediaPlayer from "./MediaPlayer";
 
 async function getRandomLink() {
   const randomLinkQuery = `query {
@@ -74,7 +74,7 @@ class Form extends Component {
   render() {
     return (
       <>
-        <ReactPlayer url={this.state.link.url} />
+        <MediaPlayer url={this.state.link.url}></MediaPlayer>
         <form>
           <label>
             Title
