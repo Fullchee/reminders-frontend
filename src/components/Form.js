@@ -16,7 +16,6 @@ async function getRandomLink() {
   }
 }`;
   const result = await fetchQuery(randomLinkQuery);
-  console.log(JSON.stringify(result.randomLink));
   return result.randomLink;
   // return JSON.parse(`{"id":"48","takeaways":"the nature of randomness","title":"What is NOT Random","url":"https://https://www.youtube.com/watch?v=sMb00lz-IfE","datesAccessed":["2018-04-02"]}`);
 }
@@ -62,7 +61,6 @@ class Form extends Component {
     event.preventDefault();
     // TODO: add a toast
     // TODO: graphql req
-    console.log(this.state);
     const createUpdateQuery = stringLink => {
       return `mutation{
         updateLink(${stringLink}) {
@@ -105,16 +103,21 @@ class Form extends Component {
   render() {
     return (
       <>
-        <button id="refresh" onClick={this.refresh}>
-          Refresh
-        </button>
-        <button id="delete" onClick={this.deleteHandler}>
-          Delete
-        </button>
-        <button id="Add" onClick={this.addHandler}>
-          Add
-        </button>
-        <MediaPlayer url={this.state.link.url}></MediaPlayer>
+        <div className="buttons">
+          <button id="refresh" onClick={this.refresh}>
+            Refresh
+          </button>
+          <button id="delete" onClick={this.deleteHandler}>
+            Delete
+          </button>
+          <button id="Add" onClick={this.addHandler}>
+            Add
+          </button>
+        </div>
+        <MediaPlayer
+          className="mediaPlayer"
+          url={this.state.link.url}
+        ></MediaPlayer>
         <form>
           <label>
             Title
