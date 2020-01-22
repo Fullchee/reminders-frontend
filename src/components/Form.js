@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import fetchQuery from "./fetchQuery";
 import MediaPlayer from "./MediaPlayer";
 import { uuid } from "uuidv4";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 async function getRandomLink() {
   const randomLinkQuery = `query {
@@ -71,7 +73,7 @@ class Form extends Component {
     const updateQuery = createUpdateQuery(linkToString(this.state.link));
 
     fetchQuery(updateQuery).then(data => {
-      // TODO: toast or UI notification
+      toast("updated");
     });
   };
 
@@ -82,6 +84,7 @@ class Form extends Component {
       }
     }`;
     fetchQuery(deleteQuery).then(() => {
+      toast("deleted!");
       this.refresh();
     });
   };
@@ -151,6 +154,7 @@ class Form extends Component {
             </button>
           </label>
         </form>
+        <ToastContainer />
       </>
     );
   }
