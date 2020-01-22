@@ -14,7 +14,6 @@
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -92,4 +91,17 @@ textarea {
   font-family: Tahoma, sans-serif;
   background-position: bottom right;
   background-repeat: no-repeat;
+}
+
+.backgroundImage {
+  background-size: cover;
+  background-image: url("./texture-background.jpg");
+  display: block;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  height: 800px;
+  left: 0;
+  position: fixed;
+  right: 0;
+  z-index: -1;
 }
