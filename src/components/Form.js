@@ -34,10 +34,14 @@ class Form extends Component {
     };
   }
 
-  componentDidMount() {
+  refresh = () => {
     getRandomLink().then(result => {
       this.setState({ link: result });
     });
+  };
+
+  componentDidMount() {
+    this.refresh();
   }
 
   changeHandler = event => {
@@ -65,15 +69,36 @@ class Form extends Component {
     };
     const updateQuery = createUpdateQuery(linkToString(this.state.link));
 
-    console.log(updateQuery);
     fetchQuery(updateQuery).then(data => {
-      console.log(data);
+      // TODO: toast or UI notification
     });
   };
+
+  deleteHandler = () => {
+    const deleteQuery = `mutation {
+      deleteLink(id:${this.state.link.url.id}) {
+        id
+      }
+    }`;
+    fetchQuery(deleteQuery).then(() => {
+      this.refresh();
+    });
+  };
+
+  addHandler = () => {};
 
   render() {
     return (
       <>
+        <button id="refresh" onClick={this.refresh}>
+          Refresh
+        </button>
+        <button id="delete" onClick={this.deleteHandler}>
+          Delete
+        </button>
+        <button id="Add" onClick={this.addHandler}>
+          Add
+        </button>
         <MediaPlayer url={this.state.link.url}></MediaPlayer>
         <form>
           <label>
