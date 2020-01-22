@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import fetchQuery from "./fetchQuery";
 import MediaPlayer from "./MediaPlayer";
+import { uuid } from "uuidv4";
 
 async function getRandomLink() {
   const randomLinkQuery = `query {
@@ -85,7 +86,18 @@ class Form extends Component {
     });
   };
 
-  addHandler = () => {};
+  addHandler = () => {
+    this.setState({
+      link: {
+        id: uuid(),
+        takeaways: "",
+        title: "",
+        url: "",
+        keywords: [],
+        datesAccessed: []
+      }
+    });
+  };
 
   render() {
     return (
