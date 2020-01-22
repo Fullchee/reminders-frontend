@@ -61,8 +61,6 @@ class Form extends Component {
 
   submitHandler = event => {
     event.preventDefault();
-    // TODO: add a toast
-    // TODO: graphql req
     const createUpdateQuery = stringLink => {
       return `mutation{
         updateLink(${stringLink}) {
@@ -70,6 +68,9 @@ class Form extends Component {
         }
       }`;
     };
+    const link = this.state.link;
+    // TODO: enable this when everything's ready
+    // link.datesAccessed.push(new Date().toISOString().slice(0, 10));
     const updateQuery = createUpdateQuery(linkToString(this.state.link));
 
     fetchQuery(updateQuery).then(data => {
@@ -162,6 +163,11 @@ class Form extends Component {
               selected={this.state.link.keywords || []}
               onSelectedChanged={this.keywordSelected}
             />
+          </label>
+
+          <label>
+            Dates
+            <p>{this.state.link.datesAccessed}</p>
           </label>
 
           <label>
