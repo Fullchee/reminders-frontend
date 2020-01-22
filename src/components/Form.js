@@ -4,6 +4,8 @@ import MediaPlayer from "./MediaPlayer";
 import { uuid } from "uuidv4";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import MultiSelect from "@khanacademy/react-multi-select";
+import virtues from "../virtues";
 
 async function getRandomLink() {
   const randomLinkQuery = `query {
@@ -100,6 +102,12 @@ class Form extends Component {
     });
   };
 
+  keywordSelected = selected => {
+    const link = this.state.link;
+    link.keywords = selected;
+    this.setState(link);
+  };
+
   render() {
     return (
       <>
@@ -146,6 +154,16 @@ class Form extends Component {
               onChange={this.changeHandler}
             />
           </label>
+          <label>
+            Keywords
+            <MultiSelect
+              className="multi-select"
+              options={virtues}
+              selected={this.state.link.keywords || []}
+              onSelectedChanged={this.keywordSelected}
+            />
+          </label>
+
           <label>
             <button
               type="submit"

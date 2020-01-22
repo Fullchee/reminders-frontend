@@ -5,7 +5,7 @@ class MediaPlayer extends Component {
   render() {
     // initial load: it doesn't do a/th
     if (!this.props.url) {
-      return null;
+      return <h3>No media</h3>;
     }
     if (this.props.url.includes("youtu")) {
       return <ReactPlayer url={this.props.url} />;
