@@ -9,7 +9,10 @@ async function fetchQuery(query) {
     })
   };
 
-  const res = await fetch(`https://calm-fjord-54462.herokuapp.com/`, options);
+  const res = await fetch(
+    `https://fullchee-values-backend.herokuapp.com/`,
+    options
+  );
   const { data } = await res.json();
   return data;
 }

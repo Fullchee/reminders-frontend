@@ -10,7 +10,6 @@ class MediaPlayer extends Component {
     if (this.props.url.includes("youtu")) {
       return <ReactPlayer url={this.props.url} />;
     } else if (this.props.url.slice(-4) === ".mp3") {
-      debugger;
       return (
         <audio controls src={this.props.url} type="audio/mpeg">
           Your browser does not support the audio tag.
