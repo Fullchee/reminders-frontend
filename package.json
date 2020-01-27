@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@khanacademy/react-multi-select": "^0.3.3",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-dropdown-select": "^3.11.0",
     "react-player": "^1.14.2",
     "react-scripts": "3.3.0",
     "react-toastify": "^5.5.0",

@@ -4,8 +4,8 @@ import MediaPlayer from "./MediaPlayer";
 import { uuid } from "uuidv4";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import MultiSelect from "@khanacademy/react-multi-select";
 import virtues from "../virtues";
+import Select from "react-dropdown-select";
 
 async function getRandomLink() {
   const randomLinkQuery = `query {
@@ -22,10 +22,23 @@ async function getRandomLink() {
   // return JSON.parse(`{"id":"48","takeaways":"the nature of randomness","title":"What is NOT Random","url":"https://https://www.youtube.com/watch?v=sMb00lz-IfE","datesAccessed":["2018-04-02"]}`);
 }
 
+/**
+ * @param {Link} link
+ * @returns {string}
+ * Eg:
+ */
 function linkToString(link) {
   let result = "";
   for (let key in link) {
-    result += `${key}: "${link[key]}", `;
+    // switch(key) {
+    //   case(datesAccessed):
+    //     result += ${key}:
+    // }
+    if (key === "keywords") {
+      result += `${key}: "${JSON.stringify(link[key])}`;
+    } else {
+      result += `${key}: "${link[key]}", `;
+    }
   }
   return result.slice(0, -2);
 }
@@ -71,6 +84,7 @@ class Form extends Component {
     const link = this.state.link;
     // TODO: enable this when everything's ready
     // link.datesAccessed.push(new Date().toISOString().slice(0, 10));
+    debugger;
     const updateQuery = createUpdateQuery(linkToString(this.state.link));
 
     fetchQuery(updateQuery).then(data => {
@@ -103,9 +117,17 @@ class Form extends Component {
     });
   };
 
+  /**
+   * Update the keywords of the link
+   */
   keywordSelected = selected => {
-    const link = this.state.link;
-    link.keywords = selected;
+    selected = selected.sort((a, b) => {
+      debugger;
+      return a.label > b.label ? 1 : -1;
+    });
+    debugger;
+    const link = { ...this.state.link };
+    link.keywords = selected.map(obj => obj.value);
     this.setState(link);
   };
 
@@ -157,11 +179,18 @@ class Form extends Component {
           </label>
           <label>
             Keywords
-            <MultiSelect
-              className="multi-select"
+            <Select
+              values={this.state.link.keywords}
+              className="keywords"
+              multi={true}
+              addPlaceholder="+ click to add"
               options={virtues}
-              selected={this.state.link.keywords || []}
-              onSelectedChanged={this.keywordSelected}
+              onChange={this.keywordSelected}
+              create={true}
+              onCreateNew={obj => {
+                console.log(obj);
+                debugger;
+              }}
             />
           </label>
 

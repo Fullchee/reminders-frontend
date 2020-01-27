@@ -121,3 +121,8 @@ textarea {
 .multi-select {
   max-width: 500px;
 }
+
+.keywords {
+  color: #0074d9;
+  background-color: white;
+}
