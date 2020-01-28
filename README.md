@@ -30,6 +30,8 @@ yarn start
 
 ## TODOs:
 
+- Switch to Apollo GraphQL client instead of using Vanilla JS requests
+- Better audio component with increased speed, skipping
 - Pick a date according to the last viewed
   - probability: time since last view = number of ballets
   - pick a random ballet
