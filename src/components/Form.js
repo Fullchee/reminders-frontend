@@ -4,6 +4,8 @@ import MediaPlayer from "./MediaPlayer";
 import { uuid } from "uuidv4";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
 
 async function getRandomLink() {
   const randomLinkQuery = `query {
@@ -104,58 +106,69 @@ class Form extends Component {
 
   render() {
     return (
-      <>
-        <button id="refresh" onClick={this.refresh}>
-          Refresh
-        </button>
-        <button id="delete" onClick={this.deleteHandler}>
-          Delete
-        </button>
-        <button id="Add" onClick={this.addHandler}>
-          Add
-        </button>
-        <MediaPlayer url={this.state.link.url}></MediaPlayer>
-        <form>
-          <label>
-            Title
-            <input
-              type="text"
-              name="title"
-              value={this.state.link.title}
-              onChange={this.changeHandler}
-            />
-          </label>
-          <label>
-            URL
-            <input
-              type="url"
-              name="url"
-              value={this.state.link.url}
-              onChange={this.changeHandler}
-            />
-          </label>
-          <label>
-            Takeaways
-            <textarea
-              type="text"
-              name="takeaways"
-              value={this.state.link.takeaways}
-              onChange={this.changeHandler}
-            />
-          </label>
-          <label>
-            <button
-              type="submit"
-              name="submit"
-              disabled={false /* TODO: url validation*/}
-              onClick={this.submitHandler}
-            >
-              Submit
-            </button>
-          </label>
-        </form>
-        <ToastContainer />
-      </>
+      <Query query={FEED_QUERY}>
+        {({ loading, error, data }) => {
+          if (loading) return <div>Fetching</div>;
+          if (error) return <div>Error</div>;
+
+          const linksToRender = data.feed.links;
+
+          return (
+            <>
+              <button id="refresh" onClick={this.refresh}>
+                Refresh
+              </button>
+              <button id="delete" onClick={this.deleteHandler}>
+                Delete
+              </button>
+              <button id="Add" onClick={this.addHandler}>
+                Add
+              </button>
+              <MediaPlayer url={this.state.link.url}></MediaPlayer>
+              <form>
+                <label>
+                  Title
+                  <input
+                    type="text"
+                    name="title"
+                    value={this.state.link.title}
+                    onChange={this.changeHandler}
+                  />
+                </label>
+                <label>
+                  URL
+                  <input
+                    type="url"
+                    name="url"
+                    value={this.state.link.url}
+                    onChange={this.changeHandler}
+                  />
+                </label>
+                <label>
+                  Takeaways
+                  <textarea
+                    type="text"
+                    name="takeaways"
+                    value={this.state.link.takeaways}
+                    onChange={this.changeHandler}
+                  />
+                </label>
+                <label>
+                  <button
+                    type="submit"
+                    name="submit"
+                    disabled={false /* TODO: url validation*/}
+                    onClick={this.submitHandler}
+                  >
+                    Submit
+                  </button>
+                </label>
+              </form>
+              <ToastContainer />
+            </>
+          );
+        }}
+      </Query>
     );
   }
 }
