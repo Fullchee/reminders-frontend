@@ -160,33 +160,39 @@ class Form extends Component {
           url={this.state.link.url || ""}
         ></MediaPlayer>
         <form>
-          <label>
-            Title
-            <input
-              type="text"
-              name="title"
-              value={this.state.link.title || ""}
-              onChange={this.changeHandler}
-            />
-          </label>
-          <label>
-            URL
-            <input
-              type="url"
-              name="url"
-              value={this.state.link.url || ""}
-              onChange={this.changeHandler}
-            />
-          </label>
-          <label>
-            Takeaways
-            <textarea
-              type="text"
-              name="takeaways"
-              value={this.state.link.takeaways || ""}
-              onChange={this.changeHandler}
-            />
-          </label>
+          <div>
+            <label>
+              Title
+              <input
+                type="text"
+                name="title"
+                value={this.state.link.title || ""}
+                onChange={this.changeHandler}
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              URL
+              <input
+                type="url"
+                name="url"
+                value={this.state.link.url || ""}
+                onChange={this.changeHandler}
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              <div>Takeaways</div>
+              <textarea
+                type="text"
+                name="takeaways"
+                value={this.state.link.takeaways || ""}
+                onChange={this.changeHandler}
+              />
+            </label>
+          </div>
           <label>
             Keywords
             <Select

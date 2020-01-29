@@ -6,9 +6,9 @@ function App(props) {
   return (
     <div className="App">
       <div className="backgroundImage"></div>
-      <header className="App-header">
-        <Form client={props.client}></Form>
-      </header>
+      <div className="container">
+        <Form client={props.client} className="values"></Form>
+      </div>
     </div>
   );
 }
