@@ -77,24 +77,25 @@ class Form extends Component {
     });
   };
 
-  submitHandler = event => {
+  updateLink = async event => {
     event.preventDefault();
-    const createUpdateQuery = stringLink => {
-      return `mutation{
-        updateLink(${stringLink}) {
-          id
-        }
-      }`;
-    };
     const link = this.state.link;
     // TODO: enable this when everything's ready
     // link.datesAccessed.push(new Date().toISOString().slice(0, 10));
-    debugger;
-    const updateQuery = createUpdateQuery(linkToString(this.state.link));
-
-    fetchQuery(updateQuery).then(data => {
-      toast("updated");
-    });
+    try {
+      await this.props.client.query({
+        query: MUTATION.DELETE_LINK,
+        variables: {
+          link: JSON.stringify(this.state.link)
+        }
+      });
+      toast(`Deleted link: ${this.state.link.title}!`);
+      this.refresh();
+    } catch (e) {
+      debugger;
+      toast("Couldn't update the link");
+      console.error(e);
+    }
   };
 
   deleteLink = async () => {
@@ -213,7 +214,7 @@ class Form extends Component {
               type="submit"
               name="submit"
               disabled={false /* TODO: url validation*/}
-              onClick={this.submitHandler}
+              onClick={this.updateLink}
             >
               Submit
             </button>
