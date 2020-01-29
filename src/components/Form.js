@@ -157,7 +157,7 @@ class Form extends Component {
         </div>
         <MediaPlayer
           className="mediaPlayer"
-          url={this.state.link.url}
+          url={this.state.link.url || ""}
         ></MediaPlayer>
         <form>
           <label>
@@ -165,7 +165,7 @@ class Form extends Component {
             <input
               type="text"
               name="title"
-              value={this.state.link.title}
+              value={this.state.link.title || ""}
               onChange={this.changeHandler}
             />
           </label>
@@ -174,7 +174,7 @@ class Form extends Component {
             <input
               type="url"
               name="url"
-              value={this.state.link.url}
+              value={this.state.link.url || ""}
               onChange={this.changeHandler}
             />
           </label>
@@ -183,7 +183,7 @@ class Form extends Component {
             <textarea
               type="text"
               name="takeaways"
-              value={this.state.link.takeaways}
+              value={this.state.link.takeaways || ""}
               onChange={this.changeHandler}
             />
           </label>
@@ -210,12 +210,7 @@ class Form extends Component {
           </label>
 
           <label>
-            <button
-              type="submit"
-              name="submit"
-              disabled={false /* TODO: url validation*/}
-              onClick={this.updateLink}
-            >
+            <button type="submit" name="submit" onClick={this.updateLink}>
               Submit
             </button>
           </label>
