@@ -3,7 +3,6 @@ import MediaPlayer from "./MediaPlayer";
 import { uuid } from "uuidv4";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import virtues from "../virtues";
 import Select from "react-dropdown-select";
 import { withApollo } from "react-apollo";
 import { confirmAlert } from "react-confirm-alert";
@@ -22,13 +21,23 @@ class Form extends Component {
         keywords: [],
         takeaways: "",
         datesAccessed: []
-      }
+      },
+      keywords: []
     };
   }
 
   componentDidMount() {
     this.refresh();
+    this.getKeywords();
   }
+
+  getKeywords = async () => {
+    const res = await fetch(
+      "https://fullchee-values-backend.herokuapp.com/keywords"
+    );
+    const json = await res.json();
+    this.setState({ keywords: JSON.parse(json) });
+  };
 
   getRandomLink = async () => {
     try {
@@ -200,7 +209,7 @@ class Form extends Component {
               className="keywords"
               multi={true}
               addPlaceholder="+ click to add"
-              options={virtues}
+              options={this.state.keywords || []}
               onChange={this.keywordSelected}
               create={true}
               onCreateNew={obj => {

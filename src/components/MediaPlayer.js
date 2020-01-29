@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactPlayer from "react-player";
+import AudioPlayer from "./AudioPlayer";
 
 class MediaPlayer extends Component {
   render() {
@@ -10,11 +11,7 @@ class MediaPlayer extends Component {
     if (this.props.url.includes("youtu")) {
       return <ReactPlayer url={this.props.url} />;
     } else if (this.props.url.slice(-4) === ".mp3") {
-      return (
-        <audio controls src={this.props.url} type="audio/mpeg">
-          Your browser does not support the audio tag.
-        </audio>
-      );
+      return <AudioPlayer url={this.props.url} />;
     } else {
       return <h3>No media</h3>;
     }
