@@ -31,6 +31,8 @@ yarn start
 ## TODOs:
 
 - Better audio component with increased speed, skipping
+- Form: controlled input
+  - probably will have to learn/use refs
 - nav bar for the buttons?
 - Hide the contents?
 - Form: tidy it up
