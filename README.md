@@ -34,3 +34,5 @@ yarn start
 - nav bar for the buttons?
 - Hide the contents?
 - Form: tidy it up
+- React testing library tests
+- Cypress.io tests
