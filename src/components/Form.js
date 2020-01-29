@@ -4,32 +4,15 @@ import MediaPlayer from "./MediaPlayer";
 import { uuid } from "uuidv4";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Query } from "react-apollo";
-
 import virtues from "../virtues";
 import Select from "react-dropdown-select";
 import { withApollo } from "react-apollo";
 import QUERY from "./queries";
-
-async function getRandomLink() {
-  //   const randomLinkQuery = `query {
-  //   randomLink{
-  //     id
-  //     takeaways
-  //     title
-  //     url
-  //     datesAccessed
-  //   }
-  // }`;
-  //   const result = await fetchQuery(randomLinkQuery);
-  //   return result.randomLink;
-  // return JSON.parse(`{"id":"48","takeaways":"the nature of randomness","title":"What is NOT Random","url":"https://https://www.youtube.com/watch?v=sMb00lz-IfE","datesAccessed":["2018-04-02"]}`);
-}
+import MUTATION from "./mutations";
 
 /**
  * @param {Link} link
  * @returns {string}
- * Eg:
  */
 function linkToString(link) {
   let result = "";
@@ -114,19 +97,23 @@ class Form extends Component {
     });
   };
 
-  deleteHandler = () => {
-    const deleteQuery = `mutation {
-      deleteLink(id:${this.state.link.url.id}) {
-        id
-      }
-    }`;
-    fetchQuery(deleteQuery).then(() => {
-      toast("deleted!");
+  deleteLink = async () => {
+    try {
+      await this.props.client.query({
+        query: MUTATION.DELETE_LINK,
+        variables: {
+          linkId: this.state.link.id
+        }
+      });
+      toast(`Deleted link: ${this.state.link.title}!`);
       this.refresh();
-    });
+    } catch (e) {
+      toast("Couldn't delete the link");
+      console.error(e);
+    }
   };
 
-  addHandler = () => {
+  clearForm = () => {
     this.setState({
       link: {
         id: uuid(),
@@ -160,10 +147,10 @@ class Form extends Component {
           <button id="refresh" onClick={this.refresh}>
             Refresh
           </button>
-          <button id="delete" onClick={this.deleteHandler}>
+          <button id="delete" onClick={this.deleteLink}>
             Delete
           </button>
-          <button id="Add" onClick={this.addHandler}>
+          <button id="Add" onClick={this.clearForm}>
             Add
           </button>
         </div>
