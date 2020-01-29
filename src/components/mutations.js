@@ -3,8 +3,8 @@ import gql from "graphql-tag";
 const MUTATION = {};
 
 MUTATION.UPDATE_LINK = gql`
-  mutation($link: String!) {
-    updateLink(link: $link) {
+  mutation($stringifiedLink: String!) {
+    updateLink(stringifiedLink: $stringifiedLink) {
       id
     }
   }

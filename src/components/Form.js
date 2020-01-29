@@ -10,26 +10,6 @@ import { withApollo } from "react-apollo";
 import QUERY from "./queries";
 import MUTATION from "./mutations";
 
-/**
- * @param {Link} link
- * @returns {string}
- */
-function linkToString(link) {
-  let result = "";
-  for (let key in link) {
-    // switch(key) {
-    //   case(datesAccessed):
-    //     result += ${key}:
-    // }
-    if (key === "keywords") {
-      result += `${key}: "${JSON.stringify(link[key])}`;
-    } else {
-      result += `${key}: "${link[key]}", `;
-    }
-  }
-  return result.slice(0, -2);
-}
-
 class Form extends Component {
   constructor(props) {
     super(props);
@@ -84,17 +64,16 @@ class Form extends Component {
     // link.datesAccessed.push(new Date().toISOString().slice(0, 10));
     try {
       await this.props.client.query({
-        query: MUTATION.DELETE_LINK,
+        query: MUTATION.UPDATE_LINK,
         variables: {
-          link: JSON.stringify(this.state.link)
+          stringifiedLink: JSON.stringify(this.state.link)
         }
       });
-      toast(`Deleted link: ${this.state.link.title}!`);
-      this.refresh();
+      toast(`Updated link: ${this.state.link.title}!`);
     } catch (e) {
       debugger;
       toast("Couldn't update the link");
-      console.error(e);
+      console.error(e.networkError.result.errors);
     }
   };
 
@@ -110,7 +89,7 @@ class Form extends Component {
       this.refresh();
     } catch (e) {
       toast("Couldn't delete the link");
-      console.error(e);
+      console.error(e.networkError.result.errors);
     }
   };
 

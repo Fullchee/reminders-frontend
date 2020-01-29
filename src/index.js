@@ -7,9 +7,14 @@ import { ApolloProvider } from "react-apollo";
 import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
+import { onError } from "apollo-link-error";
+
+// const httpLink = createHttpLink({
+//   uri: "https://fullchee-values-backend.herokuapp.com/"
+// });
 
 const httpLink = createHttpLink({
-  uri: "https://fullchee-values-backend.herokuapp.com/"
+  uri: "http://localhost:5000"
 });
 
 // const httpLink = createHttpLink({
@@ -28,6 +33,11 @@ const client = new ApolloClient({
       fetchPolicy: "no-cache",
       errorPolicy: "all"
     }
+  },
+  onError: ({ networkError, graphQLErrors }) => {
+    debugger;
+    console.log("graphQLErrors", graphQLErrors);
+    console.log("networkError", networkError);
   }
 });
 
