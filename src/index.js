@@ -12,6 +12,10 @@ const httpLink = createHttpLink({
   uri: "https://fullchee-values-backend.herokuapp.com/"
 });
 
+// const httpLink = createHttpLink({
+//   uri: "http://localhost:5000"
+// });
+
 const client = new ApolloClient({
   link: httpLink,
   cache: new InMemoryCache(),
