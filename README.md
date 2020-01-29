@@ -37,3 +37,11 @@ yarn start
 - Form: tidy it up
 - React testing library tests
 - Cypress.io tests
+
+## Lessons log
+
+- Making GraphQL requests
+  - initially vanilla JS
+  - difficult debugging (just a string)
+  - eventually switched to Apollo
+  - has other really nice features like: caching
