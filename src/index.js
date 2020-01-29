@@ -7,14 +7,9 @@ import { ApolloProvider } from "react-apollo";
 import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
-import { onError } from "apollo-link-error";
-
-// const httpLink = createHttpLink({
-//   uri: "https://fullchee-values-backend.herokuapp.com/"
-// });
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:5000"
+  uri: "https://fullchee-values-backend.herokuapp.com/"
 });
 
 // const httpLink = createHttpLink({

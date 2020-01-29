@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import fetchQuery from "./fetchQuery";
 import MediaPlayer from "./MediaPlayer";
 import { uuid } from "uuidv4";
 import { ToastContainer, toast } from "react-toastify";
@@ -25,6 +24,10 @@ class Form extends Component {
     };
   }
 
+  componentDidMount() {
+    this.refresh();
+  }
+
   getRandomLink = async () => {
     try {
       const res = await this.props.client.query({
@@ -41,10 +44,6 @@ class Form extends Component {
       this.setState({ link: result });
     });
   };
-
-  componentDidMount() {
-    this.refresh();
-  }
 
   changeHandler = event => {
     const name = event.target.name;
