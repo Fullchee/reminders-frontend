@@ -5,22 +5,24 @@ import { uuid } from "uuidv4";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Query } from "react-apollo";
-import gql from "graphql-tag";
+
 import virtues from "../virtues";
 import Select from "react-dropdown-select";
+import { withApollo } from "react-apollo";
+import QUERY from "./queries";
 
 async function getRandomLink() {
-  const randomLinkQuery = `query {
-  randomLink{
-    id
-    takeaways
-    title
-    url
-    datesAccessed
-  }
-}`;
-  const result = await fetchQuery(randomLinkQuery);
-  return result.randomLink;
+  //   const randomLinkQuery = `query {
+  //   randomLink{
+  //     id
+  //     takeaways
+  //     title
+  //     url
+  //     datesAccessed
+  //   }
+  // }`;
+  //   const result = await fetchQuery(randomLinkQuery);
+  //   return result.randomLink;
   // return JSON.parse(`{"id":"48","takeaways":"the nature of randomness","title":"What is NOT Random","url":"https://https://www.youtube.com/watch?v=sMb00lz-IfE","datesAccessed":["2018-04-02"]}`);
 }
 
@@ -49,12 +51,30 @@ class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      link: getRandomLink()
+      link: {
+        id: "",
+        tile: "",
+        url: "",
+        keywords: [],
+        takeaways: "",
+        datesAccessed: []
+      }
     };
   }
 
+  getRandomLink = async () => {
+    try {
+      const res = await this.props.client.query({
+        query: QUERY.RANDOM_LINK
+      });
+      return res.data.randomLink;
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   refresh = () => {
-    getRandomLink().then(result => {
+    this.getRandomLink().then(result => {
       this.setState({ link: result });
     });
   };
@@ -217,5 +237,7 @@ class Form extends Component {
     );
   }
 }
+
+withApollo(Form);
 
 export default Form;
