@@ -6,6 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 import virtues from "../virtues";
 import Select from "react-dropdown-select";
 import { withApollo } from "react-apollo";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 import QUERY from "./queries";
 import MUTATION from "./mutations";
 
@@ -76,6 +78,26 @@ class Form extends Component {
     }
   };
 
+  confirmDelete = () => {
+    confirmAlert({
+      title: `Delete "${this.state.link.title}"?`,
+      message: "",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
+            this.deleteLink();
+          }
+        },
+        {
+          label: "No",
+          onClick: () => {
+            return;
+          }
+        }
+      ]
+    });
+  };
   deleteLink = async () => {
     try {
       await this.props.client.query({
@@ -126,7 +148,7 @@ class Form extends Component {
           <button id="refresh" onClick={this.refresh}>
             Refresh
           </button>
-          <button id="delete" onClick={this.deleteLink}>
+          <button id="delete" onClick={this.confirmDelete}>
             Delete
           </button>
           <button id="Add" onClick={this.clearForm}>

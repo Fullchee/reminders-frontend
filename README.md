@@ -30,13 +30,7 @@ yarn start
 
 ## TODOs:
 
-- Switch to Apollo GraphQL client instead of using Vanilla JS requests
 - Better audio component with increased speed, skipping
-- Pick a date according to the last viewed
-  - probability: time since last view = number of ballets
-  - pick a random ballet
-- Confirmation when deleting?
-  - modal or, when you click it, it gets bigger and redder, you have to click it 3 times
 - nav bar for the buttons?
 - Hide the contents?
 - Form: tidy it up
