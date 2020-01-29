@@ -8,13 +8,13 @@ import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
 
-const httpLink = createHttpLink({
-  uri: "https://fullchee-values-backend.herokuapp.com/"
-});
-
 // const httpLink = createHttpLink({
-//   uri: "http://localhost:5000"
+//   uri: "https://fullchee-values-backend.herokuapp.com/"
 // });
+
+const httpLink = createHttpLink({
+  uri: "http://localhost:5000"
+});
 
 const client = new ApolloClient({
   link: httpLink,

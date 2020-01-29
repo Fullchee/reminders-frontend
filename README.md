@@ -30,6 +30,7 @@ yarn start
 
 ## TODOs:
 
+- add a new keyword from website
 - Better audio component with increased speed, skipping
 - nav bar for the buttons?
 - Hide the contents?

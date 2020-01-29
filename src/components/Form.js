@@ -36,6 +36,7 @@ class Form extends Component {
       "https://fullchee-values-backend.herokuapp.com/keywords"
     );
     const json = await res.json();
+    const keywords = JSON.parse(json);
     this.setState({ keywords: JSON.parse(json) });
   };
 
@@ -142,12 +143,22 @@ class Form extends Component {
   keywordSelected = selected => {
     selected = selected.sort((a, b) => {
       debugger;
-      return a.label > b.label ? 1 : -1;
+      return a.label > b.label ? -1 : 1;
     });
     debugger;
     const link = { ...this.state.link };
-    link.keywords = selected.map(obj => obj.value);
-    this.setState(link);
+    link.keywords = selected.map(keyword => {
+      if (keyword && typeof keyword === "object") {
+        return keyword;
+      } else {
+        return {
+          id: keyword,
+          value: keyword,
+          label: keyword
+        };
+      }
+    });
+    this.setState({ link });
   };
 
   render() {
@@ -215,6 +226,7 @@ class Form extends Component {
               onCreateNew={obj => {
                 console.log(obj);
                 debugger;
+                // TODO: add a new item
               }}
             />
           </label>
