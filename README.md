@@ -1,4 +1,4 @@
-# Values
+# [Values](https://fullchee-values.netlify.com/)
 
 Random reminder of one of your values.
 
