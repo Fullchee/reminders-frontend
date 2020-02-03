@@ -31,12 +31,17 @@ yarn start
 ## TODOs:
 
 - add a new keyword from website
-- Better audio component with increased speed, skipping
+- Better audio component with increased speed
+  - forward by 30 seconds
+  - go back by 15 seconds
+  - (look at JS30 and how they did it for the video)
 - nav bar for the buttons?
 - Hide the contents?
 - Form: tidy it up
 - React testing library tests
+  - Apollo GraphQL tests
 - Cypress.io tests
+- Accessibility
 
 ## Lessons log
 
