@@ -7,6 +7,7 @@ import Select from "react-dropdown-select";
 import { withApollo } from "react-apollo";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import TextareaAutosize from "react-textarea-autosize";
 import QUERY from "./queries";
 import MUTATION from "./mutations";
 
@@ -202,17 +203,15 @@ class Form extends Component {
               />
             </label>
           </div>
-          <div>
-            <label>
-              <div>Takeaways</div>
-              <textarea
-                type="text"
-                name="takeaways"
-                value={this.state.link.takeaways || ""}
-                onChange={this.changeHandler}
-              />
-            </label>
-          </div>
+          <label for="">Takeaways</label>
+          <TextareaAutosize
+            id="takeaways"
+            className="input takeaways"
+            name="takeaways"
+            minRows={5}
+            value={this.state.link.takeaways || ""}
+            onChange={this.changeHandler}
+          ></TextareaAutosize>
           <label>
             Keywords
             <Select

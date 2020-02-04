@@ -15,10 +15,6 @@ I visit this site weekly to remind myself of what kind of person I want to be fr
   - [Website](https://fullchee-values.netlify.com/)
   - [GitHub](https://github.com/Fullchee/values-client)
 
-## Tech
-
-- React
-
 ---
 
 ## Install
@@ -53,6 +49,7 @@ yarn start
 
 ### Tech
 
+- React
 - Apollo GraphQL
   - making requests to the GraphQL server
 - bcrypt
