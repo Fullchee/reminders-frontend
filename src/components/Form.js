@@ -143,10 +143,8 @@ class Form extends Component {
    */
   keywordSelected = selected => {
     selected = selected.sort((a, b) => {
-      debugger;
       return a.label > b.label ? -1 : 1;
     });
-    debugger;
     const link = { ...this.state.link };
     link.keywords = selected.map(keyword => {
       if (keyword && typeof keyword === "object") {
@@ -180,30 +178,26 @@ class Form extends Component {
           className="mediaPlayer"
           url={this.state.link.url || ""}
         ></MediaPlayer>
-        <form>
-          <div>
-            <label>
-              Title
-              <input
-                type="text"
-                name="title"
-                value={this.state.link.title || ""}
-                onChange={this.changeHandler}
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              URL
-              <input
-                type="url"
-                name="url"
-                value={this.state.link.url || ""}
-                onChange={this.changeHandler}
-              />
-            </label>
-          </div>
-          <label for="">Takeaways</label>
+        <form className="form">
+          <label for="title">Title</label>
+          <input
+            id="title"
+            type="text"
+            name="title"
+            className="input title"
+            value={this.state.link.title || ""}
+            onChange={this.changeHandler}
+          />
+          <label for="url">URL</label>
+          <input
+            id="url"
+            type="url"
+            name="url"
+            className="input"
+            value={this.state.link.url || ""}
+            onChange={this.changeHandler}
+          />
+          <label for="takeaways">Takeaways</label>
           <TextareaAutosize
             id="takeaways"
             className="input takeaways"
@@ -212,34 +206,30 @@ class Form extends Component {
             value={this.state.link.takeaways || ""}
             onChange={this.changeHandler}
           ></TextareaAutosize>
-          <label>
-            Keywords
-            <Select
-              values={this.state.link.keywords}
-              className="keywords"
-              multi={true}
-              addPlaceholder="+ click to add"
-              options={this.state.keywords || []}
-              onChange={this.keywordSelected}
-              create={true}
-              onCreateNew={obj => {
-                console.log(obj);
-                debugger;
-                // TODO: add a new item
-              }}
-            />
-          </label>
-
-          <label>
-            Dates
-            <p>{this.state.link.datesAccessed}</p>
-          </label>
-
-          <label>
-            <button type="submit" name="submit" onClick={this.updateLink}>
-              Submit
-            </button>
-          </label>
+          <label for="keywords">Keywords</label>
+          <Select
+            id="keywords"
+            values={this.state.link.keywords}
+            className="keywords"
+            multi={true}
+            options={this.state.keywords || []}
+            onChange={this.keywordSelected}
+            create={true}
+            onCreateNew={obj => {
+              console.log(obj);
+              // TODO: add a new item
+            }}
+          />
+          <label for="datesAccessed">Dates</label>
+          <p id="datesAccessed">{this.state.link.datesAccessed}</p>
+          <button
+            id="submit"
+            type="submit"
+            name="submit"
+            onClick={this.updateLink}
+          >
+            Update
+          </button>
         </form>
         <ToastContainer />
       </>
