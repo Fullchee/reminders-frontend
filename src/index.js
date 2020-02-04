@@ -12,9 +12,17 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 //   uri: "https://fullchee-values-backend.herokuapp.com/"
 // });
 
-const httpLink = createHttpLink({
-  uri: "http://localhost:5000"
-});
+let httpLink;
+
+if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
+  httpLink = createHttpLink({
+    uri: "http://localhost:5000"
+  });
+} else {
+  httpLink = createHttpLink({
+    uri: "https://fullchee-values-backend.herokuapp.com/"
+  });
+}
 
 const client = new ApolloClient({
   link: httpLink,
