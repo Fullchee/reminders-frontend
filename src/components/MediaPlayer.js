@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import ReactPlayer from "react-player";
 // import AudioPlayer from "./AudioPlayer";
 import ReactAudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 
-class MediaPlayer extends Component {
+export default class MediaPlayer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -51,4 +52,6 @@ class MediaPlayer extends Component {
   }
 }
 
-export default MediaPlayer;
+MediaPlayer.propTypes = {
+  url: PropTypes.string
+};

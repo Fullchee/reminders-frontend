@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import MediaPlayer from "./MediaPlayer";
 import { uuid } from "uuidv4";
 import { ToastContainer, toast } from "react-toastify";
@@ -11,7 +12,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import QUERY from "./queries";
 import MUTATION from "./mutations";
 
-class Form extends Component {
+export default class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -237,6 +238,8 @@ class Form extends Component {
   }
 }
 
-withApollo(Form);
+Form.propTypes = {
+  client: PropTypes.object
+};
 
-export default Form;
+withApollo(Form);
