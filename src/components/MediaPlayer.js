@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ReactPlayer from "react-player";
-// import AudioPlayer from "./AudioPlayer";
-import ReactAudioPlayer from "react-h5-audio-player";
+import YouTubePlayer from "react-player/lib/players/YouTube";
 import "react-h5-audio-player/lib/styles.css";
 
 export default class MediaPlayer extends Component {
@@ -18,13 +17,16 @@ export default class MediaPlayer extends Component {
       return <h3>No media</h3>;
     }
     if (this.props.url.includes("youtu")) {
-      return <ReactPlayer url={this.props.url} controls="true" />;
+      return <ReactPlayer url={this.props.url} controls={true} />;
     } else if (this.props.url.slice(-4) === ".mp3") {
       return (
         <>
-          <ReactAudioPlayer ref={c => (this.player = c)} src={this.props.url} />
+          <YouTubePlayer
+            className="audio-player"
+            ref={c => (this.player = c)}
+            src={this.props.url}
+          />
 
-          {/* TODO: add a drop down to control the playback speed */}
           <select
             onChange={e => {
               const newSpeed = parseFloat(e.target.value);

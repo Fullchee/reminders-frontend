@@ -38,7 +38,6 @@ export default class Form extends Component {
       "https://fullchee-values-backend.herokuapp.com/keywords"
     );
     const json = await res.json();
-    const keywords = JSON.parse(json);
     this.setState({ keywords: JSON.parse(json) });
   };
 
@@ -180,7 +179,7 @@ export default class Form extends Component {
           url={this.state.link.url || ""}
         ></MediaPlayer>
         <form className="form">
-          <label for="title">Title</label>
+          <label htmlFor="title">Title</label>
           <input
             id="title"
             type="text"
@@ -189,7 +188,7 @@ export default class Form extends Component {
             value={this.state.link.title || ""}
             onChange={this.changeHandler}
           />
-          <label for="url">URL</label>
+          <label htmlFor="url">URL</label>
           <input
             id="url"
             type="url"
@@ -198,7 +197,7 @@ export default class Form extends Component {
             value={this.state.link.url || ""}
             onChange={this.changeHandler}
           />
-          <label for="takeaways">Takeaways</label>
+          <label htmlFor="takeaways">Takeaways</label>
           <TextareaAutosize
             id="takeaways"
             className="input takeaways"
@@ -207,21 +206,21 @@ export default class Form extends Component {
             value={this.state.link.takeaways || ""}
             onChange={this.changeHandler}
           ></TextareaAutosize>
-          <label for="keywords">Keywords</label>
-          <Select
-            id="keywords"
-            values={this.state.link.keywords}
-            className="keywords"
-            multi={true}
-            options={this.state.keywords || []}
-            onChange={this.keywordSelected}
-            create={true}
-            onCreateNew={obj => {
-              console.log(obj);
-              // TODO: add a new item
-            }}
-          />
-          <label for="datesAccessed">Dates</label>
+          <label htmlFor="keywords">Keywords</label>
+          <div id="keywords" className="keywords">
+            <Select
+              values={this.state.link.keywords}
+              multi={true}
+              options={this.state.keywords || []}
+              onChange={this.keywordSelected}
+              create={true}
+              onCreateNew={obj => {
+                console.log(obj);
+                // TODO: add a new item
+              }}
+            />
+          </div>
+          <label htmlFor="datesAccessed">Dates</label>
           <p id="datesAccessed">{this.state.link.datesAccessed}</p>
           <button
             id="submit"
