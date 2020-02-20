@@ -72,7 +72,10 @@ export default class Form extends Component {
   updateLink = async event => {
     event.preventDefault();
     const link = this.state.link;
-    link.datesAccessed.push(new Date().toISOString().slice(0, 10));
+    const today = new Date().toISOString().slice(0, 10);
+    if (link.datesAccessed[link.datesAccessed.length - 1] !== today) {
+      link.datesAccessed.push(today);
+    }
     try {
       await this.props.client.query({
         query: MUTATION.UPDATE_LINK,
@@ -176,6 +179,7 @@ export default class Form extends Component {
         <MediaPlayer
           className="mediaPlayer"
           url={this.state.link.url || ""}
+          onEnded={this.updateLink}
         ></MediaPlayer>
         <form className="form">
           <label htmlFor="title">Title</label>
