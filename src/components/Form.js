@@ -72,8 +72,7 @@ export default class Form extends Component {
   updateLink = async event => {
     event.preventDefault();
     const link = this.state.link;
-    // TODO: enable this when everything's ready
-    // link.datesAccessed.push(new Date().toISOString().slice(0, 10));
+    link.datesAccessed.push(new Date().toISOString().slice(0, 10));
     try {
       await this.props.client.query({
         query: MUTATION.UPDATE_LINK,
