@@ -34,7 +34,9 @@ export default class MediaPlayer extends Component {
                 speed: newSpeed
               });
               debugger;
-              this.player.audio.playbackRate = newSpeed;
+              this.setState({
+                speed: newSpeed
+              });
             }}
             value={this.state.speed}
           >
