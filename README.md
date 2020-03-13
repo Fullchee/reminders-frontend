@@ -25,13 +25,13 @@ yarn start
 ```
 
 ## TODOs:
-- preload it with a default video
-- get the title from YouTube
+
 - Better audio component with increased speed
   - forward by 30 seconds
   - go back by 15 seconds
   - (look at JS30 and how they did it for the video)
 - add a new keyword from website
+- get the title from YouTube
 - nav bar for the buttons?
 - Hide the contents?
 - Form: tidy it up

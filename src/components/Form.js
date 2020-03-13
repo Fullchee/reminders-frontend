@@ -17,19 +17,19 @@ export default class Form extends Component {
     super(props);
     this.state = {
       link: {
-        id: "",
-        tile: "",
-        url: "",
-        keywords: [],
-        takeaways: "",
-        datesAccessed: []
+        keywords: [{ id: 12, label: "Perspective", value: "Perspective" }],
+        title: "This is Water - David Foster Wallace",
+        url: "https://www.youtube.com/watch?v=8CrOL-ydFMI",
+        takeaways:
+          "Really reminded me of meditative practices. \n\nGreat advice, takes practice to follow",
+        datesAccessed: ["2019-08"],
+        id: "23"
       },
-      keywords: []
+      keywordOptions: [] //
     };
   }
 
   componentDidMount() {
-    this.refresh();
     this.getKeywords();
   }
 
@@ -38,7 +38,7 @@ export default class Form extends Component {
       "https://fullchee-values-backend.herokuapp.com/keywords"
     );
     const json = await res.json();
-    this.setState({ keywords: JSON.parse(json) });
+    this.setState({ keywordOptions: JSON.parse(json) });
   };
 
   getRandomLink = async () => {
@@ -214,7 +214,7 @@ export default class Form extends Component {
             <Select
               values={this.state.link.keywords}
               multi={true}
-              options={this.state.keywords || []}
+              options={this.state.keywordOptions || []}
               onChange={this.keywordSelected}
               create={true}
               onCreateNew={obj => {
