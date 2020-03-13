@@ -25,7 +25,7 @@ export default class Form extends Component {
         datesAccessed: ["2019-08"],
         id: "23"
       },
-      keywordOptions: [] //
+      keywordOptions: []
     };
   }
 
@@ -53,8 +53,12 @@ export default class Form extends Component {
   };
 
   refresh = () => {
-    this.getRandomLink().then(result => {
-      this.setState({ link: result });
+    this.getRandomLink().then(link => {
+      let i = 0;
+      link.keywords = link.keywords.map(word => {
+        return { id: i++, label: word, value: word };
+      });
+      this.setState({ link: link });
     });
   };
 
@@ -76,6 +80,7 @@ export default class Form extends Component {
     if (link.datesAccessed[link.datesAccessed.length - 1] !== today) {
       link.datesAccessed.push(today);
     }
+    link.keywords = link.keywords.map(obj => obj.value);
     try {
       await this.props.client.query({
         query: MUTATION.UPDATE_LINK,
@@ -85,7 +90,6 @@ export default class Form extends Component {
       });
       toast(`Updated link: ${this.state.link.title}!`);
     } catch (e) {
-      debugger;
       toast("Couldn't update the link");
       console.error(e.networkError.result.errors);
     }
