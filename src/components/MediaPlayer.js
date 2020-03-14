@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ReactPlayer from "react-player";
-import YouTubePlayer from "react-player/lib/players/YouTube";
+// import AudioPlayer from "./AudioPlayer";
+import ReactAudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 
 export default class MediaPlayer extends Component {
@@ -21,22 +22,16 @@ export default class MediaPlayer extends Component {
     } else if (this.props.url.slice(-4) === ".mp3") {
       return (
         <>
-          <YouTubePlayer
-            className="audio-player"
-            ref={c => (this.player = c)}
-            src={this.props.url}
-          />
+          <ReactAudioPlayer ref={c => (this.player = c)} src={this.props.url} />
 
           <select
             onChange={e => {
               const newSpeed = parseFloat(e.target.value);
-              this.setState({
-                speed: newSpeed
-              });
               debugger;
               this.setState({
                 speed: newSpeed
               });
+              this.player.audio.playbackRate = newSpeed;
             }}
             value={this.state.speed}
           >

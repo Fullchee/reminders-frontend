@@ -54,6 +54,9 @@ export default class Form extends Component {
 
   refresh = () => {
     this.getRandomLink().then(link => {
+      if (!link) {
+        throw new Error("Start your local server!");
+      }
       let i = 0;
       link.keywords = link.keywords.map(word => {
         return { id: i++, label: word, value: word };
