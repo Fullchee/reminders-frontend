@@ -9,7 +9,8 @@ export default class MediaPlayer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      speed: 1
+      speed: 1,
+      player: React.createRef()
     };
   }
   render() {
