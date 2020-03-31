@@ -27,6 +27,7 @@ yarn start
 ## TODOs:
 
 - add a new keyword from website
+- add an option to hide the new entry?
 - get the title from YouTube
 - nav bar for the buttons?
 - Hide the contents?
