@@ -27,6 +27,7 @@ yarn start
 ## TODOs:
 
 - add a new keyword from website
+- show skeleton during the first load (if it's longer than ~2 seconds), it's waiting for heroku to spin up
 - add an option to hide the new entry?
 - get the title from YouTube
 - nav bar for the buttons?
