@@ -181,6 +181,19 @@ export default class Form extends Component {
     this.setState({ link });
   };
 
+  handleServerless = async (e) => {
+    e.preventDefault();
+    const res = await fetch("/.netlify/functions/async-dad-joke", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    // const text = await res.text();
+    debugger;
+    const json = await res.json();
+    debugger;
+    this.setState({ dadjoke: json.msg });
+  };
   render() {
     return (
       <>
@@ -258,6 +271,8 @@ export default class Form extends Component {
             value={this.state.link.takeaways || ""}
             onEditorChange={this.handleEditorChange}
           />
+          <button onClick={this.handleServerless}>Get Dad joke</button>
+          <p>{this.state.dadjoke || "no dad joke yet"}</p>
           <button
             id="submit"
             type="submit"

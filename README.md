@@ -26,10 +26,8 @@ yarn start
 
 ## TODOs:
 
+- switch to serverless functions
 - Nav: overflow menu for delete (3 step delete)
-- add TinyMCE
-- switch to 
-  - add a new keyword from website
 - get the title from YouTube?
 - Hide the contents?
 - Cypress.io tests
