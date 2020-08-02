@@ -26,9 +26,7 @@ yarn start
 
 ## TODOs:
 
-- make it look nicer
-  - gradient background
-  - white background for the actual form
+- Nav: overflow menu for delete (3 step delete)
 - add TinyMCE
 - switch to 
   - add a new keyword from website

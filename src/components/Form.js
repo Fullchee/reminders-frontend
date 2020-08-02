@@ -11,6 +11,7 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 import TextareaAutosize from "react-textarea-autosize";
 import QUERY from "./queries";
 import MUTATION from "./mutations";
+import Nav from "./Nav";
 
 export default class Form extends Component {
   constructor(props) {
@@ -23,9 +24,9 @@ export default class Form extends Component {
         takeaways:
           "Really reminded me of meditative practices. \n\nGreat advice, takes practice to follow",
         datesAccessed: ["2019-08"],
-        id: "23"
+        id: "23",
       },
-      keywordOptions: []
+      keywordOptions: [],
     };
   }
 
@@ -44,7 +45,7 @@ export default class Form extends Component {
   getRandomLink = async () => {
     try {
       const res = await this.props.client.query({
-        query: QUERY.RANDOM_LINK
+        query: QUERY.RANDOM_LINK,
       });
       return res.data.randomLink;
     } catch (e) {
@@ -53,43 +54,43 @@ export default class Form extends Component {
   };
 
   refresh = () => {
-    this.getRandomLink().then(link => {
+    this.getRandomLink().then((link) => {
       if (!link) {
         throw new Error("Start your local server!");
       }
       let i = 0;
-      link.keywords = link.keywords.map(word => {
+      link.keywords = link.keywords.map((word) => {
         return { id: i++, label: word, value: word };
       });
       this.setState({ link: link });
     });
   };
 
-  changeHandler = event => {
+  changeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
 
     const newLink = this.state.link;
     newLink[name] = value;
     this.setState({
-      link: newLink
+      link: newLink,
     });
   };
 
-  updateLink = async event => {
+  updateLink = async (event) => {
     event.preventDefault();
     const link = this.state.link;
     const today = new Date().toISOString().slice(0, 10);
     if (link.datesAccessed[link.datesAccessed.length - 1] !== today) {
       link.datesAccessed.push(today);
     }
-    link.keywords = link.keywords.map(obj => obj.value);
+    link.keywords = link.keywords.map((obj) => obj.value);
     try {
       await this.props.client.query({
         query: MUTATION.UPDATE_LINK,
         variables: {
-          stringifiedLink: JSON.stringify(this.state.link)
-        }
+          stringifiedLink: JSON.stringify(this.state.link),
+        },
       });
       toast(`Updated link: ${this.state.link.title}!`);
     } catch (e) {
@@ -107,15 +108,15 @@ export default class Form extends Component {
           label: "Yes",
           onClick: () => {
             this.deleteLink();
-          }
+          },
         },
         {
           label: "No",
           onClick: () => {
             return;
-          }
-        }
-      ]
+          },
+        },
+      ],
     });
   };
   deleteLink = async () => {
@@ -123,8 +124,8 @@ export default class Form extends Component {
       await this.props.client.query({
         query: MUTATION.DELETE_LINK,
         variables: {
-          linkId: this.state.link.id
-        }
+          linkId: this.state.link.id,
+        },
       });
       toast(`Deleted link: ${this.state.link.title}!`);
       this.refresh();
@@ -142,27 +143,27 @@ export default class Form extends Component {
         title: "",
         url: "",
         keywords: [],
-        datesAccessed: []
-      }
+        datesAccessed: [],
+      },
     });
   };
 
   /**
    * Update the keywords of the link
    */
-  keywordSelected = selected => {
+  keywordSelected = (selected) => {
     selected = selected.sort((a, b) => {
       return a.label > b.label ? -1 : 1;
     });
     const link = { ...this.state.link };
-    link.keywords = selected.map(keyword => {
+    link.keywords = selected.map((keyword) => {
       if (keyword && typeof keyword === "object") {
         return keyword;
       } else {
         return {
           id: keyword,
           value: keyword,
-          label: keyword
+          label: keyword,
         };
       }
     });
@@ -172,17 +173,11 @@ export default class Form extends Component {
   render() {
     return (
       <>
-        <div className="buttons">
-          <button id="refresh" onClick={this.refresh}>
-            Refresh
-          </button>
-          <button id="delete" onClick={this.confirmDelete}>
-            Delete
-          </button>
-          <button id="Add" onClick={this.clearForm}>
-            Add
-          </button>
-        </div>
+        <Nav
+          refresh={this.refresh}
+          confirmDelete={this.confirmDelete}
+          clearForm={this.clearForm}
+        />
         <MediaPlayer
           className="mediaPlayer"
           url={this.state.link.url || ""}
@@ -224,7 +219,7 @@ export default class Form extends Component {
               options={this.state.keywordOptions || []}
               onChange={this.keywordSelected}
               create={true}
-              onCreateNew={obj => {
+              onCreateNew={(obj) => {
                 console.log(obj);
                 // TODO: add a new item
               }}
@@ -248,7 +243,7 @@ export default class Form extends Component {
 }
 
 Form.propTypes = {
-  client: PropTypes.object
+  client: PropTypes.object,
 };
 
 withApollo(Form);
