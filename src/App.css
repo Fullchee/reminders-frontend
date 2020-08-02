@@ -37,14 +37,12 @@
   display: -ms-flexbox;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 33px 130px;
+  padding: 33px 6%;
 }
 
 /* Nav */
 .nav ul {
   display: flex;
-  /* justify-content: space-between; */
   margin: 0;
   padding: 0;
   align-items: center;
@@ -68,7 +66,7 @@
 a:hover {
   background: rgba(0, 0, 0, 0.3);
 }
-  
+
 form input {
   width: 90%;
   margin: 15px;
@@ -92,8 +90,7 @@ form input {
 }
 
 .buttons button:hover,
-.buttons button:focus
- {
+.buttons button:focus {
   border-radius: 10px;
   background-color: #eee;
   outline: none;
@@ -101,10 +98,14 @@ form input {
 
 .buttons .delete:hover,
 .buttons .delete:focus {
-  background-color: #DB4437;
+  background-color: #db4437;
 }
 
 /* Media Player */
+.media-player {
+  display: flex;
+  justify-content: center;
+}
 .audio-player {
   max-width: 60vw;
 }
@@ -172,6 +173,9 @@ button[type="submit"]:focus {
 }
 
 @media only screen and (max-width: 700px) {
+  .form-container {
+    padding: 3% 5%;
+  }
   .form {
     grid-template-columns: 1fr;
     min-width: 80vw;

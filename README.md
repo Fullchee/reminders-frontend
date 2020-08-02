@@ -31,7 +31,6 @@ yarn start
 - switch to 
   - add a new keyword from website
 - get the title from YouTube?
-- nav bar for the buttons?
 - Hide the contents?
 - Cypress.io tests
 - a11y

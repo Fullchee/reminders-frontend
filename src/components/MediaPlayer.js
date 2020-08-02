@@ -10,27 +10,34 @@ export default class MediaPlayer extends Component {
     super(props);
     this.state = {
       speed: 1,
-      player: React.createRef()
+      player: React.createRef(),
     };
   }
   render() {
     // initial load: it doesn't do a/th
     if (!this.props.url) {
-      return <h3>No media</h3>;
+      return <h3 className="media-player">No media</h3>;
     }
     if (this.props.url.includes("youtu")) {
-      return <ReactPlayer url={this.props.url} controls={true} />;
+      return (
+        <div className="media-player">
+          <ReactPlayer url={this.props.url} controls={true} />
+        </div>
+      );
     } else if (this.props.url.slice(-4) === ".mp3") {
       return (
-        <>
-          <ReactAudioPlayer ref={c => (this.player = c)} src={this.props.url} />
+        <div className="media-player">
+          <ReactAudioPlayer
+            ref={(c) => (this.player = c)}
+            src={this.props.url}
+          />
 
           <select
-            onChange={e => {
+            onChange={(e) => {
               const newSpeed = parseFloat(e.target.value);
               debugger;
               this.setState({
-                speed: newSpeed
+                speed: newSpeed,
               });
               this.player.audio.playbackRate = newSpeed;
             }}
@@ -44,14 +51,14 @@ export default class MediaPlayer extends Component {
             <option value="1.75">1.75x</option>
             <option value="2">2x</option>
           </select>
-        </>
+        </div>
       );
     } else {
-      return <h3>No media</h3>;
+      return <h3 className="media-player">No media</h3>;
     }
   }
 }
 
 MediaPlayer.propTypes = {
-  url: PropTypes.string
+  url: PropTypes.string,
 };
