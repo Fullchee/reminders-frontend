@@ -104,7 +104,9 @@ form input {
 /* Media Player */
 .media-player {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  width: 100%;
+  margin-right: 20px;
 }
 .audio-player {
   max-width: 60vw;
@@ -210,8 +212,4 @@ button[type="submit"]:focus {
     background: #eee;
     padding: 20px;
   }
-}
-
-.buttons + div {
-  width: 70vw !important;
 }
