@@ -26,14 +26,15 @@ yarn start
 
 ## TODOs:
 
-- add a new keyword from website
-- add an option to hide the new entry?
-- get the title from YouTube
+- make it look nicer
+  - gradient background
+  - white background for the actual form
+- add TinyMCE
+- switch to 
+  - add a new keyword from website
+- get the title from YouTube?
 - nav bar for the buttons?
 - Hide the contents?
-- Form: tidy it up
-- React testing library tests
-  - Apollo GraphQL tests
 - Cypress.io tests
 - a11y
 

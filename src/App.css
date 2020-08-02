@@ -8,12 +8,37 @@
 }
 
 .container {
+  width: 100%;
   min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
-  color: white;
+  align-items: center;
+  padding: 15px;
+  background: #9053c7;
+  background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
+  background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
+  background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
+  background: linear-gradient(-135deg, #c850c0, #4158d0);
+}
+
+.form-container {
+  width: 960px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 33px 130px;
 }
 
 .nav ul {
@@ -76,19 +101,6 @@ button[type="submit"]:hover {
 .buttons button {
   padding: 1em 1.5em;
   border-radius: 10px;
-}
-
-.backgroundImage {
-  background-size: cover;
-  background-image: url("./texture-background.jpg");
-  display: block;
-  filter: blur(20px);
-  -webkit-filter: blur(20px);
-  height: 800px;
-  left: 0;
-  position: fixed;
-  right: 0;
-  z-index: -1;
 }
 
 .multi-select {

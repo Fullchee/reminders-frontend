@@ -5,9 +5,10 @@ import Form from "./components/Form";
 function App(props) {
   return (
     <div className="App">
-      <div className="backgroundImage"></div>
       <div className="container">
-        <Form client={props.client} className="values"></Form>
+        <div className="form-container">
+          <Form client={props.client} className="values"></Form>
+        </div>
       </div>
     </div>
   );
