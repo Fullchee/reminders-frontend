@@ -34,6 +34,7 @@ yarn start
 - Hide the contents?
 - Cypress.io tests
 - a11y
+- auto save after a minute
 
 ## Lessons log
 

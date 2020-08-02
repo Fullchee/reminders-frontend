@@ -12,6 +12,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import QUERY from "./queries";
 import MUTATION from "./mutations";
 import Nav from "./Nav";
+import { Editor } from "@tinymce/tinymce-react";
 
 export default class Form extends Component {
   constructor(props) {
@@ -69,9 +70,19 @@ export default class Form extends Component {
   changeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
+    debugger;
 
     const newLink = this.state.link;
     newLink[name] = value;
+    this.setState({
+      link: newLink,
+    });
+  };
+  handleEditorChange = (content, editor) => {
+    console.log("Content was updated:", content);
+
+    const newLink = this.state.link;
+    newLink["takeaways"] = content;
     this.setState({
       link: newLink,
     });
@@ -202,15 +213,13 @@ export default class Form extends Component {
             value={this.state.link.url || ""}
             onChange={this.changeHandler}
           />
-          <label htmlFor="takeaways">Takeaways</label>
-          <TextareaAutosize
+          {/* <TextareaAutosize
             id="takeaways"
             className="input takeaways"
             name="takeaways"
             minRows={5}
-            value={this.state.link.takeaways || ""}
             onChange={this.changeHandler}
-          ></TextareaAutosize>
+          ></TextareaAutosize> */}
           <label htmlFor="keywords">Keywords</label>
           <div id="keywords" className="keywords">
             <Select
@@ -227,6 +236,28 @@ export default class Form extends Component {
           </div>
           <label htmlFor="datesAccessed">Dates</label>
           <p id="datesAccessed">{this.state.link.datesAccessed}</p>
+          <label htmlFor="takeaways" style={{ color: "white" }}>
+            Takeaways
+          </label>
+          <Editor
+            apiKey="mhoop81tplrihnhuphy89bsw7qjq01dhzkjdzgb61ruf4itq"
+            init={{
+              height: 400,
+              menubar: false,
+              plugins: [
+                "advlist autolink lists link image charmap print preview anchor",
+                "searchreplace visualblocks code fullscreen",
+                "insertdatetime media table paste code help wordcount",
+              ],
+              toolbar:
+                "undo redo | formatselect | bold italic backcolor | \
+             alignleft aligncenter alignright alignjustify | \
+             bullist numlist outdent indent | removeformat | help | image insertdatetime",
+            }}
+            name="takeaways"
+            value={this.state.link.takeaways || ""}
+            onEditorChange={this.handleEditorChange}
+          />
           <button
             id="submit"
             type="submit"
