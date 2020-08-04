@@ -278,6 +278,12 @@ export default class Form extends Component {
           >
             Update
           </button>
+          <label className="hidden-text" htmlFor="hidden-id">
+            id
+          </label>
+          <p className="hidden-text" id="hidden-id">
+            {this.state.link.id}
+          </p>
         </form>
         <ToastContainer />
       </>

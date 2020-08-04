@@ -3,6 +3,7 @@ import addIcon from "../images/add.svg";
 import reloadIcon from "../images/renew.svg";
 import overflowIcon from "../images/overflow-menu--vertical.svg";
 import trashIcon from "../images/trash-can.svg";
+import searchIcon from "../images/search.svg";
 import Ripple from "react-touch-ripple";
 function Nav(props) {
   return (
