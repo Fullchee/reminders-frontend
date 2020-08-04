@@ -52,13 +52,19 @@ export default class Form extends Component {
     return link;
   };
 
+  minifyLink = (link) => {
+    if (!link.keywords) {
+      console.log(link);
+    }
+    link.keywords = link.keywords.join(",");
+    return link;
+  };
+
   getRandomLink = async () => {
     const res = await fetch(
       "https://fullchee-reminders-backend.herokuapp.com/random-link"
     );
     const data = await res.json();
-    console.log(data);
-    debugger;
     return this.formatLink(data);
   };
 
@@ -78,7 +84,6 @@ export default class Form extends Component {
   changeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    debugger;
 
     const newLink = this.state.link;
     newLink[name] = value;
@@ -87,8 +92,6 @@ export default class Form extends Component {
     });
   };
   handleEditorChange = (content, editor) => {
-    console.log("Content was updated:", content);
-
     const newLink = this.state.link;
     newLink["takeaways"] = content;
     this.setState({
@@ -98,24 +101,43 @@ export default class Form extends Component {
 
   updateLink = async (event) => {
     event.preventDefault();
-    const link = this.state.link;
-    const today = new Date().toISOString().slice(0, 10);
-    if (link.datesAccessed[link.datesAccessed.length - 1] !== today) {
-      link.datesAccessed.push(today);
-    }
-    link.keywords = link.keywords.map((obj) => obj.value);
-    try {
-      await this.props.client.query({
-        query: MUTATION.UPDATE_LINK,
-        variables: {
-          stringifiedLink: JSON.stringify(this.state.link),
-        },
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(this.minifyLink(this.state.link)),
+    };
+console.log(requestOptions.body);
+
+    fetch("http://localhost:3002/update-link", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        toast(`Updated link: ${this.state.link.title}!`);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        toast("Couldn't update the link");
       });
-      toast(`Updated link: ${this.state.link.title}!`);
-    } catch (e) {
-      toast("Couldn't update the link");
-      console.error(e.networkError.result.errors);
-    }
+
+    // const link = this.state.link;
+    // const today = new Date().toISOString().slice(0, 10);
+    // if (link.datesAccessed[link.datesAccessed.length - 1] !== today) {
+    //   link.datesAccessed.push(today);
+    // }
+    // link.keywords = link.keywords.map((obj) => obj.value);
+    // try {
+    //   await this.props.client.query({
+    //     query: MUTATION.UPDATE_LINK,
+    //     variables: {
+    //       stringifiedLink: JSON.stringify(this.state.link),
+    //     },
+    //   });
+    //   toast(`Updated link: ${this.state.link.title}!`);
+    // } catch (e) {
+    //   toast("Couldn't update the link");
+    //   console.error(e.networkError.result.errors);
+    // }
   };
 
   confirmDelete = () => {
