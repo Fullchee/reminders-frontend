@@ -16,7 +16,7 @@ export default class MediaPlayer extends Component {
   render() {
     // initial load: it doesn't do a/th
     if (!this.props.url) {
-      return <h3 className="media-player">No media</h3>;
+      return <h3 className>No media</h3>;
     }
     if (this.props.url.includes("youtu")) {
       return (
@@ -54,7 +54,7 @@ export default class MediaPlayer extends Component {
         </div>
       );
     } else {
-      return <h3 className="media-player">No media</h3>;
+      return <h3>No media</h3>;
     }
   }
 }

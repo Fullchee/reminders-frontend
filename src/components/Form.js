@@ -1,16 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import MediaPlayer from "./MediaPlayer";
-import { uuid } from "uuidv4";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Select from "react-dropdown-select";
-import { withApollo } from "react-apollo";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-import TextareaAutosize from "react-textarea-autosize";
-import QUERY from "./queries";
-import MUTATION from "./mutations";
 import Nav from "./Nav";
 import { Editor } from "@tinymce/tinymce-react";
 
@@ -37,10 +32,14 @@ export default class Form extends Component {
 
   getKeywords = async () => {
     const res = await fetch(
-      "https://fullchee-values-backend.herokuapp.com/keywords"
+      "https://fullchee-reminders-backend.herokuapp.com/keywords"
     );
     const json = await res.json();
-    this.setState({ keywordOptions: JSON.parse(json) });
+    let i = 0;
+    const formattedKeywords = json.map((word) => {
+      return { id: i++, label: word, value: word };
+    });
+    this.setState({ keywordOptions: formattedKeywords });
   };
 
   formatLink = (link) => {
@@ -168,7 +167,6 @@ export default class Form extends Component {
   clearForm = () => {
     this.setState({
       link: {
-        id: uuid(),
         takeaways: "",
         title: "",
         url: "",
@@ -232,13 +230,6 @@ export default class Form extends Component {
             value={this.state.link.url || ""}
             onChange={this.changeHandler}
           />
-          {/* <TextareaAutosize
-            id="takeaways"
-            className="input takeaways"
-            name="takeaways"
-            minRows={5}
-            onChange={this.changeHandler}
-          ></TextareaAutosize> */}
           <label htmlFor="keywords">Keywords</label>
           <div id="keywords" className="keywords">
             <Select
@@ -295,5 +286,3 @@ export default class Form extends Component {
 Form.propTypes = {
   client: PropTypes.object,
 };
-
-withApollo(Form);
