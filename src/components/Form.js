@@ -54,7 +54,7 @@ export default class Form extends Component {
 
   minifyLink = (link) => {
     if (!link.keywords) {
-      console.log(link);
+      console.error(link);
     }
     link.keywords = link.keywords.join(",");
     return link;
@@ -107,37 +107,19 @@ export default class Form extends Component {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(this.minifyLink(this.state.link)),
     };
-console.log(requestOptions.body);
 
-    fetch("http://localhost:3002/update-link", requestOptions)
+    fetch(
+      "https://fullchee-reminders-backend.herokuapp.com/update-link",
+      requestOptions
+    )
       .then((response) => response.json())
       .then((data) => {
         toast(`Updated link: ${this.state.link.title}!`);
-        console.log(data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         toast("Couldn't update the link");
       });
-
-    // const link = this.state.link;
-    // const today = new Date().toISOString().slice(0, 10);
-    // if (link.datesAccessed[link.datesAccessed.length - 1] !== today) {
-    //   link.datesAccessed.push(today);
-    // }
-    // link.keywords = link.keywords.map((obj) => obj.value);
-    // try {
-    //   await this.props.client.query({
-    //     query: MUTATION.UPDATE_LINK,
-    //     variables: {
-    //       stringifiedLink: JSON.stringify(this.state.link),
-    //     },
-    //   });
-    //   toast(`Updated link: ${this.state.link.title}!`);
-    // } catch (e) {
-    //   toast("Couldn't update the link");
-    //   console.error(e.networkError.result.errors);
-    // }
   };
 
   confirmDelete = () => {
@@ -161,19 +143,26 @@ console.log(requestOptions.body);
     });
   };
   deleteLink = async () => {
-    try {
-      await this.props.client.query({
-        query: MUTATION.DELETE_LINK,
-        variables: {
-          linkId: this.state.link.id,
-        },
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: this.state.link.id,
+      }),
+    };
+
+    fetch(
+      "https://fullchee-reminders-backend.herokuapp.com/delete-link",
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        toast(`Deleted link: ${this.state.link.title}!`);
+      })
+      .catch((error) => {
+        console.error(error);
+        toast("Couldn't delete the link");
       });
-      toast(`Deleted link: ${this.state.link.title}!`);
-      this.refresh();
-    } catch (e) {
-      toast("Couldn't delete the link");
-      console.error(e.networkError.result.errors);
-    }
   };
 
   clearForm = () => {
