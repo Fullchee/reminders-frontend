@@ -131,6 +131,15 @@ form input {
   width: 100%;
 }
 
+.input--text {
+  line-height: 1.5;
+  color: #333;
+  background: #e6e6e6;
+  height: 50px;
+  border-radius: 3px;
+  padding: 0 20px 0 20px;
+}
+
 .form label {
   text-align: right;
   grid-column: 1 / 2;
@@ -195,13 +204,10 @@ button[type="submit"]:focus {
   .form label {
     text-align: left;
   }
-  .keywords {
-    grid-column: 1 / 2;
-  }
-  #keywords {
-    grid-column: 1 / 2;
-  }
-  #datesAccessed {
+  .keywords,
+  #keywords,
+  #datesAccessed,
+  .text-editor {
     grid-column: 1 / 2;
   }
   .react-timerange-picker .react-timerange-picker__wrapper {

@@ -217,7 +217,7 @@ export default class Form extends Component {
             id="title"
             type="text"
             name="title"
-            className="input title"
+            className="input input--text"
             value={this.state.link.title || ""}
             onChange={this.changeHandler}
           />
@@ -226,7 +226,7 @@ export default class Form extends Component {
             id="url"
             type="url"
             name="url"
-            className="input"
+            className="input input--text"
             value={this.state.link.url || ""}
             onChange={this.changeHandler}
           />
@@ -249,25 +249,27 @@ export default class Form extends Component {
           <label htmlFor="takeaways" style={{ color: "white" }}>
             Takeaways
           </label>
-          <Editor
-            apiKey="mhoop81tplrihnhuphy89bsw7qjq01dhzkjdzgb61ruf4itq"
-            init={{
-              height: 400,
-              menubar: false,
-              plugins: [
-                "advlist autolink lists link image charmap print preview anchor",
-                "searchreplace visualblocks code fullscreen",
-                "insertdatetime media table paste code help wordcount",
-              ],
-              toolbar:
-                "undo redo | formatselect | bold italic backcolor | \
+          <div className="text-editor">
+            <Editor
+              apiKey="mhoop81tplrihnhuphy89bsw7qjq01dhzkjdzgb61ruf4itq"
+              init={{
+                height: 400,
+                menubar: false,
+                plugins: [
+                  "advlist autolink lists link image charmap print preview anchor",
+                  "searchreplace visualblocks code fullscreen",
+                  "insertdatetime media table paste code help wordcount",
+                ],
+                toolbar:
+                  "undo redo | formatselect | bold italic backcolor | \
              alignleft aligncenter alignright alignjustify | \
              bullist numlist outdent indent | removeformat | help | image insertdatetime",
-            }}
-            name="takeaways"
-            value={this.state.link.takeaways || ""}
-            onEditorChange={this.handleEditorChange}
-          />
+              }}
+              name="takeaways"
+              value={this.state.link.takeaways || ""}
+              onEditorChange={this.handleEditorChange}
+            />
+          </div>
           <button
             id="submit"
             type="submit"
