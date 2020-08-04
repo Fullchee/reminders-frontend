@@ -43,15 +43,23 @@ export default class Form extends Component {
     this.setState({ keywordOptions: JSON.parse(json) });
   };
 
-  getRandomLink = async () => {
-    try {
-      const res = await this.props.client.query({
-        query: QUERY.RANDOM_LINK,
-      });
-      return res.data.randomLink;
-    } catch (e) {
-      console.error(e);
+  formatLink = (link) => {
+    if (!link.keywords) {
+      link.keywords = [];
+    } else {
+      link.keywords = link.keywords.split(",");
     }
+    return link;
+  };
+
+  getRandomLink = async () => {
+    const res = await fetch(
+      "https://fullchee-reminders-backend.herokuapp.com/random-link"
+    );
+    const data = await res.json();
+    console.log(data);
+    debugger;
+    return this.formatLink(data);
   };
 
   refresh = () => {

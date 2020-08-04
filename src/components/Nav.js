@@ -18,7 +18,7 @@ function Nav(props) {
         </button>
       </Ripple>
       <Ripple>
-        <button id="delete" class="delete" onClick={props.confirmDelete}>
+        <button id="delete" className="delete" onClick={props.confirmDelete}>
           <img src={trashIcon} alt="delete" />
         </button>
       </Ripple>
