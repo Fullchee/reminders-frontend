@@ -200,7 +200,7 @@ export default class Form extends Component {
 
   render() {
     return (
-      <>
+      <div className="form-container">
         <Nav
           refresh={this.refresh}
           confirmDelete={this.confirmDelete}
@@ -286,7 +286,7 @@ export default class Form extends Component {
           </p>
         </form>
         <ToastContainer />
-      </>
+      </div>
     );
   }
 }

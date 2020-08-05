@@ -26,10 +26,8 @@ yarn start
 
 ## TODOs:
 
-- completely remove graphql dependencies
-- add a new keyword from website
+- replace the hidden id with an info icon with a pop up?
 - get the title from YouTube?
-- Hide the contents?
 - Cypress.io tests
 - a11y
 - auto save after a minute

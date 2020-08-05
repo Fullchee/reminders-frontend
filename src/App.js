@@ -1,15 +1,13 @@
+import { useRoutes } from "hookrouter";
 import React from "react";
 import "./App.css";
-import Form from "./components/Form";
+import Routes from "./router";
 
 function App(props) {
+  const routeResult = useRoutes(Routes);
   return (
     <div className="App">
-      <div className="container">
-        <div className="form-container">
-          <Form client={props.client} className="values"></Form>
-        </div>
-      </div>
+      <div className="container">{routeResult}</div>
     </div>
   );
 }

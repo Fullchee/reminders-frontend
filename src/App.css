@@ -74,7 +74,7 @@ form input {
 
 .buttons {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   width: 100%;
 }
 
@@ -99,6 +99,18 @@ form input {
 .buttons .delete:hover,
 .buttons .delete:focus {
   background-color: #db4437;
+}
+
+.buttons .search-box {
+  margin-left: 7%;
+}
+
+.search-box .input--text {
+  position: relative;
+  top: -18px;
+}
+
+.buttons__icons {
 }
 
 /* Media Player */
@@ -126,7 +138,6 @@ form input {
 }
 
 .input {
-  border-radius: 3px;
   margin: auto 0;
   width: 100%;
 }
@@ -134,10 +145,10 @@ form input {
 .input--text {
   line-height: 1.5;
   color: #333;
-  background: #e6e6e6;
   height: 50px;
   border-radius: 3px;
   padding: 0 20px 0 20px;
+  border-color: #eee;
 }
 
 .form label {
