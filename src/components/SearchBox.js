@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Ripple from "react-touch-ripple";
 import searchIcon from "../images/search.svg";
-import { navigate } from "hookrouter";
+import { useHistory } from "react-router-dom";
 
 const search = (query) => {
-  // TODO: redirect to a search page
+  // TODO: redirect to the search page
   window.location = `https://fullchee-reminders-backend.herokuapp.com/search?q=${query}`;
 };
 

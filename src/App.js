@@ -1,14 +1,23 @@
-import { useRoutes } from "hookrouter";
 import React from "react";
 import "./App.css";
-import Routes from "./router";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Form from "./components/Form";
 
 function App(props) {
-  const routeResult = useRoutes(Routes);
   return (
-    <div className="App">
-      <div className="container">{routeResult}</div>
-    </div>
+    <Router>
+      <Switch>
+        <Route
+          path="/link/:id"
+          render={({ match }) => <Form id={match.params.id} />}
+        />
+        <Route
+          path="/:id"
+          render={({ match }) => <Form id={match.params.id} />}
+        />
+        <Route path="/" render={() => <Form id="0" />} />
+      </Switch>
+    </Router>
   );
 }
 

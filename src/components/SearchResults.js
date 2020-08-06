@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { A } from "hookrouter";
 
 const SearchBox = (props) => {
   return (
     <div>
-      <A href="/">Go back</A>
+      <a href="/">Go back</a>
     </div>
   );
 };

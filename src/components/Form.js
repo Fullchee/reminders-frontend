@@ -233,86 +233,88 @@ export default class Form extends Component {
 
   render() {
     return (
-      <div className="form-container">
-        <Nav
-          refresh={this.refresh}
-          confirmDelete={this.confirmDelete}
-          clearForm={this.clearForm}
-        />
-        <MediaPlayer
-          className="mediaPlayer"
-          url={this.state.link.url || ""}
-          onEnded={this.updateLink}
-        ></MediaPlayer>
-        <form className="form">
-          <label htmlFor="title">Title</label>
-          <input
-            id="title"
-            type="text"
-            name="title"
-            className="input input--text"
-            value={this.state.link.title || ""}
-            onChange={this.changeHandler}
+      <div className="App">
+        <div className="form-container">
+          <Nav
+            refresh={this.refresh}
+            confirmDelete={this.confirmDelete}
+            clearForm={this.clearForm}
           />
-          <label htmlFor="url">URL</label>
-          <input
-            id="url"
-            type="url"
-            name="url"
-            className="input input--text"
-            value={this.state.link.url || ""}
-            onChange={this.changeHandler}
-          />
-          <label htmlFor="keywords">Keywords</label>
-          <div id="keywords" className="keywords">
-            <Select
-              values={this.state.link.keywords}
-              multi={true}
-              options={this.state.keywordOptions || []}
-              onChange={this.keywordSelected}
-              create={true}
-              onCreateNew={(obj) => {
-                console.log(obj);
-                // TODO: add a new item
-              }}
+          <MediaPlayer
+            className="mediaPlayer"
+            url={this.state.link.url || ""}
+            onEnded={this.updateLink}
+          ></MediaPlayer>
+          <form className="form">
+            <label htmlFor="title">Title</label>
+            <input
+              id="title"
+              type="text"
+              name="title"
+              className="input input--text"
+              value={this.state.link.title || ""}
+              onChange={this.changeHandler}
             />
-          </div>
-          <label htmlFor="datesAccessed">Dates</label>
-          <p id="datesAccessed">{this.state.link.datesAccessed}</p>
-          <label htmlFor="takeaways" style={{ color: "white" }}>
-            Takeaways
-          </label>
-          <div className="text-editor">
-            <Editor
-              apiKey="mhoop81tplrihnhuphy89bsw7qjq01dhzkjdzgb61ruf4itq"
-              init={{
-                height: 400,
-                menubar: false,
-                plugins: [
-                  "advlist autolink lists link image charmap print preview anchor",
-                  "searchreplace visualblocks code fullscreen",
-                  "insertdatetime media table paste code help wordcount",
-                ],
-                toolbar:
-                  "undo redo | formatselect | bold italic backcolor | \
+            <label htmlFor="url">URL</label>
+            <input
+              id="url"
+              type="url"
+              name="url"
+              className="input input--text"
+              value={this.state.link.url || ""}
+              onChange={this.changeHandler}
+            />
+            <label htmlFor="keywords">Keywords</label>
+            <div id="keywords" className="keywords">
+              <Select
+                values={this.state.link.keywords}
+                multi={true}
+                options={this.state.keywordOptions || []}
+                onChange={this.keywordSelected}
+                create={true}
+                onCreateNew={(obj) => {
+                  console.log(obj);
+                  // TODO: add a new item
+                }}
+              />
+            </div>
+            <label htmlFor="datesAccessed">Dates</label>
+            <p id="datesAccessed">{this.state.link.datesAccessed}</p>
+            <label htmlFor="takeaways" style={{ color: "white" }}>
+              Takeaways
+            </label>
+            <div className="text-editor">
+              <Editor
+                apiKey="mhoop81tplrihnhuphy89bsw7qjq01dhzkjdzgb61ruf4itq"
+                init={{
+                  height: 400,
+                  menubar: false,
+                  plugins: [
+                    "advlist autolink lists link image charmap print preview anchor",
+                    "searchreplace visualblocks code fullscreen",
+                    "insertdatetime media table paste code help wordcount",
+                  ],
+                  toolbar:
+                    "undo redo | formatselect | bold italic backcolor | \
              alignleft aligncenter alignright alignjustify | \
              bullist numlist outdent indent | removeformat | help | image insertdatetime",
-              }}
-              name="takeaways"
-              value={this.state.link.takeaways || ""}
-              onEditorChange={this.handleEditorChange}
-            />
-          </div>
-          <button
-            id="submit"
-            type="submit"
-            name="submit"
-            onClick={this.updateLink}
-          >
-            Update
-          </button>
-        </form>
-        <ToastContainer />
+                }}
+                name="takeaways"
+                value={this.state.link.takeaways || ""}
+                onEditorChange={this.handleEditorChange}
+              />
+            </div>
+            <button
+              id="submit"
+              type="submit"
+              name="submit"
+              onClick={this.updateLink}
+            >
+              Update
+            </button>
+          </form>
+          <ToastContainer />
+        </div>
       </div>
     );
   }
