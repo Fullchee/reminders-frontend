@@ -26,6 +26,7 @@ yarn start
 
 ## TODOs:
 
+- /link/18 doesn't work on production
 - navbar: holding the buttons shows a tooltip
 - replace the hidden id with an info icon with a pop up?
 - get the title from YouTube?
