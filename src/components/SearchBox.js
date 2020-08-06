@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Ripple from "react-touch-ripple";
 import searchIcon from "../images/search.svg";
-import { A } from "hookrouter";
+import { navigate } from "hookrouter";
 
 const search = (query) => {
   // TODO: redirect to a search page

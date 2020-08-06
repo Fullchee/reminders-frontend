@@ -20,7 +20,7 @@ export default class Form extends Component {
         takeaways:
           "Really reminded me of meditative practices. \n\nGreat advice, takes practice to follow",
         datesAccessed: ["2019-08"],
-        id: "23",
+        id: 0,
       },
       keywordOptions: [],
     };
@@ -28,6 +28,15 @@ export default class Form extends Component {
 
   componentDidMount() {
     this.getKeywords();
+    if (this.props.id !== "0") {
+      this.refresh(this.props.id);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.id !== prevProps.id) {
+      this.refresh(this.props.id);
+    }
   }
 
   getKeywords = async () => {
@@ -63,21 +72,36 @@ export default class Form extends Component {
     const res = await fetch(
       "https://fullchee-reminders-backend.herokuapp.com/random-link"
     );
-    const data = await res.json();
-    return this.formatLink(data);
+    const link = await res.json();
+    window.history.replaceState(null, "New Page Title", `/link/${link.id}`);
+    return this.formatLink(link);
   };
 
-  refresh = () => {
-    this.getRandomLink().then((link) => {
-      if (!link) {
-        throw new Error("Start your local server!");
-      }
-      let i = 0;
-      link.keywords = link.keywords.map((word) => {
-        return { id: i++, label: word, value: word };
-      });
-      this.setState({ link: link });
+  getLink = async (id) => {
+    const res = await fetch(
+      `https://fullchee-reminders-backend.herokuapp.com/link/${id}`
+    );
+    const link = await res.json();
+    return this.formatLink(link);
+  };
+
+  refresh = async (id) => {
+    let link;
+    debugger;
+    if (!Number.isNaN(parseInt(id))) {
+      link = await this.getLink(parseInt(id));
+    } else {
+      link = await this.getRandomLink();
+    }
+    debugger;
+    if (!link) {
+      throw new Error("Got an empty link.");
+    }
+    let i = 0;
+    link.keywords = link.keywords.map((word) => {
+      return { id: i++, label: word, value: word };
     });
+    this.setState({ link: link });
   };
 
   changeHandler = (event) => {
