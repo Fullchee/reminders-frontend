@@ -1,8 +1,0 @@
-[build]
-  publish = "public"
-
-[build.environment]
-  NODE_ENV = "development"
-
-[context.production.environment]
-  NODE_ENV = "production"
