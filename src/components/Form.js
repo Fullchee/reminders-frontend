@@ -233,7 +233,7 @@ export default class Form extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App container">
         <div className="form-container">
           <Nav
             refresh={this.refresh}
