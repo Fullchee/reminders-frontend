@@ -70,7 +70,7 @@ export default class Form extends Component {
     }
     const keywordArray = [];
     link.keywords.forEach((obj) => {
-      link.keywords.value.push(obj.value);
+      keywordArray.push(obj.value);
     });
     link.keywords = keywordArray.join(",");
     return link;
@@ -129,8 +129,9 @@ export default class Form extends Component {
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(this.minifyLink(this.state.link)),
+      body: JSON.stringify(this.minifyLink({ ...this.state.link })),
     };
+    debugger;
 
     fetch(
       "https://fullchee-reminders-backend.herokuapp.com/update-link",
@@ -213,8 +214,8 @@ export default class Form extends Component {
       if (keyword && typeof keyword === "object") {
         return {
           ...keyword,
-          name: capitalizeFirstLetter(keyword.name),
-          value: capitalizeFirstLetter(keyword.name),
+          label: this.capitalizeFirstLetter(keyword.label),
+          value: this.capitalizeFirstLetter(keyword.value),
         };
       } else {
         return {
