@@ -57,6 +57,10 @@ export default class Form extends Component {
     } else {
       link.keywords = link.keywords.split(",");
     }
+    let i = 0;
+    link.keywords = link.keywords.map((word) => {
+      return { id: i++, label: word, value: word };
+    });
     return link;
   };
 
@@ -64,7 +68,11 @@ export default class Form extends Component {
     if (!link.keywords) {
       console.error(link);
     }
-    link.keywords = link.keywords.join(",");
+    const keywordArray = [];
+    link.keywords.forEach((obj) => {
+      link.keywords.value.push(obj.value);
+    });
+    link.keywords = keywordArray.join(",");
     return link;
   };
 
@@ -87,20 +95,14 @@ export default class Form extends Component {
 
   refresh = async (id) => {
     let link;
-    debugger;
     if (!Number.isNaN(parseInt(id))) {
       link = await this.getLink(parseInt(id));
     } else {
       link = await this.getRandomLink();
     }
-    debugger;
     if (!link) {
       throw new Error("Got an empty link.");
     }
-    let i = 0;
-    link.keywords = link.keywords.map((word) => {
-      return { id: i++, label: word, value: word };
-    });
     this.setState({ link: link });
   };
 
@@ -124,7 +126,6 @@ export default class Form extends Component {
 
   updateLink = async (event) => {
     event.preventDefault();
-
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -210,7 +211,11 @@ export default class Form extends Component {
     const link = { ...this.state.link };
     link.keywords = selected.map((keyword) => {
       if (keyword && typeof keyword === "object") {
-        return keyword;
+        return {
+          ...keyword,
+          name: capitalizeFirstLetter(keyword.name),
+          value: capitalizeFirstLetter(keyword.name),
+        };
       } else {
         return {
           id: keyword,
@@ -220,6 +225,9 @@ export default class Form extends Component {
       }
     });
     this.setState({ link });
+  };
+  capitalizeFirstLetter = (str) => {
+    return str[0].toUpperCase() + str.slice(1);
   };
 
   render() {
@@ -302,12 +310,6 @@ export default class Form extends Component {
           >
             Update
           </button>
-          <label className="hidden-text" htmlFor="hidden-id">
-            id
-          </label>
-          <p className="hidden-text" id="hidden-id">
-            {this.state.link.id}
-          </p>
         </form>
         <ToastContainer />
       </div>
