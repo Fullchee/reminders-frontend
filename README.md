@@ -26,6 +26,7 @@ yarn start
 
 ## TODOs:
 
+- navbar: holding the buttons shows a tooltip
 - replace the hidden id with an info icon with a pop up?
 - get the title from YouTube?
 - Cypress.io tests
