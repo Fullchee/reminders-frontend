@@ -294,10 +294,9 @@ export default class Form extends Component {
                     "searchreplace visualblocks code fullscreen",
                     "insertdatetime media table paste code help wordcount",
                   ],
-                  toolbar:
-                    "undo redo | formatselect | bold italic backcolor | \
-             alignleft aligncenter alignright alignjustify | \
-             bullist numlist outdent indent | removeformat | help | image insertdatetime",
+                  toolbar: `undo redo | formatselect | bold italic backcolor |` + 
+             `alignleft aligncenter alignright alignjustify |` + 
+             `bullist numlist outdent indent | removeformat | help | image insertdatetime`,
                 }}
                 name="takeaways"
                 value={this.state.link.takeaways || ""}
