@@ -1,4 +1,5 @@
 [build]	
+    command = "yarn build"
     build = "build"
 
 [build.environment]	
