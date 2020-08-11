@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.cab8a479.chunk.css",
+    "main.js": "/static/js/main.dbef3246.chunk.js",
+    "main.js.map": "/static/js/main.dbef3246.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.b7a31800.js",
+    "runtime-main.js.map": "/static/js/runtime-main.b7a31800.js.map",
+    "static/css/2.92cdbaba.chunk.css": "/static/css/2.92cdbaba.chunk.css",
+    "static/js/2.0067d425.chunk.js": "/static/js/2.0067d425.chunk.js",
+    "static/js/2.0067d425.chunk.js.map": "/static/js/2.0067d425.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.79ab0f2c06fc50e80ed94bfd9a32c01f.js": "/precache-manifest.79ab0f2c06fc50e80ed94bfd9a32c01f.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.92cdbaba.chunk.css.map": "/static/css/2.92cdbaba.chunk.css.map",
+    "static/css/main.cab8a479.chunk.css.map": "/static/css/main.cab8a479.chunk.css.map",
+    "static/js/2.0067d425.chunk.js.LICENSE": "/static/js/2.0067d425.chunk.js.LICENSE",
+    "static/media/add.svg": "/static/media/add.b8be3259.svg",
+    "static/media/overflow-menu--vertical.svg": "/static/media/overflow-menu--vertical.f1ad3b28.svg",
+    "static/media/renew.svg": "/static/media/renew.89760865.svg",
+    "static/media/search.svg": "/static/media/search.9757a878.svg",
+    "static/media/trash-can.svg": "/static/media/trash-can.c4a9197b.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b7a31800.js",
+    "static/css/2.92cdbaba.chunk.css",
+    "static/js/2.0067d425.chunk.js",
+    "static/css/main.cab8a479.chunk.css",
+    "static/js/main.dbef3246.chunk.js"
+  ]
+}
