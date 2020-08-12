@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Ripple from "react-touch-ripple";
 import searchIcon from "../images/search.svg";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 const search = (query) => {
   // TODO: redirect to the search page
