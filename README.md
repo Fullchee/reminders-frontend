@@ -1,4 +1,4 @@
-# [Values](https://fullchee-values.netlify.com/)
+# [Reminders](https://fullchee-reminders.netlify.app/)
 
 Shows a random piece of media that reminded me of who I want to be.
 
