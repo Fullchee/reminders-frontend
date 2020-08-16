@@ -101,16 +101,25 @@ form input {
   background-color: #db4437;
 }
 
-.buttons .search-box {
-  margin-left: 7%;
-}
-
 .search-box .input--text {
   position: relative;
   top: -18px;
+  width: 500px;
 }
 
-.buttons__icons {
+@media only screen and (max-width: 850px) {
+  .buttons {
+    flex-direction: column;
+  }
+  .search-box {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .search-box .input--text {
+    top: -7px;
+    width: 100%;
+  }
 }
 
 /* Media Player */
@@ -120,9 +129,9 @@ form input {
   width: 100%;
   margin-right: 20px;
 }
-/* .media-player > div {
-  width: auto !important;
-} */
+.media-player > div {
+  width: 100% !important;
+}
 .audio-player {
   max-width: 60vw;
 }
