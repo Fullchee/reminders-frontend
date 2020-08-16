@@ -120,6 +120,9 @@ form input {
   width: 100%;
   margin-right: 20px;
 }
+.media-player > div {
+  width: auto !important;
+}
 .audio-player {
   max-width: 60vw;
 }
