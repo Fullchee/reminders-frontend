@@ -134,6 +134,7 @@ form input {
   align-items: center;
   padding: 1em;
   background: rgba(255, 255, 255, 0.2);
+  min-width: 100%;
   justify-content: center;
   grid-template-columns: 5rem 1fr;
   grid-gap: 16px;
@@ -202,17 +203,25 @@ button[type="submit"]:focus {
 }
 
 @media only screen and (max-width: 700px) {
+  .form-container {
+    padding: 3% 5%;
+  }
   .form {
     grid-template-columns: 1fr;
-    min-width: 80vw;
+    min-width: 88vw;
   }
-  .form .input {
+  .form .input,
+  .form label,
+  #keywords,
+  #datesAccessed,
+  .text-editor,
+  #submit {
     grid-column: 1 / 2;
-    max-width: 70vw;
+    max-width: 84vw;
   }
 
   .audio-player {
-    max-width: 70vw;
+    max-width: 83vw;
   }
   .form label {
     text-align: left;
