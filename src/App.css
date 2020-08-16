@@ -120,9 +120,9 @@ form input {
   width: 100%;
   margin-right: 20px;
 }
-.media-player > div {
+/* .media-player > div {
   width: auto !important;
-}
+} */
 .audio-player {
   max-width: 60vw;
 }
@@ -134,7 +134,6 @@ form input {
   align-items: center;
   padding: 1em;
   background: rgba(255, 255, 255, 0.2);
-  min-width: 100%;
   justify-content: center;
   grid-template-columns: 5rem 1fr;
   grid-gap: 16px;
@@ -203,9 +202,6 @@ button[type="submit"]:focus {
 }
 
 @media only screen and (max-width: 700px) {
-  .form-container {
-    padding: 3% 5%;
-  }
   .form {
     grid-template-columns: 1fr;
     min-width: 80vw;
