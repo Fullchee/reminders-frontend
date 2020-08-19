@@ -101,9 +101,18 @@ form input {
   background-color: #db4437;
 }
 
+.buttons__icons {
+  display: flex;
+  justify-content: center;
+}
+
+.search-box {
+  display: flex;
+}
+
 .search-box .input--text {
   position: relative;
-  top: -18px;
+  top: -3px;
   width: 500px;
 }
 
@@ -118,7 +127,7 @@ form input {
 
   .search-box .input--text {
     top: -7px;
-    width: 100%;
+    width: 90%;
   }
 }
 
