@@ -8,7 +8,7 @@ import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import Nav from "./Nav";
 import { Editor } from "@tinymce/tinymce-react";
-
+import history from '../history';
 
 export default class Form extends Component {
   constructor(props) {
@@ -107,7 +107,7 @@ export default class Form extends Component {
       "https://fullchee-reminders-backend.herokuapp.com/random-link"
     );
     const link = await res.json();
-    window.history.replaceState(null, "New Page Title", `/link/${link.id}`);
+    history.push(`/link/${link.id}`);
     return this.formatLink(link);
   };
 

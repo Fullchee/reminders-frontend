@@ -2,10 +2,12 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Form from "./components/Form";
+import history from './history';
+
 
 function App(props) {
   return (
-    <Router>
+    <Router history={history}>
       <Switch>
         <Route
           path="/link/:id"
