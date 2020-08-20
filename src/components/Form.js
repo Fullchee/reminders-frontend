@@ -165,7 +165,7 @@ export default class Form extends Component {
     )
       .then((response) => response.json())
       .then((data) => {
-        toast(`Updated link: ${this.state.link.title}!`);
+        toast(`Updated link: ${this.state.link.title}`);
       })
       .catch((error) => {
         console.error(error);
@@ -208,7 +208,7 @@ export default class Form extends Component {
     )
       .then((response) => response.json())
       .then((data) => {
-        toast(`Deleted link: ${this.state.link.title}!`);
+        toast(`Deleted link: ${this.state.link.title}`);
       })
       .catch((error) => {
         console.error(error);
