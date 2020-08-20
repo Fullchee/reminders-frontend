@@ -17,7 +17,7 @@ export default class Form extends Component {
       link: {
         keywords: [{ id: 12, label: "Perspective", value: "Perspective" }],
         title: "This is Water - David Foster Wallace",
-        url: "https://www.youtube.com/watch?v=ms2BvRbjOYo",
+        url: "https://www.youtube.com/watch?v=8CrOL-ydFMI",
         takeaways:
           "Really reminded me of meditative practices. \n\nGreat advice, takes practice to follow",
         lastAccessed: "3 months ago",
