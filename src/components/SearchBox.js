@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Ripple from "react-touch-ripple";
 import searchIcon from "../images/search.svg";
+// TODO: uncomment when I redirect to a component and not to the backend
 // import { useHistory } from "react-router-dom";
 
 const search = (query) => {

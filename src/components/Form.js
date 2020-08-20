@@ -9,6 +9,7 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 import Nav from "./Nav";
 import { Editor } from "@tinymce/tinymce-react";
 
+
 export default class Form extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +20,7 @@ export default class Form extends Component {
         url: "https://www.youtube.com/watch?v=ms2BvRbjOYo",
         takeaways:
           "Really reminded me of meditative practices. \n\nGreat advice, takes practice to follow",
-        datesAccessed: ["2019-08"],
+        lastAccessed: "3 months ago",
         id: 0,
       },
       keywordOptions: [],
@@ -61,8 +62,33 @@ export default class Form extends Component {
     link.keywords = link.keywords.map((word) => {
       return { id: i++, label: word, value: word };
     });
+    link.lastAccessed = this.getTimeDiff(link.last_accessed);
     return link;
   };
+
+  getTimeDiff = (lastAccessed) => {
+    const now = new Date().getTime();
+    const before = new Date(lastAccessed).getTime();
+    if (Number.isNaN(before) || before === 0) {
+      return "Never accessed before";
+    }
+    return this.formatTimeInterval(now - before);
+  }
+
+  /**
+   * @param interval time interval in ms
+   */
+  formatTimeInterval = (interval) => {
+    const days = Math.floor(interval / (1000 * 60 * 60 * 24));
+    if (days > 365) {
+      return `${Math.floor(days / 365)} year(s) ago`
+    } else if (days === 0) {
+      return `today`;
+    } else if (days === 1) {
+      return `${days} day ago`;  
+    }
+    return `${days} days ago`;
+  }
 
   minifyLink = (link) => {
     if (!link.keywords) {
@@ -197,7 +223,7 @@ export default class Form extends Component {
         title: "",
         url: "",
         keywords: [],
-        datesAccessed: [],
+        lastAccessed: ""
       },
     });
   };
@@ -278,8 +304,8 @@ export default class Form extends Component {
                 }}
               />
             </div>
-            <label htmlFor="datesAccessed">Dates</label>
-            <p id="datesAccessed">{this.state.link.datesAccessed}</p>
+            <label htmlFor="lastAccessed">Last accessed</label>
+            <p id="lastAccessed">{this.state.link.lastAccessed}</p>
             <label htmlFor="takeaways" style={{ color: "white" }}>
               Takeaways
             </label>

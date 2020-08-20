@@ -26,6 +26,7 @@ yarn start
 
 ## TODOs:
 
+- add to history on link change
 - navbar: holding the buttons shows a tooltip
 - replace the hidden id with an info icon with a pop up?
 - get the title from YouTube?
