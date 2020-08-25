@@ -26,6 +26,8 @@ yarn start
 
 ## TODOs:
 
+- get the speed controller to look good on mobile (move it down)
+  - add it to audio
 - prevent duplicates from being added
   - check the URL
 - navbar: holding the buttons shows a tooltip
