@@ -115,19 +115,22 @@ export default class Form extends Component {
     const res = await fetch(
       `https://fullchee-reminders-backend.herokuapp.com/link/${id}`
     );
-    const link = await res.json();
-    return this.formatLink(link);
+    if (res.status !== 404) {
+      const link = await res.json();
+      return this.formatLink(link);
+    }
   };
 
   refresh = async (id) => {
     let link;
     if (!Number.isNaN(parseInt(id))) {
       link = await this.getLink(parseInt(id));
-    } else {
-      link = await this.getRandomLink();
     }
     if (!link) {
-      throw new Error("Got an empty link.");
+      if (id) {
+        console.error("Invalid link: " + id);
+      }
+      link = await this.getRandomLink();
     }
     this.setState({ link: link });
   };
