@@ -31,11 +31,13 @@ yarn start
 - prevent duplicates from being added
   - check the URL
 - navbar: holding the buttons shows a tooltip
-- get the title from YouTube?
 - Cypress.io tests
 - a11y
 - auto save after a minute
 - Nav: overflow menu for delete (3 step delete)
+- figure out a way to get the times to skip
+  - component: list of times to skip
+  - list of time intervals
 
 ## Lessons log
 

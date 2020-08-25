@@ -169,6 +169,8 @@ export default class Form extends Component {
       .catch((error) => {
         console.error(error);
         toast("Couldn't update the link");
+        // TODO: give the error message
+        // TODO: duplicate already found in link 17
       });
   };
 
