@@ -24,7 +24,7 @@ export default class MediaPlayer extends Component {
           <ReactPlayer url={this.props.url} controls={true} />
         </div>
       );
-    } else if (this.props.url.slice(-4) === ".mp3") {
+    } else if (this.props.url.includes(".mp3")) {
       return (
         <div className="media-player">
           <ReactAudioPlayer
