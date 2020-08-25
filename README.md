@@ -27,6 +27,7 @@ yarn start
 ## TODOs:
 
 - prevent duplicates from being added
+  - check the URL
 - navbar: holding the buttons shows a tooltip
 - get the title from YouTube?
 - Cypress.io tests

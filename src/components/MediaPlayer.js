@@ -4,6 +4,7 @@ import ReactPlayer from "react-player";
 // import AudioPlayer from "./AudioPlayer";
 import ReactAudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
+import SpeedController from "./SpeedController";
 
 export default class MediaPlayer extends Component {
   constructor(props) {
@@ -13,6 +14,14 @@ export default class MediaPlayer extends Component {
       player: React.createRef(),
     };
   }
+
+  updateSpeed = (e) => {
+    const newSpeed = parseFloat(e.target.value);
+    this.setState({
+      speed: newSpeed,
+    });
+    this.player.audio.playbackRate = newSpeed;
+  };
   render() {
     // initial load: it doesn't do a/th
     if (!this.props.url) {
@@ -32,25 +41,9 @@ export default class MediaPlayer extends Component {
             src={this.props.url}
           />
 
-          <select
-            onChange={(e) => {
-              const newSpeed = parseFloat(e.target.value);
-              debugger;
-              this.setState({
-                speed: newSpeed,
-              });
-              this.player.audio.playbackRate = newSpeed;
-            }}
-            value={this.state.speed}
-          >
-            <option value="0.5">0.5x</option>
-            <option value="0.9">0.9x</option>
-            <option value="1">1x</option>
-            <option value="1.25">1.25x</option>
-            <option value="1.5">1.5x</option>
-            <option value="1.75">1.75x</option>
-            <option value="2">2x</option>
-          </select>
+          <SpeedController
+            onChange={this.updateSpeed}
+            speed={this.state.speed} />
         </div>
       );
     } else {

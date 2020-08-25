@@ -157,7 +157,6 @@ export default class Form extends Component {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(this.minifyLink({ ...this.state.link })),
     };
-    debugger;
 
     fetch(
       "https://fullchee-reminders-backend.herokuapp.com/update-link",
