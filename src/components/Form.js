@@ -10,11 +10,6 @@ import Nav from "./Nav";
 import { Editor } from "@tinymce/tinymce-react";
 import history from '../history';
 
-let backendUrl = "http://localhost:3002/";
-if (process.env.NODE_ENV === 'production') {
-  backendUrl = "https://fullchee-reminders-backend.herokuapp.com/";
-}
-
 export default class Form extends Component {
   constructor(props) {
     super(props);
@@ -47,7 +42,7 @@ export default class Form extends Component {
 
   getKeywords = async () => {
     const res = await fetch(
-      backendUrl + "keywords"
+      process.env.REACT_APP_BACKEND_URL + "keywords"
     );
     const json = await res.json();
     let i = 0;
@@ -109,7 +104,7 @@ export default class Form extends Component {
 
   getRandomLink = async () => {
     const res = await fetch(
-      backendUrl + "random-link"
+      process.env.REACT_APP_BACKEND_URL + "random-link"
     );
     const link = await res.json();
     history.push(`/link/${link.id}`);
@@ -118,7 +113,7 @@ export default class Form extends Component {
 
   getLink = async (id) => {
     const res = await fetch(
-      backendUrl + `link/${id}`
+      process.env.REACT_APP_BACKEND_URL + `link/${id}`
     );
     if (res.status !== 404) {
       const link = await res.json();
@@ -167,10 +162,15 @@ export default class Form extends Component {
     };
 
     fetch(
-      backendUrl + "update-link",
+      process.env.REACT_APP_BACKEND_URL + "update-link",
       requestOptions
     )
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status === 400) {
+          // await fetch()
+          return toast("Duplicate link");
+        }
+        response.json()})
       .then((data) => {
         toast(`Updated link: ${this.state.link.title}`);
       })
@@ -212,7 +212,7 @@ export default class Form extends Component {
     };
 
     fetch(
-      backendUrl + "delete-link",
+      process.env.REACT_APP_BACKEND_URL + "delete-link",
       requestOptions
     )
       .then((response) => response.json())

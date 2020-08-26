@@ -4,6 +4,8 @@ import searchIcon from "../images/search.svg";
 // TODO: uncomment when I redirect to a component and not to the backend
 // import { useHistory } from "react-router-dom";
 
+
+
 const search = (query) => {
   // TODO: redirect to the search page
   window.location = `https://fullchee-reminders-backend.herokuapp.com/search?q=${query}`;
