@@ -76,44 +76,42 @@ form input {
   display: flex;
   justify-content: space-between;
   width: 100%;
-}
+  button {
+    padding: 0.5em 1em;
+    border-radius: 10px;
+    border: none;
+    background: none;
+    &:hover,
+    &:focus {
+      border-radius: 10px;
+      background-color: #eee;
+      outline: none;
+    }
+  }
 
-.buttons button {
-  padding: 0.5em 1em;
-  border-radius: 10px;
-  border: none;
-  background: none;
-}
+  .buttons__icons {
+    display: flex;
+    justify-content: center;
+  }
 
-.buttons img {
-  width: 24px;
-}
+  img {
+    width: 24px;
+  }
 
-.buttons button:hover,
-.buttons button:focus {
-  border-radius: 10px;
-  background-color: #eee;
-  outline: none;
-}
-
-.buttons .delete:hover,
-.buttons .delete:focus {
-  background-color: #db4437;
-}
-
-.buttons__icons {
-  display: flex;
-  justify-content: center;
+  .delete {
+    &:focus {
+      background-color: #db4437;
+    }
+  }
 }
 
 .search-box {
   display: flex;
-}
-
-.search-box .input--text {
-  position: relative;
-  top: -3px;
-  width: 500px;
+  .input--text {
+    position: relative;
+    top: -3px;
+    width: 500px;
+  }
 }
 
 @media only screen and (max-width: 850px) {
@@ -137,9 +135,9 @@ form input {
   justify-content: flex-end;
   width: 100%;
   margin-right: 20px;
-}
-.media-player > div {
-  width: 100% !important;
+  > div {
+    width: 100% !important;
+  }
 }
 .audio-player {
   max-width: 60vw;
@@ -172,15 +170,16 @@ form input {
   border-color: #eee;
 }
 
-.form label {
-  text-align: right;
-  grid-column: 1 / 2;
-}
-
-.form .input {
-  grid-column: 2 / 3;
-  background: #fff;
-  border: 1px solid #9c9c9c;
+.form {
+  label {
+    text-align: right;
+    grid-column: 1 / 2;
+  }
+  .input {
+    grid-column: 2 / 3;
+    background: #fff;
+    border: 1px solid #9c9c9c;
+  }
 }
 
 .multi-select {
@@ -201,12 +200,11 @@ button[type="submit"] {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-}
-
-button[type="submit"]:hover,
-button[type="submit"]:focus {
-  background-color: #004812;
-  outline: none;
+  &:focus,
+  &:hover {
+    background-color: #004812;
+    outline: none;
+  }
 }
 
 .takeaways {
