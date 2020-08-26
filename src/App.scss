@@ -138,6 +138,9 @@ form input {
   > div {
     width: 100% !important;
   }
+  @media only screen and (max-width: 850px) {
+    display: block;
+  }
 }
 .audio-player {
   max-width: 60vw;
@@ -256,4 +259,8 @@ button[type="submit"] {
     background: #eee;
     padding: 20px;
   }
+}
+
+.speed-controller {
+  border-color: #ccc;
 }
