@@ -10,6 +10,11 @@ import Nav from "./Nav";
 import { Editor } from "@tinymce/tinymce-react";
 import history from '../history';
 
+let backendUrl = "http://localhost:3002/";
+if (process.env.NODE_ENV === 'production') {
+  backendUrl = "https://fullchee-reminders-backend.herokuapp.com/";
+}
+
 export default class Form extends Component {
   constructor(props) {
     super(props);
@@ -42,7 +47,7 @@ export default class Form extends Component {
 
   getKeywords = async () => {
     const res = await fetch(
-      "https://fullchee-reminders-backend.herokuapp.com/keywords"
+      backendUrl + "keywords"
     );
     const json = await res.json();
     let i = 0;
@@ -104,7 +109,7 @@ export default class Form extends Component {
 
   getRandomLink = async () => {
     const res = await fetch(
-      "https://fullchee-reminders-backend.herokuapp.com/random-link"
+      backendUrl + "random-link"
     );
     const link = await res.json();
     history.push(`/link/${link.id}`);
@@ -113,7 +118,7 @@ export default class Form extends Component {
 
   getLink = async (id) => {
     const res = await fetch(
-      `https://fullchee-reminders-backend.herokuapp.com/link/${id}`
+      backendUrl + `link/${id}`
     );
     if (res.status !== 404) {
       const link = await res.json();
@@ -121,15 +126,15 @@ export default class Form extends Component {
     }
   };
 
+  /**
+   * @param {Event (which is ignored) or an integer} id
+   */
   refresh = async (id) => {
     let link;
     if (!Number.isNaN(parseInt(id))) {
       link = await this.getLink(parseInt(id));
     }
     if (!link) {
-      if (id) {
-        console.error("Invalid link: " + id);
-      }
       link = await this.getRandomLink();
     }
     this.setState({ link: link });
@@ -162,7 +167,7 @@ export default class Form extends Component {
     };
 
     fetch(
-      "https://fullchee-reminders-backend.herokuapp.com/update-link",
+      backendUrl + "update-link",
       requestOptions
     )
       .then((response) => response.json())
@@ -207,7 +212,7 @@ export default class Form extends Component {
     };
 
     fetch(
-      "https://fullchee-reminders-backend.herokuapp.com/delete-link",
+      backendUrl + "delete-link",
       requestOptions
     )
       .then((response) => response.json())
