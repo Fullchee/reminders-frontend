@@ -85,7 +85,7 @@ export default class Form extends Component {
     } else if (days === 0) {
       return `today`;
     } else if (days === 1) {
-      return `${days} day ago`;  
+      return `${days} day ago`;
     }
     return `${days} days ago`;
   }
@@ -161,25 +161,19 @@ export default class Form extends Component {
       body: JSON.stringify(this.minifyLink({ ...this.state.link })),
     };
 
-    fetch(
+    const response = await fetch(
       process.env.REACT_APP_BACKEND_URL + "update-link",
       requestOptions
     )
-      .then((response) => {
-        if (response.status === 400) {
-          // await fetch()
-          return toast("Duplicate link");
-        }
-        response.json()})
-      .then((data) => {
-        toast(`Updated link: ${this.state.link.title}`);
-      })
-      .catch((error) => {
-        console.error(error);
-        toast("Couldn't update the link");
-        // TODO: give the error message
-        // TODO: duplicate already found in link 17
-      });
+    debugger;
+    if (response.status === 400) {
+      const a = await fetch(`${process.env.REACT_APP_BACKEND_URL}search?url=${this.state.link.url}`)
+      const b = await a.json();
+      debugger;
+      return toast("Duplicate url: the original has id: " + b[0].id);
+    }
+    const data = await response.json()
+    toast(`Updated link: ${this.state.link.title}`);
   };
 
   confirmDelete = () => {
@@ -329,9 +323,9 @@ export default class Form extends Component {
                     "searchreplace visualblocks code fullscreen",
                     "insertdatetime media table paste code help wordcount",
                   ],
-                  toolbar: `undo redo | formatselect | bold italic backcolor |` + 
-             `alignleft aligncenter alignright alignjustify |` + 
-             `bullist numlist outdent indent | removeformat | help | image insertdatetime`,
+                  toolbar: `undo redo | formatselect | bold italic backcolor |` +
+                    `alignleft aligncenter alignright alignjustify |` +
+                    `bullist numlist outdent indent | removeformat | help | image insertdatetime`,
                 }}
                 name="takeaways"
                 value={this.state.link.takeaways || ""}
