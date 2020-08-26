@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ReactPlayer from "react-player";
-// import AudioPlayer from "./AudioPlayer";
 import ReactAudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import SpeedController from "./SpeedController";

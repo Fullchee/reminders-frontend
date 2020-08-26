@@ -25,11 +25,6 @@ yarn start
 ```
 
 ## TODOs:
-
-- get the speed controller to look good on mobile (move it down)
-  - add it to video
-- prevent duplicates from being added
-  - check the URL
 - navbar: holding the buttons shows a tooltip
 - Cypress.io tests
 - a11y
@@ -38,6 +33,9 @@ yarn start
 - figure out a way to get the times to skip
   - component: list of times to skip
   - list of time intervals
+- get the speed controller to look good on mobile (move it down)
+  - add it to video
+  - https://stackoverflow.com/questions/41563995/how-to-change-speed-on-embedded-youtube-video
 
 ## Lessons log
 
@@ -46,15 +44,6 @@ yarn start
   - difficult debugging (just a string)
   - eventually switched to Apollo
   - has other really nice features like: caching
-
-### Tech
-
-- React
-- Apollo GraphQL
-  - making requests to the GraphQL server
-- bcrypt
-  - reset password
-
 
 - ~~Old and unused Backend GraphQL Server~~
   - ~~[Website](https://fullchee-values-backend.herokuapp.com/)~~
