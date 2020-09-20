@@ -8,11 +8,11 @@ import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import Nav from "./Nav";
 import { Editor } from "@tinymce/tinymce-react";
-import history from '../history';
+import history from "../history";
 
 export default class Form extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       link: {
         keywords: [{ id: 12, label: "Perspective", value: "Perspective" }],
@@ -22,6 +22,7 @@ export default class Form extends Component {
           "Really reminded me of meditative practices. \n\nGreat advice, takes practice to follow",
         lastAccessed: "3 months ago",
         id: 0,
+        hasLink: true,
       },
       keywordOptions: [],
     };
@@ -41,9 +42,7 @@ export default class Form extends Component {
   }
 
   getKeywords = async () => {
-    const res = await fetch(
-      process.env.REACT_APP_BACKEND_URL + "keywords"
-    );
+    const res = await fetch(process.env.REACT_APP_BACKEND_URL + "keywords");
     const json = await res.json();
     let i = 0;
     const formattedKeywords = json.map((word) => {
@@ -73,7 +72,7 @@ export default class Form extends Component {
       return "Never accessed before";
     }
     return this.formatTimeInterval(now - before);
-  }
+  };
 
   /**
    * @param interval time interval in ms
@@ -81,14 +80,14 @@ export default class Form extends Component {
   formatTimeInterval = (interval) => {
     const days = Math.floor(interval / (1000 * 60 * 60 * 24));
     if (days > 365) {
-      return `${Math.floor(days / 365)} year(s) ago`
+      return `${Math.floor(days / 365)} year(s) ago`;
     } else if (days === 0) {
       return `today`;
     } else if (days === 1) {
       return `${days} day ago`;
     }
     return `${days} days ago`;
-  }
+  };
 
   minifyLink = (link) => {
     if (!link.keywords) {
@@ -103,18 +102,14 @@ export default class Form extends Component {
   };
 
   getRandomLink = async () => {
-    const res = await fetch(
-      process.env.REACT_APP_BACKEND_URL + "random-link"
-    );
+    const res = await fetch(process.env.REACT_APP_BACKEND_URL + "random-link");
     const link = await res.json();
     history.push(`/link/${link.id}`);
     return this.formatLink(link);
   };
 
   getLink = async (id) => {
-    const res = await fetch(
-      process.env.REACT_APP_BACKEND_URL + `link/${id}`
-    );
+    const res = await fetch(process.env.REACT_APP_BACKEND_URL + `link/${id}`);
     if (res.status !== 404) {
       const link = await res.json();
       return this.formatLink(link);
@@ -132,7 +127,7 @@ export default class Form extends Component {
     if (!link) {
       link = await this.getRandomLink();
     }
-    this.setState({ link: link });
+    this.setState({ link: link, hasLink: true });
   };
 
   changeHandler = (event) => {
@@ -161,19 +156,26 @@ export default class Form extends Component {
       body: JSON.stringify(this.minifyLink({ ...this.state.link })),
     };
 
-    const response = await fetch(
-      process.env.REACT_APP_BACKEND_URL + "update-link",
+    console.log(this.state.hasLink);
+    const api = this.state.hasLink ? "update-link" : "add-link";
+    console.log(); 
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}${api}`,
       requestOptions
-    )
-    debugger;
+    );
     if (response.status === 400) {
-      const a = await fetch(`${process.env.REACT_APP_BACKEND_URL}search?url=${this.state.link.url}`)
+      const a = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}search?url=${this.state.link.url}`
+      );
       const b = await a.json();
-      debugger;
+      console.log(b);
+      if (!b[0]) {
+        return console.log(b[0]);
+      }
       return toast("Duplicate url: the original has id: " + b[0].id);
     }
-    const data = await response.json()
+    // const data = await response.json();
     toast(`Updated link: ${this.state.link.title}`);
+    this.setState({ hasLink: true })
   };
 
   confirmDelete = () => {
@@ -205,10 +207,7 @@ export default class Form extends Component {
       }),
     };
 
-    fetch(
-      process.env.REACT_APP_BACKEND_URL + "delete-link",
-      requestOptions
-    )
+    fetch(process.env.REACT_APP_BACKEND_URL + "delete-link", requestOptions)
       .then((response) => response.json())
       .then((data) => {
         toast(`Deleted link: ${this.state.link.title}`);
@@ -226,8 +225,9 @@ export default class Form extends Component {
         title: "",
         url: "",
         keywords: [],
-        lastAccessed: ""
+        lastAccessed: "",
       },
+      hasLink: false,
     });
   };
 
@@ -323,7 +323,8 @@ export default class Form extends Component {
                     "searchreplace visualblocks code fullscreen",
                     "insertdatetime media table paste code help wordcount",
                   ],
-                  toolbar: `undo redo | formatselect | bold italic backcolor |` +
+                  toolbar:
+                    `undo redo | formatselect | bold italic backcolor |` +
                     `alignleft aligncenter alignright alignjustify |` +
                     `bullist numlist outdent indent | removeformat | help | image insertdatetime`,
                 }}
@@ -338,7 +339,7 @@ export default class Form extends Component {
               name="submit"
               onClick={this.updateLink}
             >
-              Update
+              {this.state.hasLink ? "Update" : "Add"}
             </button>
           </form>
           <ToastContainer />
