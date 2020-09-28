@@ -156,9 +156,7 @@ export default class Form extends Component {
       body: JSON.stringify(this.minifyLink({ ...this.state.link })),
     };
 
-    console.log(this.state.hasLink);
     const api = this.state.hasLink ? "update-link" : "add-link";
-    console.log(); 
     const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}${api}`,
       requestOptions
     );
@@ -167,14 +165,15 @@ export default class Form extends Component {
         `${process.env.REACT_APP_BACKEND_URL}search?url=${this.state.link.url}`
       );
       const b = await a.json();
-      console.log(b);
       if (!b[0]) {
-        return console.log(b[0]);
+        return console.error(b);
       }
       return toast("Duplicate url: the original has id: " + b[0].id);
     }
-    // const data = await response.json();
-    toast(`Updated link: ${this.state.link.title}`);
+    debugger;
+    const data = await response.json();
+    toast(`${this.state.hasLink ? "Updated" : "Added"} link: ${this.state.link.title} with id: ${data.id}`);
+    history.push(`/link/${data.id}`)
     this.setState({ hasLink: true })
   };
 
@@ -219,6 +218,7 @@ export default class Form extends Component {
   };
 
   clearForm = () => {
+    history.push(`/`);
     this.setState({
       link: {
         takeaways: "",
@@ -301,10 +301,6 @@ export default class Form extends Component {
                 options={this.state.keywordOptions || []}
                 onChange={this.keywordSelected}
                 create={true}
-                onCreateNew={(obj) => {
-                  console.log(obj);
-                  // TODO: add a new item
-                }}
               />
             </div>
             <label htmlFor="lastAccessed">Last accessed</label>
