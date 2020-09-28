@@ -334,6 +334,7 @@ export default class Form extends Component {
                 name="takeaways"
                 value={this.state.link.takeaways || ""}
                 onEditorChange={this.handleEditorChange}
+                onSubmit={this.updateLink}
               />
             </div>
             <button
