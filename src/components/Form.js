@@ -30,6 +30,7 @@ export default class Form extends Component {
 
   componentDidMount() {
     this.getKeywords();
+    this.pingServer();
     if (this.props.id !== "0") {
       this.refresh(this.props.id);
     }
@@ -50,6 +51,13 @@ export default class Form extends Component {
     });
     this.setState({ keywordOptions: formattedKeywords });
   };
+
+  /**
+   * Ping the server on load so that the heroku db can startup asap
+   */
+  pingServer = () => {
+    return fetch(process.env.REACT_APP_BACKEND_URL + "ping")
+  }
 
   formatLink = (link) => {
     if (!link.keywords) {
@@ -170,7 +178,6 @@ export default class Form extends Component {
       }
       return toast("Duplicate url: the original has id: " + b[0].id);
     }
-    debugger;
     const data = await response.json();
     toast(`${this.state.hasLink ? "Updated" : "Added"} link: ${this.state.link.title} with id: ${data.id}`);
     history.push(`/link/${data.id}`)
