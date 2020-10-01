@@ -25,6 +25,10 @@ yarn start
 ```
 
 ## TODOs:
+- stylelint
+- purgecss
+- design tokens
+- postcss & css auto prefixer
 - navbar: holding the buttons shows a tooltip
 - Cypress.io tests
 - a11y
