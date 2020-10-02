@@ -331,16 +331,15 @@ export default class Form extends Component {
                     `alignleft aligncenter alignright alignjustify |` +
                     `bullist numlist outdent indent | removeformat | help | image insertdatetime`,
                 }}
-                name="takeaways"
+                textAreaName="takeaways"
                 value={this.state.link.takeaways || ""}
                 onEditorChange={this.handleEditorChange}
-                onSubmit={this.updateLink}
               />
             </div>
             <button
-              id="submit"
-              type="submit"
-              name="submit"
+              id="submitButton"
+              type="submitButton"
+              name="submitButton"
               onClick={this.updateLink}
             >
               {this.state.hasLink ? "Update" : "Add"}
