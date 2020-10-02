@@ -42,7 +42,8 @@ export default class MediaPlayer extends Component {
 
           <SpeedController
             onChange={this.updateSpeed}
-            speed={this.state.speed} />
+            speed={this.state.speed}
+          />
         </div>
       );
     } else {

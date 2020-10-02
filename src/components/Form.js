@@ -16,10 +16,10 @@ export default class Form extends Component {
     this.state = {
       link: {
         keywords: [{ id: 12, label: "Perspective", value: "Perspective" }],
-        title: "This is Water - David Foster Wallace",
-        url: "https://www.youtube.com/watch?v=8CrOL-ydFMI",
+        title: "Steve Jobs's Stanford Commencement Address",
+        url: "https://www.youtube.com/watch?v=UF8uR6Z6KLc",
         takeaways:
-          "Really reminded me of meditative practices. \n\nGreat advice, takes practice to follow",
+          "Steve Jobs!",
         lastAccessed: "3 months ago",
         id: 0,
         hasLink: true,
@@ -56,8 +56,8 @@ export default class Form extends Component {
    * Ping the server on load so that the heroku db can startup asap
    */
   pingServer = () => {
-    return fetch(process.env.REACT_APP_BACKEND_URL + "ping")
-  }
+    return fetch(process.env.REACT_APP_BACKEND_URL + "ping");
+  };
 
   formatLink = (link) => {
     if (!link.keywords) {
@@ -165,7 +165,8 @@ export default class Form extends Component {
     };
 
     const api = this.state.hasLink ? "update-link" : "add-link";
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}${api}`,
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}${api}`,
       requestOptions
     );
     if (response.status === 400) {
@@ -179,9 +180,13 @@ export default class Form extends Component {
       return toast("Duplicate url: the original has id: " + b[0].id);
     }
     const data = await response.json();
-    toast(`${this.state.hasLink ? "Updated" : "Added"} link: ${this.state.link.title} with id: ${data.id}`);
-    history.push(`/link/${data.id}`)
-    this.setState({ hasLink: true })
+    toast(
+      `${this.state.hasLink ? "Updated" : "Added"} link: ${
+        this.state.link.title
+      } with id: ${data.id}`
+    );
+    history.push(`/link/${data.id}`);
+    this.setState({ hasLink: true });
   };
 
   confirmDelete = () => {
