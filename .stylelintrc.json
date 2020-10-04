@@ -6,13 +6,8 @@
     ],
     "rules": {
       "prettier/prettier": true,
-      "plugin/selector-bem-pattern": {
-        "componentName": "[A-Z]+",
-        "componentSelectors": {
-          "initial": "^\\.{componentName}(?:-[a-z]+)?$",
-          "combined": "^\\.combined-{componentName}-[a-z]+$"
-        },
-        "utilitySelectors": "^\\.util-[a-z]+$"
-      }
+      "selector-class-pattern": null,
+      "max-nesting-depth": 3,
+      "selector-max-id": 3
     }
 }

@@ -274,7 +274,7 @@ export default class Form extends Component {
 
   render() {
     return (
-      <div className="App container">
+      <div className="app container">
         <div className="form-container">
           <Nav
             refresh={this.refresh}
@@ -345,6 +345,7 @@ export default class Form extends Component {
               id="submitButton"
               type="submit"
               name="submitButton"
+              className="submit-button"
               onClick={this.updateLink}
             >
               {this.state.hasLink ? "Update" : "Add"}

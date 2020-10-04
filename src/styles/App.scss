@@ -3,49 +3,38 @@
   font-size: calc(10px + 1vmin);
 }
 
-.App {
+.app {
   text-align: center;
 }
 
 .container {
-  width: 100%;
-  min-height: 100vh;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
+  align-items: center;
+  background: #9053c7;
+  background: linear-gradient(-135deg, #c850c0, #4158d0);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  min-height: 100vh;
   padding: 15px;
-  background: #9053c7;
-  background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: linear-gradient(-135deg, #c850c0, #4158d0);
+  width: 100%;
 }
 
 .form-container {
-  width: 960px;
   background: #fff;
   border-radius: 10px;
-  overflow: hidden;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
   display: flex;
   flex-wrap: wrap;
+  overflow: hidden;
   padding: 33px 6%;
+  width: 960px;
 }
 
 /* Nav */
 .nav ul {
+  align-items: center;
   display: flex;
   margin: 0;
   padding: 0;
-  align-items: center;
 }
 
 .nav li {
@@ -54,13 +43,13 @@
 }
 
 .nav a {
-  flex: 1;
-  display: inline-block;
   background-color: #eee;
-  padding: 20px 5px;
-  width: 100%;
-  transition: all 0.5s;
+  display: inline-block;
+  flex: 1;
   margin: 0 auto;
+  padding: 20px 5px;
+  transition: all 0.5s;
+  width: 100%;
 }
 
 a:hover {
@@ -68,26 +57,26 @@ a:hover {
 }
 
 form input {
-  width: 90%;
   margin: 15px;
+  width: 90%;
 }
 
 .buttons {
   display: flex;
   justify-content: space-between;
-  width: 100%;
   margin-bottom: 2rem;
+  width: 100%;
 
   button {
-    padding: 0.5em 1em;
-    border-radius: 10px;
-    border: none;
     background: none;
+    border: 0;
+    border-radius: 10px;
+    padding: 0.5em 1em;
 
     &:hover,
     &:focus {
-      border-radius: 10px;
       background-color: #eee;
+      border-radius: 10px;
       outline: none;
     }
   }
@@ -110,18 +99,21 @@ form input {
 
 .search-box {
   display: flex;
+
+  .input--text {
+    position: relative;
+    top: -3px;
+    width: 500px;
+  }
 }
 
 .input--text {
-  position: relative;
-  top: -3px;
-  width: 500px;
-  line-height: 1.5;
+  border-color: #eee;
+  border-radius: 3px;
   color: #333;
   height: 50px;
-  border-radius: 3px;
-  padding: 0 20px 0 20px;
-  border-color: #eee;
+  line-height: 1.5;
+  padding: 0 20px;
 }
 
 @media only screen and (max-width: 850px) {
@@ -144,8 +136,8 @@ form input {
 .media-player {
   display: flex;
   justify-content: flex-end;
-  width: 100%;
   margin-right: 20px;
+  width: 100%;
 
   > div {
     width: 100% !important;
@@ -162,29 +154,29 @@ form input {
 
 /* Form */
 .form {
-  margin-top: 20px;
-  display: grid;
   align-items: center;
-  padding: 1em;
   background: rgba(255, 255, 255, 0.2);
-  min-width: 100%;
-  justify-content: center;
-  grid-template-columns: 5rem 1fr;
+  display: grid;
   grid-gap: 16px;
+  grid-template-columns: 5rem 1fr;
+  justify-content: center;
+  margin-top: 20px;
+  min-width: 100%;
+  padding: 1em;
 
   label {
-    text-align: left;
     grid-column: 1 / 2;
     margin-left: -15px;
+    text-align: left;
   }
 
   .input {
-    grid-column: 2 / 3;
     background: #fff;
     border: 1px solid #9c9c9c;
+    grid-column: 2 / 3;
     margin: auto 0;
-    width: 100%;
     margin-left: 0;
+    width: 100%;
   }
 }
 
@@ -193,19 +185,19 @@ form input {
 }
 
 .keywords {
-  color: #0074d9;
   background-color: white;
+  color: #0074d9;
 }
 
 button[type="submit"] {
-  width: 100%;
   background-color: #37833b;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
+  border: 0;
   border-radius: 4px;
+  color: white;
   cursor: pointer;
+  margin: 8px 0;
+  padding: 14px 20px;
+  width: 100%;
 
   &:focus,
   &:hover {
@@ -266,12 +258,12 @@ button[type="submit"] {
   }
 
   .react-timerange-picker .react-timerange-picker__wrapper {
-    flex-direction: column;
-    width: 100%;
     align-items: center;
-    border: none;
     background: #eee;
+    border: 0;
+    flex-direction: column;
     padding: 20px;
+    width: 100%;
   }
 }
 

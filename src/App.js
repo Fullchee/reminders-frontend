@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.scss";
+import "./styles/App.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Form from "./components/Form";
 import history from './history';
