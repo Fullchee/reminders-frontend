@@ -110,18 +110,18 @@ form input {
 
 .search-box {
   display: flex;
+}
 
-  .input--text {
-    position: relative;
-    top: -3px;
-    width: 500px;
-    line-height: 1.5;
-    color: #333;
-    height: 50px;
-    border-radius: 3px;
-    padding: 0 20px 0 20px;
-    border-color: #eee;
-  }
+.input--text {
+  position: relative;
+  top: -3px;
+  width: 500px;
+  line-height: 1.5;
+  color: #333;
+  height: 50px;
+  border-radius: 3px;
+  padding: 0 20px 0 20px;
+  border-color: #eee;
 }
 
 @media only screen and (max-width: 850px) {

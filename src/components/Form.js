@@ -343,7 +343,7 @@ export default class Form extends Component {
             </div>
             <button
               id="submitButton"
-              type="submitButton"
+              type="submit"
               name="submitButton"
               onClick={this.updateLink}
             >
