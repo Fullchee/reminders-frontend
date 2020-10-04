@@ -16,10 +16,9 @@ export default class Form extends Component {
     this.state = {
       link: {
         keywords: [{ id: 12, label: "Perspective", value: "Perspective" }],
-        title: "Steve Jobs's Stanford Commencement Address",
-        url: "https://www.youtube.com/watch?v=UF8uR6Z6KLc",
-        takeaways:
-          "Steve Jobs!",
+        title: "Carl Sagan - Pale Blue Dot",
+        url: "https://www.youtube.com/watch?v=wupToqz1e2g",
+        takeaways: "Look again at that dot. That's here. That's home. That's us. <div>On it everyone you love, <br>everyone you know, <br>everyone you ever heard of, <br>every human being who ever was, lived out their lives.</div>",
         lastAccessed: "3 months ago",
         id: 0,
         hasLink: true,
@@ -182,7 +181,7 @@ export default class Form extends Component {
     const data = await response.json();
     toast(
       `${this.state.hasLink ? "Updated" : "Added"} link: ${
-        this.state.link.title
+      this.state.link.title
       } with id: ${data.id}`
     );
     history.push(`/link/${data.id}`);
