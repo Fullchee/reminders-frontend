@@ -24,32 +24,16 @@ yarn
 yarn start
 ```
 
-## TODOs:
-- stylelint
-- purgecss
-- design tokens
-- postcss & css auto prefixer
+## TODOs
+- remove the popup timeout
 - navbar: holding the buttons shows a tooltip
-- Cypress.io tests
-- a11y
+- [react-joyride](https://github.com/gilbarbara/react-joyride)
 - auto save after a minute
-- Nav: overflow menu for delete (3 step delete)
-- figure out a way to get the times to skip
-  - component: list of times to skip
-  - list of time intervals
+- Move to this time in the video/podcast
+  - skip forward or backwards
+  - Given a URL query param, list the time to skip (so min 50 becomes ?min=50)
 - get the speed controller to look good on mobile (move it down)
   - add it to video
   - https://stackoverflow.com/questions/41563995/how-to-change-speed-on-embedded-youtube-video
-
-## Lessons log
-
-- Making GraphQL requests
-  - initially vanilla JS
-  - difficult debugging (just a string)
-  - eventually switched to Apollo
-  - has other really nice features like: caching
-
-- ~~Old and unused Backend GraphQL Server~~
-  - ~~[Website](https://fullchee-values-backend.herokuapp.com/)~~
-  - ~~[GitHub](https://github.com/Fullchee/values-backend)~~
-
+- make the modal look better?
+- Cypress.io tests
