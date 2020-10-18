@@ -179,11 +179,12 @@ export default class Form extends Component {
       return toast("Duplicate url: the original has id: " + b[0].id);
     }
     const data = await response.json();
-    toast(
-      `${this.state.hasLink ? "Updated" : "Added"} link: ${
-      this.state.link.title
-      } with id: ${data.id}`
-    );
+    const message = `${this.state.hasLink ? "Updated" : "Added"} link: ${this.state.link.title
+      }`;
+    if (!this.state.hasLink) {
+      message += ` with id: ${data.id}`;
+    }
+    toast(message);
     history.push(`/link/${data.id}`);
     this.setState({ hasLink: true });
   };

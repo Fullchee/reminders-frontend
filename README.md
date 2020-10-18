@@ -25,7 +25,6 @@ yarn start
 ```
 
 ## TODOs
-- remove the popup timeout
 - navbar: holding the buttons shows a tooltip
 - [react-joyride](https://github.com/gilbarbara/react-joyride)
 - auto save after a minute
