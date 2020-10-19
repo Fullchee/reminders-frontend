@@ -28,6 +28,8 @@ yarn start
 - Postcss & normalize.css
 - navbar: holding the buttons shows a tooltip
 - [react-joyride](https://github.com/gilbarbara/react-joyride)
+- support images
+  - Pearls Before Swine, Peanuts
 - auto save after a minute
 - Move to this time in the video/podcast
   - skip forward or backwards
@@ -37,3 +39,6 @@ yarn start
   - https://stackoverflow.com/questions/41563995/how-to-change-speed-on-embedded-youtube-video
 - make the modal look better?
 - Cypress.io tests
+
+- Items to add
+  - https://jamesclear.com/great-speeches
