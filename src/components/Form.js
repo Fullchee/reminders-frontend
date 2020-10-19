@@ -179,7 +179,7 @@ export default class Form extends Component {
       return toast("Duplicate url: the original has id: " + b[0].id);
     }
     const data = await response.json();
-    const message = `${this.state.hasLink ? "Updated" : "Added"} link: ${this.state.link.title
+    let message = `${this.state.hasLink ? "Updated" : "Added"} link: ${this.state.link.title
       }`;
     if (!this.state.hasLink) {
       message += ` with id: ${data.id}`;
