@@ -25,7 +25,6 @@ yarn start
 ```
 
 ## TODOs
-- Postcss & normalize.css
 - navbar: holding the buttons shows a tooltip
 - [react-joyride](https://github.com/gilbarbara/react-joyride)
 - support images
