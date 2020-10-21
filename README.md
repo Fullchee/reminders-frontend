@@ -28,8 +28,6 @@ yarn start
 - navbar: holding the buttons shows a tooltip
 - [react-joyride](https://github.com/gilbarbara/react-joyride)
   - add a help button
-- support images
-  - Pearls Before Swine, Peanuts
 - auto save after a minute
 - Move to this time in the video/podcast
   - skip forward or backwards
