@@ -27,6 +27,7 @@ yarn start
 ## TODOs
 - navbar: holding the buttons shows a tooltip
 - [react-joyride](https://github.com/gilbarbara/react-joyride)
+  - add a help button
 - support images
   - Pearls Before Swine, Peanuts
 - auto save after a minute
