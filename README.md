@@ -25,6 +25,7 @@ yarn start
 ```
 
 ## TODOs
+- Reminders: Updating link makes the url undefined
 - navbar: holding the buttons shows a tooltip
 - [react-joyride](https://github.com/gilbarbara/react-joyride)
   - add a help button
