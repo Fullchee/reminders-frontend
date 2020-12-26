@@ -9,7 +9,7 @@ I visit this site weekly to remind myself of what kind of person I want to be fr
 ## Links
 
 - Frontend React App
-  - [Website](https://fullchee-values.netlify.com/)
+  - [Website](https://fullchee-reminders.netlify.app/)
   - [GitHub](https://github.com/Fullchee/values-client)
 - Backend
   - [GitHub](https://github.com/Fullchee/reminders-backend)
