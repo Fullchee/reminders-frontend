@@ -5,9 +5,6 @@
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.11.1",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
     "@tinymce/tinymce-react": "^3.7.0",
     "history": "^5.0.0",
     "node-sass": "^4.14.1",
@@ -48,6 +45,9 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
     "eslint-plugin-react-hooks": "^2.3.0",
     "postcss-normalize": "^9.0.0",
     "prettier": "^2.1.2",
