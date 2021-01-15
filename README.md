@@ -26,18 +26,19 @@ yarn start
 
 ## TODOs
 - Reminders: Updating link makes the url undefined
-- navbar: holding the buttons shows a tooltip
-- [react-joyride](https://github.com/gilbarbara/react-joyride)
-  - add a help button
+
 - auto save after a minute
-- Move to this time in the video/podcast
-  - skip forward or backwards
-  - Given a URL query param, list the time to skip (so min 50 becomes ?min=50)
 - get the speed controller to look good on mobile (move it down)
   - add it to video
   - https://stackoverflow.com/questions/41563995/how-to-change-speed-on-embedded-youtube-video
-- make the modal look better?
-- Cypress.io tests
-
+- Get search working
+- React Native app
 - Items to add
   - https://jamesclear.com/great-speeches
+  - Values: https://docs.google.com/document/d/15BHO6_SL3XLTCFoHmqdrPqYQrteH52xy01Oz7aav0Kw/edit#heading=h.htzzy4th400h
+
+### Nice to have
+- Move to this time in the video/podcast
+  - skip forward or backwards
+  - Given a URL query param, list the time to skip (so min 50 becomes ?min=50)
+
