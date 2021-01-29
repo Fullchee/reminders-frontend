@@ -33,7 +33,9 @@ yarn start
   - https://stackoverflow.com/questions/41563995/how-to-change-speed-on-embedded-youtube-video
 - Get search working
 - React Native app
+- delete the object object tag
 - Items to add
+  - https://jamesclear.com/mental-models
   - https://jamesclear.com/great-speeches
   - Values: https://docs.google.com/document/d/15BHO6_SL3XLTCFoHmqdrPqYQrteH52xy01Oz7aav0Kw/edit#heading=h.htzzy4th400h
   - Meditation notes: https://docs.google.com/document/d/1JyzYaNQThdyTiNkZ1q-0GLyCUDpXeDJcUeIz6ibk-zI/edit#bookmark=id.7rm4zyg5ppng
