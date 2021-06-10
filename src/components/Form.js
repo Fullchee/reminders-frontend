@@ -18,7 +18,7 @@ export default class Form extends Component {
         keywords: [{ id: 12, label: "Perspective", value: "Perspective" }],
         title: "Carl Sagan - Pale Blue Dot",
         url: "https://www.youtube.com/watch?v=wupToqz1e2g",
-        takeaways: "Look again at that dot. That's here. That's home. That's us. <div>On it everyone you love, <br>everyone you know, <br>everyone you ever heard of, <br>every human being who ever was, lived out their lives.</div>",
+        notes: "Look again at that dot. That's here. That's home. That's us. <div>On it everyone you love, <br>everyone you know, <br>everyone you ever heard of, <br>every human being who ever was, lived out their lives.</div>",
         lastAccessed: "3 months ago",
         id: 0,
         hasLink: true,
@@ -55,11 +55,11 @@ export default class Form extends Component {
    * Ping the server on load so that the heroku db can startup asap
    */
   pingServer = () => {
-    return fetch(process.env.REACT_APP_BACKEND_URL + "ping");
+    return fetch(process.env.REACT_APP_BACKEND_URL);
   };
 
   formatLink = (link) => {
-    if (!link.keywords) {
+    if (!link?.keywords?.length) {
       link.keywords = [];
     } else {
       link.keywords = link.keywords.split(",");
@@ -149,7 +149,7 @@ export default class Form extends Component {
   };
   handleEditorChange = (content, editor) => {
     const newLink = this.state.link;
-    newLink["takeaways"] = content;
+    newLink.notes = content;
     this.setState({
       link: newLink,
     });
@@ -233,7 +233,7 @@ export default class Form extends Component {
     history.push(`/`);
     this.setState({
       link: {
-        takeaways: "",
+        notes: "",
         title: "",
         url: "",
         keywords: [],
@@ -317,8 +317,8 @@ export default class Form extends Component {
             </div>
             <label htmlFor="lastAccessed">Last accessed</label>
             <p id="lastAccessed">{this.state.link.lastAccessed}</p>
-            <label htmlFor="takeaways" style={{ color: "white" }}>
-              Takeaways
+            <label htmlFor="notes" style={{ color: "white" }}>
+              Notes
             </label>
             <div className="text-editor">
               <Editor
@@ -336,8 +336,8 @@ export default class Form extends Component {
                     `alignleft aligncenter alignright alignjustify |` +
                     `bullist numlist outdent indent | removeformat | help | image insertdatetime`,
                 }}
-                textAreaName="takeaways"
-                value={this.state.link.takeaways || ""}
+                textAreaName="notes"
+                value={this.state.link.notes || ""}
                 onEditorChange={this.handleEditorChange}
               />
             </div>
