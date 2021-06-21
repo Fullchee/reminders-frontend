@@ -1,0 +1,8 @@
+{
+    "appId": "io.ionic.fullcheeRemindersFrontend",
+    "appName": "fullcheeRemindersFrontend",
+    "bundledWebRuntime": false,
+    "npmClient": "npm",
+    "webDir": "build",
+    "cordova": {}
+}
