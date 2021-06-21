@@ -6,25 +6,6 @@ class LoginForm extends React.Component {
     password: ''
   };
 
-  handleLogin = (e, data) => {
-    e.preventDefault();
-    fetch('http://localhost:8000/token-auth/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-      .then(res => res.json())
-      .then(json => {
-        localStorage.setItem('token', json.token);
-        this.setState({
-          logged_in: true,
-          username: json.user.username
-        });
-      });
-  };
-
   handleChange = e => {
     const name = e.target.name;
     const value = e.target.value;
@@ -37,7 +18,7 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={e => this.handleLogin(e, this.state)}>
+      <form onSubmit={e => this.props.handleLogin(e, this.state)}>
         <h4>Log In</h4>
         <label htmlFor="username">Username</label>
         <input
