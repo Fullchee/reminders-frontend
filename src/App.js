@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './styles/App.scss';
-import { BrowserRouter as Redirect, Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Form from './components/Form';
 import history from './history';
 import LoginForm from './components/LoginForm';
@@ -25,6 +25,12 @@ function App(props) {
       });
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    setUsername('');
+  };
+
   return (
     <Router history={history}>
       <Switch>
@@ -33,7 +39,7 @@ function App(props) {
           path="/"
           render={({ match }) =>
             username ? (
-              <Form username={match.params.username} id={match.params.id} />
+              <Form handleLogout={handleLogout} username={username} id={match.params.id} />
             ) : (
               <LoginForm handleLogin={handleLogin} />
             )
@@ -41,16 +47,16 @@ function App(props) {
         />
         <Route exact path="/login" render={() => <LoginForm handleLogin={handleLogin} />} />
         <Route
-          path="/link/:username/:id"
-          render={({ match }) => <Form username={match.params.username} id={match.params.id} />}
+          path="/link/:id"
+          render={({ match }) => (
+            <Form handleLogout={handleLogout} username={username} id={match.params.id} />
+          )}
         />
         <Route
-          path="/:username/:id"
-          render={({ match }) => <Form username={match.params.username} id={match.params.id} />}
-        />
-        <Route
-          path="/:username"
-          render={({ match }) => <Form username={match.params.username} />}
+          path="/:id"
+          render={({ match }) => (
+            <Form handleLogout={handleLogout} username={username} id={match.params.id} />
+          )}
         />
       </Switch>
     </Router>
