@@ -96,14 +96,6 @@ export default class Form extends Component {
   };
 
   minifyLink = (link) => {
-    if (!link.keywords) {
-      console.error(link);
-    }
-    const keywordArray = [];
-    link.keywords.forEach((obj) => {
-      keywordArray.push(obj.value);
-    });
-    link.keywords = keywordArray.join(",");
     return link;
   };
 
