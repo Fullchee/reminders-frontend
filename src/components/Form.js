@@ -59,10 +59,9 @@ export default class Form extends Component {
   };
 
   formatLink = (link) => {
+    debugger;
     if (!link?.keywords?.length) {
       link.keywords = [];
-    } else {
-      link.keywords = link.keywords.split(",");
     }
     let i = 0;
     link.keywords = link.keywords.map((word) => {
