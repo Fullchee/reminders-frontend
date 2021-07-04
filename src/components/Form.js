@@ -59,7 +59,6 @@ export default class Form extends Component {
   };
 
   formatLink = (link) => {
-    debugger;
     if (!link?.keywords?.length) {
       link.keywords = [];
     }
