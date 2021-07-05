@@ -41,7 +41,8 @@ function App(props) {
             username ? (
               <Form handleLogout={handleLogout} username={username} id={match.params.id} />
             ) : (
-              <LoginForm handleLogin={handleLogin} />
+              <Form handleLogout={handleLogout} username={username} id={match.params.id} />
+              // <LoginForm handleLogin={handleLogin} />
             )
           }
         />
