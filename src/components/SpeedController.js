@@ -1,10 +1,12 @@
-import PropTypes from "prop-types";
-import React from "react";
+import PropTypes from 'prop-types';
+import React from 'react';
 function SpeedController(props) {
   return (
     <select
       className="speed-controller"
-      onChange={props.onChange}
+      onChange={(e) => {
+        props.onChange(parseFloat(e.target.value));
+      }}
       value={props.speed}
     >
       <option value="0.5">0.5x</option>
