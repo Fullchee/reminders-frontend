@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import 'react-h5-audio-player/lib/styles.css';
 import VideoPlayer from './VideoPlayer';

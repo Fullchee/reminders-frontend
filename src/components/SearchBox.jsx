@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 const wasEnterClicked = (event) => event.key === 'Enter';
 
-function SearchBox(props) {
+function SearchBox() {
   const [query, setQuery] = useState('');
   let history = useHistory();
 

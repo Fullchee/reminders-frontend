@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SearchBox from './SearchBox';
 
-const SearchResults = ({ match }) => {
+const SearchResults = () => {
   // TODO: get the query from React Router ideally?
   // const query = match.params.q;
   const query = window.location.search.slice(3);
