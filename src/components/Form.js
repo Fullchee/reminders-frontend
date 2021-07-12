@@ -1,25 +1,35 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import MediaPlayer from "./MediaPlayer";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Select from "react-dropdown-select";
-import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css";
-import Nav from "./Nav";
-import { Editor } from "@tinymce/tinymce-react";
-import history from "../history";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import MediaPlayer from './MediaPlayer';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Select from 'react-dropdown-select';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import Nav from './Nav';
+import { Editor } from '@tinymce/tinymce-react';
+import history from '../history';
+
+function spoofPageVisibilityApi() {
+  var a = Node.prototype.addEventListener;
+  Node.prototype.addEventListener = function (e) {
+    if (e !== 'visibilitychange' && e !== 'webkitvisibilitychange') {
+      a.apply(this, arguments);
+    }
+  };
+}
 
 export default class Form extends Component {
   constructor() {
     super();
     this.state = {
       link: {
-        keywords: [{ id: 12, label: "Perspective", value: "Perspective" }],
-        title: "Carl Sagan - Pale Blue Dot",
-        url: "https://www.youtube.com/watch?v=wupToqz1e2g",
-        notes: "Look again at that dot. That's here. That's home. That's us. <div>On it everyone you love, <br>everyone you know, <br>everyone you ever heard of, <br>every human being who ever was, lived out their lives.</div>",
-        lastAccessed: "3 months ago",
+        keywords: [{ id: 12, label: 'Perspective', value: 'Perspective' }],
+        title: 'Carl Sagan - Pale Blue Dot',
+        url: 'https://www.youtube.com/watch?v=wupToqz1e2g',
+        notes:
+          "Look again at that dot. That's here. That's home. That's us. <div>On it everyone you love, <br>everyone you know, <br>everyone you ever heard of, <br>every human being who ever was, lived out their lives.</div>",
+        lastAccessed: '3 months ago',
         id: 0,
         hasLink: true,
       },
@@ -30,9 +40,10 @@ export default class Form extends Component {
   componentDidMount() {
     this.getKeywords();
     this.pingServer();
-    if (this.props.id !== "0") {
+    if (this.props.id !== '0') {
       this.refresh(this.props.id);
     }
+    spoofPageVisibilityApi();
   }
 
   componentDidUpdate(prevProps) {
@@ -42,7 +53,7 @@ export default class Form extends Component {
   }
 
   getKeywords = async () => {
-    const res = await fetch(process.env.REACT_APP_BACKEND_URL + "keywords");
+    const res = await fetch(process.env.REACT_APP_BACKEND_URL + 'keywords');
     const json = await res.json();
     let i = 0;
     const formattedKeywords = json.map((word) => {
@@ -74,7 +85,7 @@ export default class Form extends Component {
     const now = new Date().getTime();
     const before = new Date(lastAccessed).getTime();
     if (Number.isNaN(before) || before === 0) {
-      return "Never accessed before";
+      return 'Never accessed before';
     }
     return this.formatTimeInterval(now - before);
   };
@@ -99,7 +110,7 @@ export default class Form extends Component {
   };
 
   getRandomLink = async () => {
-    const res = await fetch(process.env.REACT_APP_BACKEND_URL + "random-link");
+    const res = await fetch(process.env.REACT_APP_BACKEND_URL + 'random-link');
     const link = await res.json();
     history.push(`/link/${link.id}`);
     return this.formatLink(link);
@@ -148,50 +159,46 @@ export default class Form extends Component {
   updateLink = async (event) => {
     event.preventDefault();
     const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(this.minifyLink({ ...this.state.link })),
     };
 
-    const api = this.state.hasLink ? "update-link" : "add-link";
-    const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}${api}`,
-      requestOptions
-    );
+    const api = this.state.hasLink ? 'update-link' : 'add-link';
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}${api}`, requestOptions);
     if (response.status === 400) {
       const a = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}search?url=${this.state.link.url}`
+        `${process.env.REACT_APP_BACKEND_URL}search?url=${this.state.link.url}`,
       );
       const b = await a.json();
       if (!b[0]) {
         return console.error(b);
       }
-      return toast("Duplicate url: the original has id: " + b[0].id);
+      return toast('Duplicate url: the original has id: ' + b[0].id);
     }
     const data = await response.json();
-    let message = `${this.state.hasLink ? "Updated" : "Added"} link: ${this.state.link.title
-      }`;
+    let message = `${this.state.hasLink ? 'Updated' : 'Added'} link: ${this.state.link.title}`;
     if (!this.state.hasLink) {
       message += ` with id: ${data.id}`;
     }
     toast(message);
     history.push(`/link/${data.id}`);
-    this.setState({ hasLink: true });
+    this.setState({ hasLink: true, id: data.id, views: 1 });
   };
 
   confirmDelete = () => {
     confirmAlert({
       title: `Delete "${this.state.link.title}"?`,
-      message: "",
+      message: '',
       buttons: [
         {
-          label: "Yes",
+          label: 'Yes',
           onClick: () => {
             this.deleteLink();
           },
         },
         {
-          label: "No",
+          label: 'No',
           onClick: () => {
             return;
           },
@@ -201,14 +208,14 @@ export default class Form extends Component {
   };
   deleteLink = async () => {
     const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         id: this.state.link.id,
       }),
     };
 
-    fetch(process.env.REACT_APP_BACKEND_URL + "delete-link", requestOptions)
+    fetch(process.env.REACT_APP_BACKEND_URL + 'delete-link', requestOptions)
       .then((response) => response.json())
       .then((data) => {
         toast(`Deleted link: ${this.state.link.title}`);
@@ -223,11 +230,11 @@ export default class Form extends Component {
     history.push(`/`);
     this.setState({
       link: {
-        notes: "",
-        title: "",
-        url: "",
+        notes: '',
+        title: '',
+        url: '',
         keywords: [],
-        lastAccessed: "",
+        lastAccessed: '',
       },
       hasLink: false,
     });
@@ -242,7 +249,7 @@ export default class Form extends Component {
     });
     const link = { ...this.state.link };
     link.keywords = selected.map((keyword) => {
-      if (keyword && typeof keyword === "object") {
+      if (keyword && typeof keyword === 'object') {
         return {
           ...keyword,
           label: this.capitalizeFirstLetter(keyword.label),
@@ -273,17 +280,19 @@ export default class Form extends Component {
           />
           <MediaPlayer
             className="mediaPlayer"
-            url={this.state.link.url || ""}
+            url={this.state.link.url || ''}
             onEnded={this.updateLink}
           ></MediaPlayer>
           <form className="form">
+            <label htmlFor="id">ID</label>
+            <p id="id">{this.state?.link.id}</p>
             <label htmlFor="title">Title</label>
             <input
               id="title"
               type="text"
               name="title"
               className="input input--text"
-              value={this.state.link.title || ""}
+              value={this.state.link.title || ''}
               onChange={this.changeHandler}
             />
             <label htmlFor="url">URL</label>
@@ -292,7 +301,7 @@ export default class Form extends Component {
               type="url"
               name="url"
               className="input input--text"
-              value={this.state.link.url || ""}
+              value={this.state.link.url || ''}
               onChange={this.changeHandler}
             />
             <label htmlFor="keywords">Keywords</label>
@@ -307,7 +316,9 @@ export default class Form extends Component {
             </div>
             <label htmlFor="lastAccessed">Last accessed</label>
             <p id="lastAccessed">{this.state.link.lastAccessed}</p>
-            <label htmlFor="notes" style={{ color: "white" }}>
+            <label htmlFor="views">Views</label>
+            <p id="views">{this.state?.link.views}</p>
+            <label htmlFor="notes" style={{ color: 'white' }}>
               Notes
             </label>
             <div className="text-editor">
@@ -317,9 +328,9 @@ export default class Form extends Component {
                   height: 400,
                   menubar: false,
                   plugins: [
-                    "advlist autolink lists link image charmap print preview anchor",
-                    "searchreplace visualblocks code fullscreen",
-                    "insertdatetime media table paste code help wordcount",
+                    'advlist autolink lists link image charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table paste code help wordcount',
                   ],
                   toolbar:
                     `undo redo | formatselect | bold italic backcolor |` +
@@ -327,7 +338,7 @@ export default class Form extends Component {
                     `bullist numlist outdent indent | removeformat | help | image insertdatetime`,
                 }}
                 textAreaName="notes"
-                value={this.state.link.notes || ""}
+                value={this.state.link.notes || ''}
                 onEditorChange={this.handleEditorChange}
               />
             </div>
@@ -338,7 +349,7 @@ export default class Form extends Component {
               className="submit-button"
               onClick={this.updateLink}
             >
-              {this.state.hasLink ? "Update" : "Add"}
+              {this.state.hasLink ? 'Update' : 'Add'}
             </button>
           </form>
           <ToastContainer />
