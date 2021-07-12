@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Form from './components/Form';
 import history from './history';
 import LoginForm from './components/LoginForm';
+import SearchResults from './components/SearchResults';
 
 function App(props) {
   const [username, setUsername] = useState(() => localStorage.getItem('username'));
@@ -59,6 +60,7 @@ function App(props) {
             <Form handleLogout={handleLogout} username={username} id={match.params.id} />
           )}
         />
+        <Route path="/search" render={({ match }) => <SearchResults />} />
       </Switch>
     </Router>
   );

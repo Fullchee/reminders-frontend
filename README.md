@@ -25,16 +25,10 @@ yarn start
 ```
 
 ## TODOs
-- Reminders: Updating link makes the url undefined
 - Reminders: check for duplicate urls (remove the extra url stuff)
    - `http://www.youtube.com/watch?v=` -> `http://youtu.be/`
-- auto save after a minute
 - get the speed controller to look good on mobile (move it down)
-  - add it to video
-  - https://stackoverflow.com/questions/41563995/how-to-change-speed-on-embedded-youtube-video
 - Get search working
-- React Native app
-- delete the object object tag
 - Items to add
   - https://jamesclear.com/mental-models
   - https://jamesclear.com/great-speeches

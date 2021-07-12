@@ -1,18 +1,17 @@
-import React, { useState } from "react";
-import Ripple from "react-touch-ripple";
-import searchIcon from "../images/search.svg";
-// TODO: uncomment when I redirect to a component and not to the backend
-// import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import Ripple from 'react-touch-ripple';
+import searchIcon from '../images/search.svg';
+import { useHistory } from 'react-router-dom';
 
-const search = (query) => {
-  // TODO: redirect to the search page
-  window.location = `${process.env.REACT_APP_BACKEND_URL}search?q=${query}`;
-};
+const wasEnterClicked = (event) => event.key === 'Enter';
 
-const wasEnterClicked = (event) => event.key === "Enter";
+function SearchBox(props) {
+  const [query, setQuery] = useState('');
+  let history = useHistory();
 
-const SearchBox = (props) => {
-  const [query, setQuery] = useState("");
+  const search = (query) => {
+    history.push('/search/&q=' + query);
+  };
 
   return (
     <div className="search-box">
