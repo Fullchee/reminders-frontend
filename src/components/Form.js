@@ -166,24 +166,14 @@ export default class Form extends Component {
 
     const api = this.state.hasLink ? 'update-link' : 'add-link';
     const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}${api}`, requestOptions);
-    if (response.status === 400) {
-      const a = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}search?url=${this.state.link.url}`,
-      );
-      const b = await a.json();
-      if (!b[0]) {
-        return console.error(b);
-      }
-      return toast('Duplicate url: the original has id: ' + b[0].id);
-    }
     const data = await response.json();
-    let message = `${this.state.hasLink ? 'Updated' : 'Added'} link: ${this.state.link.title}`;
+    let message = `Added/updated link: ${this.state.link.title}`;
     if (!this.state.hasLink) {
       message += ` with id: ${data.id}`;
     }
     toast(message);
     history.push(`/link/${data.id}`);
-    this.setState({ hasLink: true, id: data.id, views: 1 });
+    this.setState({ hasLink: true, link: data });
   };
 
   confirmDelete = () => {
@@ -295,7 +285,10 @@ export default class Form extends Component {
               value={this.state.link.title || ''}
               onChange={this.changeHandler}
             />
-            <label htmlFor="url">URL</label>
+            <label htmlFor="url">
+              <a href={this.state.link.url || ''}>URL</a>
+            </label>
+
             <input
               id="url"
               type="url"
