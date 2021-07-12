@@ -54,7 +54,7 @@ function App(props) {
             <Form handleLogout={handleLogout} username={username} id={match.params.id} />
           )}
         />
-        <Route path="/search" render={({ match }) => <SearchResults />} />
+        <Route path="/search" component={SearchResults} />
         <Route
           path="/:id"
           render={({ match }) => (

@@ -34,6 +34,6 @@ function SearchBox(props) {
       />
     </div>
   );
-};
+}
 
 export default SearchBox;
