@@ -10,7 +10,7 @@ function SearchBox(props) {
   let history = useHistory();
 
   const search = (query) => {
-    history.push('/search/&q=' + query);
+    history.push('/search?q=' + query);
   };
 
   return (
