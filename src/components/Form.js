@@ -173,7 +173,10 @@ export default class Form extends Component {
     }
     toast(message);
     history.push(`/link/${data.id}`);
-    this.setState({ hasLink: true, link: data });
+    this.setState({
+      hasLink: true,
+      link: { ...data, lastAccessed: this.getTimeDiff(data.last_accessed) },
+    });
   };
 
   confirmDelete = () => {
