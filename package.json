@@ -27,7 +27,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "git push origin master",
-    "android": "ionic capacitor sync android && npx cap open android"
+    "android": "ionic capacitor sync android && npx cap open android && say \"Done\""
   },
   "eslintConfig": {
     "extends": "react-app"
