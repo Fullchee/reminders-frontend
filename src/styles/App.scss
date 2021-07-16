@@ -140,6 +140,14 @@ form input {
   margin-right: 20px;
   width: 100%;
 
+  // > div {
+  //   width: 100% !important;
+  // }
+
+  .rhap_container {
+    min-height: 75px;
+  }
+
   @media only screen and (max-width: 850px) {
     display: block;
   }
