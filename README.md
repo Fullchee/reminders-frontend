@@ -25,19 +25,4 @@ yarn start
 ```
 
 ## TODOs
-- Reminders: check for duplicate urls (remove the extra url stuff)
-   - `http://www.youtube.com/watch?v=` -> `http://youtu.be/`
-   - only use short url?
-- audio YouTube videos?
-- get the speed controller to look good on mobile
-- Items to add
-  - https://jamesclear.com/mental-models
-  - https://jamesclear.com/great-speeches
-  - Values: https://docs.google.com/document/d/15BHO6_SL3XLTCFoHmqdrPqYQrteH52xy01Oz7aav0Kw/edit#heading=h.htzzy4th400h
-  - Meditation notes: https://docs.google.com/document/d/1JyzYaNQThdyTiNkZ1q-0GLyCUDpXeDJcUeIz6ibk-zI/edit#bookmark=id.7rm4zyg5ppn
-- Move to this time in the video/podcast
-  - skip forward or backwards
-  - Given a URL query param, list the time to skip (so min 50 becomes ?min=50)
-  - scan the notes and get the times (min:20)
-- get search to look nicer
-- 
+https://github.com/Fullchee/reminders-frontend/projects/1#card-65582282
