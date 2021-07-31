@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 import React from "react";
 import addIcon from "../images/add.svg";
-import reloadIcon from "../images/renew.svg";
+// import reloadIcon from "../images/renew.svg";
 // import randomDice from '../images/random-dice.svg'
+import shuffle from '../images/shuffle.svg'
 // import overflowIcon from "../images/overflow-menu--vertical.svg";
 import trashIcon from "../images/trash-can.svg";
 import Ripple from "react-touch-ripple";
@@ -16,11 +17,11 @@ function Nav(props) {
     <nav className="buttons">
       <SearchBox />
       <div className="buttons__icons">
-        <Tooltip title="Refresh"
+        <Tooltip title="Random"
           touchHold="true">
           <Ripple>
-            <button id="refresh" onClick={props.refresh}>
-              <img src={reloadIcon} alt="reload" />
+            <button id="random" onClick={props.refresh}>
+              <img src={shuffle} alt="random" />
             </button>
           </Ripple>
         </Tooltip>
