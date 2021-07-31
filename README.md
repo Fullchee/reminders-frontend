@@ -25,4 +25,4 @@ yarn start
 ```
 
 ## TODOs
-https://github.com/Fullchee/reminders-frontend/projects/1#card-65582282
+https://github.com/Fullchee/reminders-frontend/projects/1

@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import addIcon from "../images/add.svg";
 import reloadIcon from "../images/renew.svg";
+// import randomDice from '../images/random-dice.svg'
 // import overflowIcon from "../images/overflow-menu--vertical.svg";
 import trashIcon from "../images/trash-can.svg";
 import Ripple from "react-touch-ripple";

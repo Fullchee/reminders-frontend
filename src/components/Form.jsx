@@ -40,6 +40,7 @@ export default class Form extends Component {
   componentDidMount() {
     this.getKeywords();
     this.pingServer();
+    // TODO: if connected to heroku, then go to a random link
     if (this.props.id !== '0') {
       this.refresh(this.props.id);
     }
