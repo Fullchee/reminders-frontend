@@ -19,6 +19,23 @@ function spoofPageVisibilityApi() {
   };
 }
 
+// https://dmitripavlutin.com/timeout-fetch-request/
+async function fetchWithTimeout(resource, options = { timeout: 2000 }) {
+  const timeout = options?.timeout || 2000;
+
+  debugger;
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeout);
+
+  const response = await fetch(resource, {
+    ...options,
+    signal: controller.signal,
+  });
+  clearTimeout(id);
+
+  return response;
+}
+
 export default class Form extends Component {
   constructor() {
     super();
@@ -38,12 +55,8 @@ export default class Form extends Component {
   }
 
   componentDidMount() {
+    debugger;
     this.getKeywords();
-    this.pingServer();
-    // TODO: if connected to heroku, then go to a random link
-    if (this.props.id !== '0') {
-      this.refresh(this.props.id);
-    }
     spoofPageVisibilityApi();
   }
 
@@ -54,20 +67,23 @@ export default class Form extends Component {
   }
 
   getKeywords = async () => {
-    const res = await fetch(process.env.REACT_APP_BACKEND_URL + 'keywords');
-    const json = await res.json();
-    let i = 0;
-    const formattedKeywords = json.map((word) => {
-      return { id: i++, label: word, value: word };
-    });
-    this.setState({ keywordOptions: formattedKeywords });
-  };
-
-  /**
-   * Ping the server on load so that the heroku db can startup asap
-   */
-  pingServer = () => {
-    return fetch(process.env.REACT_APP_BACKEND_URL);
+    try {
+      const res = await fetchWithTimeout(process.env.REACT_APP_BACKEND_URL + 'keywords');
+      const json = await res.json();
+      let i = 0;
+      const formattedKeywords = json.map((word) => {
+        return { id: i++, label: word, value: word };
+      });
+      this.setState({ keywordOptions: formattedKeywords }, () => {
+        this.refresh(this.props.id);
+      });
+    } catch (error) {
+      console.error(error.name);
+      if (error.name === 'AbortError') {
+        toast('Waiting for backend to wake up');
+        setTimeout(this.getKeywords(), 2000);
+      }
+    }
   };
 
   formatLink = (link) => {
@@ -349,7 +365,7 @@ export default class Form extends Component {
               {this.state.hasLink ? 'Update' : 'Add'}
             </button>
           </form>
-          <ToastContainer />
+          <ToastContainer hideProgressBar={true} />
         </div>
       </div>
     );
