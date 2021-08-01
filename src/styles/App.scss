@@ -321,7 +321,7 @@ button[type="submit"] {
     background-color:rgba(0, 0, 0, 0.07);
   }
   
-  &.delete:hover, .delete:focus {
+  &.delete:hover, &.delete:focus {
     background-color: #db4437;
     overflow: hidden;
   }
