@@ -1,16 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import addIcon from '../images/add.svg';
-// import reloadIcon from "../images/renew.svg";
-// import randomDice from '../images/random-dice.svg'
-import shuffle from '../images/shuffle.svg';
-// import overflowIcon from "../images/overflow-menu--vertical.svg";
-import trashIcon from '../images/trash-can.svg';
 import Ripple from 'react-touch-ripple';
-import SearchBox from './SearchBox';
 import { Tooltip } from 'react-tippy';
 import 'react-tippy/dist/tippy.css';
+
+import SearchBox from './SearchBox';
 import NavMoreMenu from './NavMoreMenu';
+import addIcon from '../images/add.svg';
+import shuffle from '../images/shuffle.svg';
 
 function Nav(props) {
   return (
