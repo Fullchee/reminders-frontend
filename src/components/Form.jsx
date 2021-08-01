@@ -51,6 +51,7 @@ export default class Form extends Component {
         hasLink: true,
       },
       keywordOptions: [],
+      waitingForBackend: false,
     };
   }
 
@@ -74,13 +75,21 @@ export default class Form extends Component {
       const formattedKeywords = json.map((word) => {
         return { id: i++, label: word, value: word };
       });
-      this.setState({ keywordOptions: formattedKeywords }, () => {
+
+      if (this.state.waitingForBackend) {
+        toast('Backend is up!');
+      }
+
+      this.setState({ keywordOptions: formattedKeywords, waitingForBackend: false }, () => {
         this.refresh(this.props.id);
       });
     } catch (error) {
       console.error(error.name);
       if (error.name === 'AbortError') {
-        toast('Waiting for backend to wake up');
+        if (this.state.waitingForBackend) {
+          toast('Waiting for backend to wake up');
+        }
+        this.setState({ waitingForBackend: true });
         setTimeout(this.getKeywords(), 2000);
       }
     }
