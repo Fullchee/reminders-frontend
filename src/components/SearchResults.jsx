@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import SearchBox from './Nav/SearchBox';
+import Ripple from 'react-touch-ripple';
+import { Tooltip } from 'react-tippy';
+
+import previousIcon from '../images/previous.svg';
 
 const SearchResults = () => {
   // TODO: get the query from React Router ideally?
@@ -38,7 +42,13 @@ const SearchResults = () => {
   return (
     <div className="app container">
       <div className="form-container">
-        <a href="/">Go back</a>
+        <Tooltip title="Back" touchHold="true">
+          <Ripple>
+            <button id="back" onClick={() => (window.location.href = '/')}>
+              <img src={previousIcon} alt="back" />
+            </button>
+          </Ripple>
+        </Tooltip>
         <SearchBox />
         <div className="search-results">{renderSearchResults()}</div>
       </div>
