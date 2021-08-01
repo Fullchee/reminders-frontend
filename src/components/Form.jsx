@@ -54,8 +54,24 @@ export default class Form extends Component {
   }
 
   componentDidMount() {
+    const form = this;
     this.getKeywords();
     spoofPageVisibilityApi();
+    const disableCmdS = (e) => {
+      if ((window.navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey) && e.key === 's') {
+        e.preventDefault();
+        form.updateLink();
+      }
+    };
+    document.addEventListener('keydown', disableCmdS);
+
+    setTimeout(() => {
+      const iframe = document.querySelector('iframe#tiny-mce-editor_ifr');
+      if (iframe) {
+        debugger;
+        iframe.contentDocument.body.addEventListener('keydown', disableCmdS);
+      }
+    }, 1000);
   }
 
   componentDidUpdate(prevProps) {
@@ -180,7 +196,9 @@ export default class Form extends Component {
   };
 
   updateLink = async (event) => {
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -342,6 +360,7 @@ export default class Form extends Component {
             </label>
             <div className="text-editor">
               <Editor
+                id="tiny-mce-editor"
                 apiKey="mhoop81tplrihnhuphy89bsw7qjq01dhzkjdzgb61ruf4itq"
                 init={{
                   height: 400,
@@ -352,9 +371,9 @@ export default class Form extends Component {
                     'insertdatetime media table paste code help wordcount',
                   ],
                   toolbar:
-                    `undo redo | formatselect | bold italic backcolor |` +
-                    `alignleft aligncenter alignright alignjustify |` +
-                    `bullist numlist outdent indent | removeformat | help | image insertdatetime`,
+                    `undo redo | formatselect | bold italic |` +
+                    `alignleft aligncenter alignright |` +
+                    `bullist numlist outdent indent | removeformat | help | image`,
                 }}
                 textAreaName="notes"
                 value={this.state.link.notes || ''}
