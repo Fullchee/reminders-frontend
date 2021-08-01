@@ -107,7 +107,7 @@ export default class Form extends Component {
           toast('Waiting for backend to wake up');
         }
         this.setState({ waitingForBackend: true });
-        setTimeout(this.getKeywords(), 2000);
+        setTimeout(this.getKeywords(), 5000);
       }
     }
   };
