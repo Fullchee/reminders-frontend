@@ -1,3 +1,11 @@
+div[role='menu'] {
+  visibility: hidden;
+}
+
+div[role='menu'].visible {
+  visibility: visible;
+}
+
 .nav ul {
   align-items: center;
   display: flex;
@@ -101,6 +109,7 @@
     width: 1rem;
     margin-right: 0.5rem;
     margin-left: 0.5rem;
+    vertical-align: text-top;
   }
 
   &:hover,
@@ -112,5 +121,9 @@
   &.delete:focus {
     background-color: #db4437;
     overflow: hidden;
+  }
+
+  &.is-flagged {
+    background-color: lightblue;
   }
 }

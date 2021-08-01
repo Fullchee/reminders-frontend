@@ -12,7 +12,7 @@ import history from '../../history';
 import MediaPlayer from './MediaPlayer';
 import Nav from '../Nav/Nav';
 
-import './Form.scss'
+import './Form.scss';
 
 function spoofPageVisibilityApi() {
   var a = Node.prototype.addEventListener;
@@ -51,6 +51,7 @@ export default class Form extends Component {
         lastAccessed: '3 months ago',
         id: 0,
         hasLink: true,
+        flag: false,
       },
       keywordOptions: [],
       waitingForBackend: false,
@@ -147,9 +148,7 @@ export default class Form extends Component {
     return `${days} days ago`;
   };
 
-  minifyLink = (link) => {
-    return link;
-  };
+  minifyLink = (link) => link;
 
   getRandomLink = async () => {
     const res = await fetch(process.env.REACT_APP_BACKEND_URL + 'random-link');
@@ -243,6 +242,13 @@ export default class Form extends Component {
       ],
     });
   };
+
+  setIsFlagged = async () => {
+    this.setState({ link: { ...this.state.link, flag: !this.state.link.flag } }, () =>
+      this.updateLink(),
+    );
+  };
+
   deleteLink = async () => {
     const requestOptions = {
       method: 'POST',
@@ -314,6 +320,8 @@ export default class Form extends Component {
             refresh={this.refresh}
             confirmDelete={this.confirmDelete}
             clearForm={this.clearForm}
+            setIsFlagged={this.setIsFlagged}
+            isFlagged={this.state.link.flag}
           />
           <MediaPlayer
             className="mediaPlayer"

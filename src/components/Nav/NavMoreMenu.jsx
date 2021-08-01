@@ -11,7 +11,7 @@ import overflowIcon from '../../images/overflow-menu--vertical.svg';
 import trashIcon from '../../images/trash-can.svg';
 
 function NavMoreMenu({ onDelete, isFlagged, setIsFlagged }) {
-  const { buttonProps, itemProps, isOpen } = useDropdownMenu(3);
+  const { buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(3);
   return (
     <div className="more-menu-container">
       <Tooltip title="More" touchHold="true">
@@ -25,7 +25,10 @@ function NavMoreMenu({ onDelete, isFlagged, setIsFlagged }) {
         <a
           className={`more-menu-item ${isFlagged ? 'is-flagged' : ''}`}
           {...itemProps[0]}
-          onClick={() => {}}
+          onClick={(e) => {
+            setIsOpen(false);
+            setIsFlagged(e);
+          }}
         >
           <img src={flagIcon} alt="Flag"></img>
           Flag
@@ -40,7 +43,14 @@ function NavMoreMenu({ onDelete, isFlagged, setIsFlagged }) {
           <img src={refreshIcon} alt="Refresh"></img>
           Refresh
         </a>
-        <a className="more-menu-item delete" {...itemProps[2]} onClick={onDelete}>
+        <a
+          className="more-menu-item delete"
+          {...itemProps[2]}
+          onClick={(e) => {
+            setIsOpen(false);
+            onDelete(e);
+          }}
+        >
           <img src={trashIcon} alt="Delete"></img>Delete
         </a>
       </div>
@@ -50,6 +60,8 @@ function NavMoreMenu({ onDelete, isFlagged, setIsFlagged }) {
 
 NavMoreMenu.propTypes = {
   onDelete: PropTypes.func,
+  setIsFlagged: PropTypes.func,
+  isFlagged: PropTypes.bool,
 };
 
 export default NavMoreMenu;

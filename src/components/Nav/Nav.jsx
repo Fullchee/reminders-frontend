@@ -8,7 +8,7 @@ import SearchBox from './SearchBox';
 import NavMoreMenu from './NavMoreMenu';
 import addIcon from '../../images/add.svg';
 import shuffle from '../../images/shuffle.svg';
-import './Nav.scss'
+import './Nav.scss';
 
 function Nav(props) {
   return (
@@ -29,7 +29,11 @@ function Nav(props) {
             </button>
           </Ripple>
         </Tooltip>
-        <NavMoreMenu onDelete={props.confirmDelete} />
+        <NavMoreMenu
+          isFlagged={props.isFlagged}
+          onDelete={props.confirmDelete}
+          setIsFlagged={props.setIsFlagged}
+        />
       </div>
     </nav>
   );
@@ -39,6 +43,8 @@ Nav.propTypes = {
   clearForm: PropTypes.func,
   confirmDelete: PropTypes.func,
   refresh: PropTypes.func,
+  isFlagged: PropTypes.bool,
+  setIsFlagged: PropTypes.func,
 };
 
 export default Nav;
