@@ -382,7 +382,7 @@ export default class Form extends Component {
                     'insertdatetime media table paste code help wordcount',
                   ],
                   toolbar:
-                    `undo redo | formatselect | bold italic |` +
+                    `undo redo | formatselect | bold italic strikethrough |` +
                     `alignleft aligncenter alignright |` +
                     `bullist numlist outdent indent | removeformat | help | image`,
                 }}
