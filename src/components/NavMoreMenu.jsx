@@ -25,7 +25,13 @@ function NavMoreMenu({ onDelete }) {
           <img src={flagIcon} alt="Flag"></img>
           Flag
         </a>
-        <a className="more-menu-item" {...itemProps[1]} onClick={() => {}}>
+        <a
+          className="more-menu-item"
+          {...itemProps[1]}
+          onClick={() => {
+            window.location.reload();
+          }}
+        >
           <img src={refreshIcon} alt="Refresh"></img>
           Refresh
         </a>
