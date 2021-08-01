@@ -22,8 +22,6 @@ function spoofPageVisibilityApi() {
 // https://dmitripavlutin.com/timeout-fetch-request/
 async function fetchWithTimeout(resource, options = { timeout: 2000 }) {
   const timeout = options?.timeout || 2000;
-
-  debugger;
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), timeout);
 
@@ -56,7 +54,6 @@ export default class Form extends Component {
   }
 
   componentDidMount() {
-    debugger;
     this.getKeywords();
     spoofPageVisibilityApi();
   }
