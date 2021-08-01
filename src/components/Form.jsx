@@ -68,7 +68,6 @@ export default class Form extends Component {
     setTimeout(() => {
       const iframe = document.querySelector('iframe#tiny-mce-editor_ifr');
       if (iframe) {
-        debugger;
         iframe.contentDocument.body.addEventListener('keydown', disableCmdS);
       }
     }, 1000);
