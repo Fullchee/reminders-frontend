@@ -1,14 +1,18 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import MediaPlayer from './MediaPlayer';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Select from 'react-dropdown-select';
 import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css';
-import Nav from './Nav';
 import { Editor } from '@tinymce/tinymce-react';
-import history from '../history';
+import { ToastContainer, toast } from 'react-toastify';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import Select from 'react-dropdown-select';
+
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import 'react-toastify/dist/ReactToastify.css';
+
+import history from '../../history';
+import MediaPlayer from './MediaPlayer';
+import Nav from '../Nav/Nav';
+
+import './Form.scss'
 
 function spoofPageVisibilityApi() {
   var a = Node.prototype.addEventListener;

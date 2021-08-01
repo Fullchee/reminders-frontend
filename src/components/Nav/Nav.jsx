@@ -6,8 +6,9 @@ import 'react-tippy/dist/tippy.css';
 
 import SearchBox from './SearchBox';
 import NavMoreMenu from './NavMoreMenu';
-import addIcon from '../images/add.svg';
-import shuffle from '../images/shuffle.svg';
+import addIcon from '../../images/add.svg';
+import shuffle from '../../images/shuffle.svg';
+import './Nav.scss'
 
 function Nav(props) {
   return (

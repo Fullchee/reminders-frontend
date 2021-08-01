@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import refreshIcon from '../images/renew.svg';
-import overflowIcon from '../images/overflow-menu--vertical.svg';
-import trashIcon from '../images/trash-can.svg';
 import Ripple from 'react-touch-ripple';
 import { Tooltip } from 'react-tippy';
 import 'react-tippy/dist/tippy.css';
 import useDropdownMenu from 'react-accessible-dropdown-menu-hook';
-import flagIcon from '../images/flag.svg';
 
-function NavMoreMenu({ onDelete }) {
+import flagIcon from '../../images/flag.svg';
+import refreshIcon from '../../images/renew.svg';
+import overflowIcon from '../../images/overflow-menu--vertical.svg';
+import trashIcon from '../../images/trash-can.svg';
+
+function NavMoreMenu({ onDelete, isFlagged, setIsFlagged }) {
   const { buttonProps, itemProps, isOpen } = useDropdownMenu(3);
   return (
     <div className="more-menu-container">
@@ -21,7 +22,11 @@ function NavMoreMenu({ onDelete }) {
         </Ripple>
       </Tooltip>
       <div className={`${isOpen ? 'visible' : ''} more-menu`} role="menu">
-        <a className="more-menu-item" {...itemProps[0]} onClick={() => {}}>
+        <a
+          className={`more-menu-item ${isFlagged ? 'is-flagged' : ''}`}
+          {...itemProps[0]}
+          onClick={() => {}}
+        >
           <img src={flagIcon} alt="Flag"></img>
           Flag
         </a>

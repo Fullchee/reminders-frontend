@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Ripple from 'react-touch-ripple';
-import searchIcon from '../images/search.svg';
+import searchIcon from '../../images/search.svg';
 import { useHistory } from 'react-router-dom';
 
 const wasEnterClicked = (event) => event.key === 'Enter';

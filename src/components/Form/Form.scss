@@ -1,0 +1,147 @@
+/* Media Player */
+.media-player {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+
+  > div {
+    // mobile device: shrink the size of the video player to be as large as the screen
+    width: 100% !important;
+  }
+
+  .rhap_container {
+    min-height: 75px;
+  }
+
+  @media only screen and (max-width: 850px) {
+    display: block;
+  }
+}
+
+.audio-player {
+  max-width: 60vw;
+}
+
+.speed-controller {
+  border-color: white;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+
+  @media only screen and (max-width: 700px) {
+    width: 100%;
+    min-height: 2rem;
+  }
+}
+
+/* Form */
+.form {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: 5rem 1fr;
+  justify-content: center;
+  margin-top: 20px;
+  min-width: 100%;
+
+  label {
+    grid-column: 1 / 2;
+    text-align: left;
+  }
+
+  .input {
+    background: #fff;
+    border: 1px solid #9c9c9c;
+    grid-column: 2 / 3;
+    margin: auto 0;
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+.multi-select {
+  max-width: 500px;
+}
+
+.keywords {
+  background-color: white;
+  color: #0074d9;
+}
+
+button[type='submit'] {
+  background-color: #37833b;
+  border: 0;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  margin: 8px 0;
+  padding: 14px 20px;
+  width: 100%;
+
+  &:focus,
+  &:hover {
+    background-color: #004812;
+    outline: none;
+  }
+}
+
+.notes {
+  resize: none;
+}
+
+.text-editor,
+#submitButton {
+  grid-column: 1 / 3;
+}
+
+.hidden-text {
+  color: white;
+}
+
+@media only screen and (max-width: 700px) {
+  .form-container {
+    padding: 3% 5%;
+  }
+
+  .form {
+    grid-template-columns: 1fr;
+    min-width: 88vw;
+  }
+
+  .form .input,
+  .form label,
+  #keywords,
+  #datesAccessed,
+  .text-editor,
+  #submitButton {
+    grid-column: 1 / 2;
+    max-width: 84vw;
+  }
+
+  .audio-player {
+    max-width: 83vw;
+  }
+
+  .form label {
+    text-align: left;
+  }
+
+  .form .input {
+    margin-left: -1rem;
+  }
+
+  .keywords,
+  #keywords,
+  #datesAccessed,
+  .text-editor {
+    grid-column: 1 / 2;
+  }
+
+  .react-timerange-picker .react-timerange-picker__wrapper {
+    align-items: center;
+    background: #eee;
+    border: 0;
+    flex-direction: column;
+    padding: 20px;
+    width: 100%;
+  }
+}
