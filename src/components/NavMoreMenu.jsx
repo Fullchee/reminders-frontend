@@ -38,9 +38,7 @@ function NavMoreMenu({ onDelete }) {
 }
 
 NavMoreMenu.propTypes = {
-  clearForm: PropTypes.func,
-  confirmDelete: PropTypes.func,
-  refresh: PropTypes.func,
+  onDelete: PropTypes.func,
 };
 
 export default NavMoreMenu;
