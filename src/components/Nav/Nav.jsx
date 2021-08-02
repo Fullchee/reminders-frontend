@@ -4,7 +4,7 @@ import Ripple from 'react-touch-ripple';
 import { Tooltip } from 'react-tippy';
 import 'react-tippy/dist/tippy.css';
 
-import SearchBox from './SearchBox';
+import SearchBox from '../Search/SearchBox';
 import NavMoreMenu from './NavMoreMenu';
 import addIcon from '../../images/add.svg';
 import shuffle from '../../images/shuffle.svg';

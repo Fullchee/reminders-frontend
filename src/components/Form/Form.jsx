@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import history from '../../history';
 import MediaPlayer from './MediaPlayer';
 import Nav from '../Nav/Nav';
+import { getTimeDiff } from '../../helper/utilities';
 
 import './Form.scss';
 
@@ -120,32 +121,8 @@ export default class Form extends Component {
     link.keywords = link.keywords.map((word) => {
       return { id: i++, label: word, value: word };
     });
-    link.lastAccessed = this.getTimeDiff(link.last_accessed);
+    link.lastAccessed = getTimeDiff(link.last_accessed);
     return link;
-  };
-
-  getTimeDiff = (lastAccessed) => {
-    const now = new Date().getTime();
-    const before = new Date(lastAccessed).getTime();
-    if (Number.isNaN(before) || before === 0) {
-      return 'Never accessed before';
-    }
-    return this.formatTimeInterval(now - before);
-  };
-
-  /**
-   * @param interval time interval in ms
-   */
-  formatTimeInterval = (interval) => {
-    const days = Math.floor(interval / (1000 * 60 * 60 * 24));
-    if (days > 365) {
-      return `${Math.floor(days / 365)} year(s) ago`;
-    } else if (days === 0) {
-      return `today`;
-    } else if (days === 1) {
-      return `${days} day ago`;
-    }
-    return `${days} days ago`;
   };
 
   minifyLink = (link) => link;
@@ -218,7 +195,7 @@ export default class Form extends Component {
     history.push(`/link/${data.id}`);
     this.setState({
       hasLink: true,
-      link: { ...data, lastAccessed: this.getTimeDiff(data.last_accessed) },
+      link: { ...data, lastAccessed: getTimeDiff(data.last_accessed) },
     });
   };
 

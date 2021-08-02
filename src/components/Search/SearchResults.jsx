@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import SearchBox from './Nav/SearchBox';
+import SearchBox from './SearchBox';
 import Ripple from 'react-touch-ripple';
 import { Tooltip } from 'react-tippy';
 
-import previousIcon from '../images/previous.svg';
+import previousIcon from '../../images/previous.svg';
+import { getTimeDiff, formatViews } from '../../helper/utilities';
+
+import './Search.scss';
 
 const SearchResults = () => {
   // TODO: get the query from React Router ideally?
@@ -26,13 +29,23 @@ const SearchResults = () => {
     return results.map((result) => {
       // TODO: use <Link> instead of needing to refresh
       return (
-        <div key={result.id}>
-          <a href={`/link/${result.id}`}>
-            <h3>{result.title}</h3>
-            <p>URL: {result.url}</p>
-            <p>Keywords: {result.keywords}</p>
-            <p>Last accessed: {result.last_accessed}</p>
-            <p>Views: {result.views}</p>
+        <div className="search-result-item" key={result.id}>
+          <a className="search-result-item-link" href={`/link/${result.id}`}>
+            <h3 className="search-result-item__title">{result.title}</h3>
+            {/* <p className="search-result-item__url" className="search-item-url">
+              {result.url}
+            </p> */}
+            <div className="search-result-item__keywords">
+              {result.keywords.map((keyword) => (
+                <a key={keyword} href={`/search?q=${keyword}`} className="search-result-keyword">
+                  {keyword}
+                </a>
+              ))}
+            </div>
+            <p className="search-result-item__text">
+              Last accessed {getTimeDiff(result.last_accessed)}
+            </p>
+            <p className="search-result-item__text">{formatViews(result.views)}</p>
           </a>
         </div>
       );
