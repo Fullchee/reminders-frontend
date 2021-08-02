@@ -12,7 +12,7 @@ import './Nav.scss';
 
 function Nav(props) {
   return (
-    <nav className="buttons">
+    <nav className="buttons home-nav">
       <SearchBox />
       <div className="buttons__icons">
         <Tooltip title="Random" touchHold="true">

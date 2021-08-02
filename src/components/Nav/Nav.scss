@@ -30,9 +30,12 @@ div[role='menu'].visible {
 
 .buttons {
   display: flex;
-  justify-content: space-between;
   margin-bottom: 2rem;
   width: 100%;
+
+  &.home-nav {
+    justify-content: space-between;
+  }
 
   button {
     background: none;
@@ -59,7 +62,7 @@ div[role='menu'].visible {
 }
 
 @media only screen and (max-width: 850px) {
-  .buttons {
+  .buttons.home-nav {
     flex-direction: column;
   }
 
@@ -81,6 +84,10 @@ div[role='menu'].visible {
     position: relative;
     top: -3px;
     width: 500px;
+  }
+
+  @media only screen and (max-width: 850px) {
+    max-width: calc(100% - 3rem);
   }
 }
 
