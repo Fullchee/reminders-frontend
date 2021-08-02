@@ -55,14 +55,16 @@ const SearchResults = () => {
   return (
     <div className="app container">
       <div className="form-container">
-        <Tooltip title="Back" touchHold="true">
-          <Ripple>
-            <button id="back" onClick={() => (window.location.href = '/')}>
-              <img src={previousIcon} alt="back" />
-            </button>
-          </Ripple>
-        </Tooltip>
-        <SearchBox />
+        <nav className="buttons">
+          <Tooltip title="Back" touchHold="true">
+            <Ripple>
+              <button id="back" onClick={() => (window.location.href = '/')}>
+                <img src={previousIcon} alt="back" />
+              </button>
+            </Ripple>
+          </Tooltip>
+          <SearchBox />
+        </nav>
         <div className="search-results">{renderSearchResults()}</div>
       </div>
     </div>
