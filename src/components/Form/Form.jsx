@@ -318,7 +318,9 @@ export default class Form extends Component {
               onChange={this.changeHandler}
             />
             <label htmlFor="url">
-              <a href={this.state.link.url || ''} className="url-label">URL</a>
+              <a href={this.state.link.url || ''} className="url-label">
+                URL
+              </a>
             </label>
 
             <input

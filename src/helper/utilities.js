@@ -5,6 +5,8 @@ const formatTimeInterval = (interval) => {
   const days = Math.floor(interval / (1000 * 60 * 60 * 24));
   if (days > 365) {
     return `${Math.floor(days / 365)} year(s) ago`;
+  } else if (days > 60) {
+    return `${Math.round(days / 30)} months ago`;
   } else if (days === 0) {
     return `today`;
   } else if (days === 1) {
