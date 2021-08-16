@@ -12,7 +12,11 @@ function AudioPlayer({ url }) {
   };
   return (
     <>
-      <ReactAudioPlayer ref={(c) => (playerRef = c)} src={url} />
+      <ReactAudioPlayer
+        ref={(c) => (playerRef = c)}
+        src={url}
+        progressJumpSteps={{ backward: 15000, forward: 30000 }}
+      />
       <SpeedController onChange={updateSpeed} speed={speed} />
     </>
   );
