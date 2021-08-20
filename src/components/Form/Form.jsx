@@ -380,7 +380,13 @@ export default class Form extends Component {
               {this.state.hasLink ? 'Update' : 'Add'}
             </button>
           </form>
-          <ToastContainer hideProgressBar={true} />
+          <ToastContainer
+            hideProgressBar={true}
+            pauseOnHover={false}
+            pauseOnFocusLoss={false}
+            draggable={false}
+            autoClose={2000}
+          />
         </div>
       </div>
     );
