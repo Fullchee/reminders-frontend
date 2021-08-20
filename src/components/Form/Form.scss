@@ -56,9 +56,25 @@
     margin-left: 0;
     width: 100%;
   }
+  .button-link {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+      color: #069;
+      fill: #069;
+    }
+  }
 
   .url-label {
-    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+  .url-label:nth-child(1) {
+    padding-right: 4px;
   }
 }
 
