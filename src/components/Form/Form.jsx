@@ -98,9 +98,7 @@ export default class Form extends Component {
         toast('Backend is up!');
       }
 
-      this.setState({ keywordOptions: formattedKeywords, waitingForBackend: false }, () => {
-        this.refresh(this.props.id);
-      });
+      this.setState({ keywordOptions: formattedKeywords, waitingForBackend: false });
     } catch (error) {
       console.error(error.name);
       if (error.name === 'AbortError') {
