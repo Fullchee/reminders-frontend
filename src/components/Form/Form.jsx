@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import history from '../../history';
 import MediaPlayer from './MediaPlayer';
+import { ThreeDotsWave } from './ThreeDotsWave';
 import Nav from '../Nav/Nav';
 import { getTimeDiff } from '../../helper/utilities';
 
