@@ -165,3 +165,19 @@ button[type='submit'] {
     width: 100%;
   }
 }
+
+.overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.form-loading-container {
+    left: 50%;
+    margin-left: -3rem;
+    z-index: 100;
+    position: absolute;
+}

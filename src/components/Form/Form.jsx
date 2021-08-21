@@ -292,6 +292,13 @@ export default class Form extends Component {
     return (
       <div className="app container">
         <div className="form-container">
+          {this.state.waitingForBackend && (
+            <div className="overlay">
+              <div className="form-loading-container">
+                <ThreeDotsWave />
+              </div>
+            </div>
+          )}
           <Nav
             refresh={this.refresh}
             confirmDelete={this.confirmDelete}
