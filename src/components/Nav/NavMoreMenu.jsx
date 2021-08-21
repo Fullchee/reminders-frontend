@@ -31,7 +31,7 @@ function NavMoreMenu({ onDelete, isFlagged, setIsFlagged }) {
           }}
         >
           <img src={flagIcon} alt="Flag"></img>
-          Flag
+          {isFlagged ? 'Unflag' : 'Flag'}
         </a>
         <a
           className="more-menu-item"
