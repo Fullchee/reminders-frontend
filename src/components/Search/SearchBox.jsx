@@ -19,7 +19,7 @@ function SearchBox() {
         name="query"
         value={query}
         className="input--text"
-        placeholder="🔍 Search"
+        placeholder="🔍  Search"
         onChange={(event) => setQuery(event.target.value)}
         onKeyUp={(event) => {
           wasEnterClicked(event) && search(event.target.value);
