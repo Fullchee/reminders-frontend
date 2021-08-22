@@ -54,6 +54,24 @@ export default class Form extends Component {
         e.preventDefault();
         form.updateLink();
       }
+      if (e.ctrlKey) {
+        if (e.key === 'a') {
+          e.preventDefault();
+          form.clearForm();
+        }
+        if (e.key === 'r') {
+          e.preventDefault();
+          form.refresh();
+        }
+        if (e.key === 'd') {
+          e.preventDefault();
+          form.confirmDelete();
+        }
+        if (e.key === 'f') {
+          e.preventDefault();
+          form.setIsFlagged();
+        }
+      }
     };
     document.addEventListener('keydown', disableCmdS);
 
