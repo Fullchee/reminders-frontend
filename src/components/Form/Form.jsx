@@ -154,7 +154,7 @@ export default class Form extends Component {
     if (!link) {
       link = await this.getRandomLink();
     }
-    this.setState({ link: link, hasLink: true });
+    this.setState({ link: link, hasLink: true, waitingForBackend: false });
   };
 
   changeHandler = (event) => {
