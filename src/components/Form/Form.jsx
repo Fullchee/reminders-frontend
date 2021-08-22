@@ -59,6 +59,10 @@ export default class Form extends Component {
           e.preventDefault();
           form.clearForm();
         }
+        if (e.key === 's') {
+          e.preventDefault();
+          form.updateLink();
+        }
         if (e.key === 'r') {
           e.preventDefault();
           form.refresh();
