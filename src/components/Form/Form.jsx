@@ -109,9 +109,6 @@ export default class Form extends Component {
     } catch (error) {
       console.error(error.name);
       if (error.name === 'AbortError') {
-        if (this.state.waitingForBackend) {
-          toast('Waiting for backend to wake up');
-        }
         this.setState({ waitingForBackend: true });
       }
     }
@@ -297,13 +294,6 @@ export default class Form extends Component {
     return (
       <div className="app container">
         <div className="form-container">
-          {this.state.waitingForBackend && (
-            <div className="overlay">
-              <div className="form-loading-container">
-                <ThreeDotsWave />
-              </div>
-            </div>
-          )}
           <Nav
             refresh={this.refresh}
             confirmDelete={this.confirmDelete}
@@ -419,6 +409,13 @@ export default class Form extends Component {
             autoClose={2000}
           />
         </div>
+        {this.state.waitingForBackend && (
+          <div className="overlay">
+            <div className="form-loading-container">
+              <ThreeDotsWave />
+            </div>
+          </div>
+        )}
       </div>
     );
   }
