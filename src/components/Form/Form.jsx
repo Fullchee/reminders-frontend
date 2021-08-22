@@ -78,7 +78,9 @@ export default class Form extends Component {
         iframe.contentDocument.body.addEventListener('keydown', disableCmdS);
       }
     }, 1000);
-    this.refresh(this.props.id);
+    if (this.props.id !== this.state.link.id) {
+      this.refresh(this.props.id);
+    }
   }
 
   componentDidUpdate(prevProps) {
