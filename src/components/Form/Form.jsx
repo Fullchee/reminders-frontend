@@ -25,21 +25,6 @@ function spoofPageVisibilityApi() {
   };
 }
 
-// https://dmitripavlutin.com/timeout-fetch-request/
-async function fetchWithTimeout(resource, options = { timeout: 2000 }) {
-  const timeout = options?.timeout || 2000;
-  const controller = new AbortController();
-  const id = setTimeout(() => controller.abort(), timeout);
-
-  const response = await fetch(resource, {
-    ...options,
-    signal: controller.signal,
-  });
-  clearTimeout(id);
-
-  return response;
-}
-
 export default class Form extends Component {
   constructor() {
     super();
@@ -91,7 +76,7 @@ export default class Form extends Component {
 
   getKeywords = async () => {
     try {
-      const res = await fetchWithTimeout(process.env.REACT_APP_BACKEND_URL + 'keywords');
+      const res = await fetch(process.env.REACT_APP_BACKEND_URL + 'keywords');
       const json = await res.json();
       let i = 0;
       const formattedKeywords = json.map((word) => {
