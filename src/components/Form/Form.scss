@@ -167,7 +167,7 @@ button[type='submit'] {
 }
 
 .overlay {
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 100vh;
   top: 0;
@@ -178,6 +178,8 @@ button[type='submit'] {
 .form-loading-container {
     left: 50%;
     margin-left: -3rem;
+    top: 50%;
+    margin-top: -3rem;
     z-index: 100;
     position: absolute;
 }
