@@ -253,12 +253,14 @@ export default class Form extends Component {
 
   clearForm = () => {
     history.push(`/`);
+
+    const keywords = this.state.hasLink ? this.state.link.keywords : [];
     this.setState({
       link: {
         notes: '',
         title: '',
         url: '',
-        keywords: [],
+        keywords,
         lastAccessed: '',
       },
       hasLink: false,
