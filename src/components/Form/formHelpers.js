@@ -43,7 +43,6 @@ export const getKeywords = async () => {
   } catch (error) {
     console.error(error.name);
     if (error.name === 'AbortError') {
-      this.setState({ waitingForBackend: true });
     }
   }
 };
@@ -69,15 +68,25 @@ export const deleteLink = async (link) => {
     }),
   };
 
-  fetch(process.env.REACT_APP_BACKEND_URL + 'delete-link', requestOptions)
-    .then((response) => response.json())
-    .then((data) => {
-      toast(`Deleted link: ${link.title}`);
-    })
-    .catch((error) => {
-      console.error(error);
-      toast("Couldn't delete the link");
-    });
+  try {
+    const res = await fetch(process.env.REACT_APP_BACKEND_URL + 'delete-link', requestOptions);
+    await res.json();
+    toast(`Deleted link: ${link.title}`);
+  } catch (error) {
+    console.error(error);
+    toast("Couldn't delete the link");
+  }
+};
+
+export const defaultLink = {
+  keywords: [{ id: 12, label: 'Perspective', value: 'Perspective' }],
+  title: 'Carl Sagan - Pale Blue Dot',
+  url: 'https://www.youtube.com/watch?v=wupToqz1e2g',
+  notes:
+    "Look again at that dot. That's here. That's home. That's us. <div>On it everyone you love, <br>everyone you know, <br>everyone you ever heard of, <br>every human being who ever was, lived out their lives.</div>",
+  lastAccessed: '3 months ago',
+  id: 0,
+  flag: false,
 };
 
 //   TODO: try { }
