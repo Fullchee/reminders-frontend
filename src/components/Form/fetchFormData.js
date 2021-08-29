@@ -2,7 +2,7 @@ import history from '../../history';
 import { toast } from 'react-toastify';
 import { getTimeDiff } from '../../helper/utilities';
 
-export const formatLink = (link) => {
+const formatLink = (link) => {
   if (!link?.keywords?.length) {
     link.keywords = [];
   }
@@ -14,7 +14,7 @@ export const formatLink = (link) => {
   return link;
 };
 
-export const minifyLink = (link) => link;
+const minifyLink = (link) => link;
 
 export const getRandomLink = async () => {
   const res = await fetch(process.env.REACT_APP_BACKEND_URL + 'random-link');

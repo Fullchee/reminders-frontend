@@ -13,7 +13,7 @@ import MediaPlayer from './MediaPlayer';
 import { LoadingIndicator } from './LoadingIndicator';
 import Nav from '../Nav/Nav';
 import { getTimeDiff, capitalizeFirstLetter } from '../../helper/utilities';
-import { defaultLink, deleteLink, getKeywords, getLink, getRandomLink, sendUpdate } from './formHelpers';
+import { defaultLink, deleteLink, getKeywords, getLink, getRandomLink, sendUpdate } from './fetchFormData';
 
 import './Form.scss';
 
