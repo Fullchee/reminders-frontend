@@ -10,7 +10,7 @@ import refreshIcon from '../../images/renew.svg';
 import overflowIcon from '../../images/overflow-menu--vertical.svg';
 import trashIcon from '../../images/trash-can.svg';
 
-function NavMoreMenu({ onDelete, isFlagged, toggleFlag }) {
+function NavMoreMenu({ onDelete, isFlagged, toggleFlag, hasLink }) {
   const { buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(3);
   return (
     <div className="more-menu-container">
@@ -44,7 +44,7 @@ function NavMoreMenu({ onDelete, isFlagged, toggleFlag }) {
           Refresh
         </a>
         <a
-          className="more-menu-item delete"
+          className={`more-menu-item delete ${hasLink ? '' : 'disable'}`}
           {...itemProps[2]}
           onClick={(e) => {
             setIsOpen(false);

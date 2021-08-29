@@ -10,7 +10,7 @@ import addIcon from '../../images/add.svg';
 import shuffle from '../../images/shuffle.svg';
 import './Nav.scss';
 
-function Nav({ refresh, clearForm, isFlagged, confirmDelete, toggleFlag }) {
+function Nav({ clearForm, confirmDelete, isFlagged, refresh, toggleFlag, hasLink }) {
   return (
     <nav className="buttons home-nav">
       <SearchBox />
@@ -29,7 +29,7 @@ function Nav({ refresh, clearForm, isFlagged, confirmDelete, toggleFlag }) {
             </button>
           </Ripple>
         </Tooltip>
-        <NavMoreMenu isFlagged={isFlagged} onDelete={confirmDelete} toggleFlag={toggleFlag} />
+        <NavMoreMenu isFlagged={isFlagged} onDelete={confirmDelete} toggleFlag={toggleFlag} hasLink={hasLink} />
       </div>
     </nav>
   );
@@ -38,8 +38,8 @@ function Nav({ refresh, clearForm, isFlagged, confirmDelete, toggleFlag }) {
 Nav.propTypes = {
   clearForm: PropTypes.func,
   confirmDelete: PropTypes.func,
-  refresh: PropTypes.func,
   isFlagged: PropTypes.bool,
+  refresh: PropTypes.func,
   toggleFlag: PropTypes.func,
 };
 
