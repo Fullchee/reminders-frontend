@@ -13,7 +13,7 @@ import MediaPlayer from './MediaPlayer';
 import { LoadingIndicator } from './LoadingIndicator';
 import Nav from '../Nav/Nav';
 import { getTimeDiff, capitalizeFirstLetter } from '../../helper/utilities';
-import {deleteLink, getKeywords, getLink, getRandomLink, sendUpdate } from './formHelpers';
+import { defaultLink, deleteLink, getKeywords, getLink, getRandomLink, sendUpdate } from './formHelpers';
 
 import './Form.scss';
 
@@ -29,16 +29,7 @@ function spoofPageVisibilityApi() {
 export function Form({ id }) {
   const [keywordOptions, setKeywordOptions] = useState([]);
   const [hasLink, setHasLink] = useState(false);
-  const [link, setLink] = useState({
-    keywords: [{ id: 12, label: 'Perspective', value: 'Perspective' }],
-    title: 'Carl Sagan - Pale Blue Dot',
-    url: 'https://www.youtube.com/watch?v=wupToqz1e2g',
-    notes:
-      "Look again at that dot. That's here. That's home. That's us. <div>On it everyone you love, <br>everyone you know, <br>everyone you ever heard of, <br>every human being who ever was, lived out their lives.</div>",
-    lastAccessed: '3 months ago',
-    id: 0,
-    flag: false,
-  });
+  const [link, setLink] = useState(defaultLink);
   const [isLoading, setIsLoading] = useState(false);
 
   /**
@@ -192,14 +183,14 @@ export function Form({ id }) {
         iframe.contentDocument.body.addEventListener('keydown', disableCmdS);
       }
     }, 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     if (id && id !== link.id) {
       refresh(id);
     }
-  }, [clearForm, confirmDelete, id, link.id, toggleFlag, updateLink]);
-
-  useEffect(() => {
-    refresh(id);
-  }, [id]);
+  }, [id, link.id]);
 
   return (
     <div className="app container">
