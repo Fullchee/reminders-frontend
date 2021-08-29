@@ -60,4 +60,12 @@ export function ThreeDotsWave() {
   );
 }
 
-export default ThreeDotsWave;
+export function LoadingIndicator() {
+  return (
+    <div className="overlay">
+      <div className="form-loading-container">
+        <ThreeDotsWave />
+      </div>
+    </div>
+  );
+}

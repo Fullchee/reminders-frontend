@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import history from '../../history';
 import MediaPlayer from './MediaPlayer';
-import { ThreeDotsWave } from './ThreeDotsWave';
+import { LoadingIndicator } from './LoadingIndicator';
 import Nav from '../Nav/Nav';
 import { getTimeDiff } from '../../helper/utilities';
 
@@ -415,13 +415,7 @@ export default class Form extends Component {
             autoClose={2000}
           />
         </div>
-        {this.state.waitingForBackend && (
-          <div className="overlay">
-            <div className="form-loading-container">
-              <ThreeDotsWave />
-            </div>
-          </div>
-        )}
+        {this.state.waitingForBackend && <LoadingIndicator />}
       </div>
     );
   }
