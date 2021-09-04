@@ -1,6 +1,7 @@
 import history from '../../history';
 import { toast } from 'react-toastify';
 import { getTimeDiff } from '../../helper/utilities';
+import { STATUS } from './statuses';
 
 const formatLink = (link) => {
   if (!link?.keywords?.length) {
@@ -16,25 +17,33 @@ const formatLink = (link) => {
 
 const minifyLink = (link) => link;
 
-export const getRandomLink = async () => {
-  const res = await fetch(process.env.REACT_APP_BACKEND_URL + 'random-link');
-  const link = await res.json();
+const get = async (setStatus, link) => {
+  setStatus(STATUS.PENDING);
+  const res = await fetch(link);
+  const json = await res.json();
+  setStatus(STATUS.RESOLVED);
+  return json;
+};
+
+const getRandomLink = (setStatus) => async () => {
+  const link = await get(setStatus, process.env.REACT_APP_BACKEND_URL + 'random-link');
   history.push(`/link/${link.id}`);
   return formatLink(link);
 };
 
-export const getLink = async (id) => {
+const getLink = (setStatus) => async (id) => {
+  setStatus(STATUS.PENDING);
   const res = await fetch(process.env.REACT_APP_BACKEND_URL + `link/${id}`);
   if (res.status !== 404) {
     const link = await res.json();
+    setStatus(STATUS.RESOLVED);
     return formatLink(link);
   }
 };
 
-export const getKeywords = async () => {
+const getKeywords = (setStatus) => async () => {
   try {
-    const res = await fetch(process.env.REACT_APP_BACKEND_URL + 'keywords');
-    const json = await res.json();
+    const json = await get(setStatus, process.env.REACT_APP_BACKEND_URL + 'keywords');
     let i = 0;
     const formattedKeywords = json.map((word) => {
       return { id: i++, label: word, value: word };
@@ -47,7 +56,8 @@ export const getKeywords = async () => {
   }
 };
 
-export const sendUpdate = async (link, hasLink) => {
+const sendUpdate = (setStatus) => async (link, hasLink) => {
+  setStatus(STATUS.PENDING);
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -56,10 +66,12 @@ export const sendUpdate = async (link, hasLink) => {
 
   const api = hasLink ? 'update-link' : 'add-link';
   const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}${api}`, requestOptions);
+  setStatus(STATUS.RESOLVED);
   return response.json();
 };
 
-export const deleteLink = async (link) => {
+const deleteLink = (setStatus) => async (link) => {
+  setStatus(STATUS.PENDING);
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -71,12 +83,22 @@ export const deleteLink = async (link) => {
   try {
     const res = await fetch(process.env.REACT_APP_BACKEND_URL + 'delete-link', requestOptions);
     await res.json();
+    setStatus(STATUS.RESOLVED);
     toast(`Deleted link: ${link.title}`);
   } catch (error) {
     console.error(error);
+    setStatus(STATUS.REJECTED);
     toast("Couldn't delete the link");
   }
 };
+
+export const apiCalls = (setStatus) => ({
+  getRandomLink: getRandomLink(setStatus),
+  getLink: getLink(setStatus),
+  getKeywords: getKeywords(setStatus),
+  sendUpdate: sendUpdate(setStatus),
+  deleteLink: deleteLink(setStatus),
+});
 
 export const defaultLink = {
   keywords: [{ id: 12, label: 'Perspective', value: 'Perspective' }],
@@ -88,11 +110,3 @@ export const defaultLink = {
   id: 0,
   flag: false,
 };
-
-//   TODO: try { }
-//  catch (error) {
-//     console.error(error.name);
-//     if (error.name === 'AbortError') {
-//       // setState({ waitingForBackend: true });
-//     }
-//   }

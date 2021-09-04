@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { confirmAlert } from 'react-confirm-alert';
 import { Editor } from '@tinymce/tinymce-react';
 import { ToastContainer, toast } from 'react-toastify';
@@ -13,7 +14,8 @@ import MediaPlayer from './MediaPlayer';
 import { LoadingIndicator } from './LoadingIndicator';
 import Nav from '../Nav/Nav';
 import { getTimeDiff, capitalizeFirstLetter } from '../../helper/utilities';
-import { defaultLink, deleteLink, getKeywords, getLink, getRandomLink, sendUpdate } from './fetchFormData';
+import { defaultLink, apiCalls } from './fetchFormData';
+import { STATUS } from './statuses';
 
 import './Form.scss';
 
@@ -25,17 +27,17 @@ function spoofPageVisibilityApi() {
     }
   };
 }
-
 export function Form({ id }) {
   const [keywordOptions, setKeywordOptions] = useState([]);
   const [hasLink, setHasLink] = useState(false);
   const [link, setLink] = useState(defaultLink);
-  const [isLoading, setIsLoading] = useState(false);
+  const [status, setStatus] = useState(STATUS.IDLE);
+  const { deleteLink, getKeywords, getLink, getRandomLink, sendUpdate } = apiCalls(setStatus);
 
   /**
    * @param {Event (which is ignored) or an integer} id
    */
-  const refresh = async (id) => {
+  const refresh = useCallback(async (id) => {
     let link;
     debugger;
     if (!Number.isNaN(parseInt(id))) {
@@ -46,8 +48,8 @@ export function Form({ id }) {
     }
     setLink(link);
     setHasLink(true);
-    setIsLoading(false);
-  };
+    setStatus(false);
+  });
 
   const handleUrlChange = (event) => {
     const name = event.target.name;
@@ -190,7 +192,7 @@ export function Form({ id }) {
     if (id && id !== link.id) {
       refresh(id);
     }
-  }, [id, link.id]);
+  }, [id, link.id, refresh]);
 
   return (
     <div className="app container">
@@ -310,7 +312,7 @@ export function Form({ id }) {
           autoClose={2000}
         />
       </div>
-      {isLoading && <LoadingIndicator />}
+      {/* {status === STATUS.PENDING && <LoadingIndicator />} */}
     </div>
   );
 }
