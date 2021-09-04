@@ -34,17 +34,3 @@ export const formatViews = (views) => {
       return `${views} views`;
   }
 };
-
-export const fetchLoadingWrapper = async (url, showLoad, hideLoad) => {
-  const timeout = setTimeout(() => {
-    showLoad();
-  }, 1000);
-  const res = await fetch(url);
-  clearTimeout(timeout);
-  hideLoad();
-  return res.json();
-};
-
-export const capitalizeFirstLetter = (str) => {
-  return str[0].toUpperCase() + str.slice(1);
-};

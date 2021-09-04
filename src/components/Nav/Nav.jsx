@@ -32,7 +32,7 @@ function Nav(props) {
         <NavMoreMenu
           isFlagged={props.isFlagged}
           onDelete={props.confirmDelete}
-          toggleFlag={props.toggleFlag}
+          setIsFlagged={props.setIsFlagged}
         />
       </div>
     </nav>
@@ -44,7 +44,7 @@ Nav.propTypes = {
   confirmDelete: PropTypes.func,
   refresh: PropTypes.func,
   isFlagged: PropTypes.bool,
-  toggleFlag: PropTypes.func,
+  setIsFlagged: PropTypes.func,
 };
 
 export default Nav;
