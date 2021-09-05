@@ -53,16 +53,11 @@ export function Form({ id }) {
   const handleUrlChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-
-    const newLink = link;
-    newLink[name] = value;
-    setLink(newLink);
+    setLink({ ...link, [name]: value });
   };
 
   const handleEditorChange = (content, editor) => {
-    const newLink = link;
-    newLink.notes = content;
-    setLink(newLink);
+    setLink({ ...link, notes: content });
   };
 
   const updateLink = useCallback(async (event) => {
@@ -193,6 +188,7 @@ export function Form({ id }) {
       refresh(id);
     }
   }, [id]);
+  console.log('🚀 ~ file: Form.jsx ~ line 197 ~ Form ~ link', link);
 
   return (
     <div className="app container">
