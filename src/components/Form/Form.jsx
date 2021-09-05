@@ -89,7 +89,7 @@ export function Form({ id }) {
         {
           label: 'Yes',
           onClick: () => {
-            deleteLink();
+            deleteLink(link);
           },
         },
         {

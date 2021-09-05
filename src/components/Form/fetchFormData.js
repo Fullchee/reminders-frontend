@@ -127,4 +127,5 @@ export const defaultLink = {
   lastAccessed: '3 months ago',
   id: 0,
   flag: false,
+  views: 3,
 };
