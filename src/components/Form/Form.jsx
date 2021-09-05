@@ -16,17 +16,11 @@ import Nav from '../Nav/Nav';
 import { getTimeDiff, capitalizeFirstLetter } from '../../helper/utilities';
 import { defaultLink, apiCalls } from './fetchFormData';
 import { STATUS } from './statuses';
-
+import { setupBackgroundYouTube } from './videoBgPlayContent';
+import { setupKeyboardShortcuts } from './setupKeyboardShortcuts';
 import './Form.scss';
 
-function spoofPageVisibilityApi() {
-  var a = Node.prototype.addEventListener;
-  Node.prototype.addEventListener = function (e) {
-    if (e !== 'visibilitychange' && e !== 'webkitvisibilitychange') {
-      a.apply(this, arguments);
-    }
-  };
-}
+
 export function Form({ id }) {
   const [keywordOptions, setKeywordOptions] = useState([]);
   const [hasLink, setHasLink] = useState(false);
@@ -145,43 +139,8 @@ export function Form({ id }) {
 
   useEffect(() => {
     setKeywordOptions(getKeywords());
-    spoofPageVisibilityApi();
-    const disableCmdS = (e) => {
-      if ((window.navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey) && e.key === 's') {
-        e.preventDefault();
-        updateLink();
-      }
-      if (e.ctrlKey) {
-        if (e.key === 'a') {
-          e.preventDefault();
-          clearForm();
-        }
-        if (e.key === 's') {
-          e.preventDefault();
-          updateLink();
-        }
-        if (e.key === 'r') {
-          e.preventDefault();
-          refresh();
-        }
-        if (e.key === 'd') {
-          e.preventDefault();
-          confirmDelete();
-        }
-        if (e.key === 'f') {
-          e.preventDefault();
-          toggleFlag();
-        }
-      }
-    };
-    document.addEventListener('keydown', disableCmdS);
-
-    setTimeout(() => {
-      const iframe = document.querySelector('iframe#tiny-mce-editor_ifr');
-      if (iframe) {
-        iframe.contentDocument.body.addEventListener('keydown', disableCmdS);
-      }
-    }, 1000);
+    setupBackgroundYouTube();
+    setupKeyboardShortcuts({ updateLink, clearForm, refresh, confirmDelete, toggleFlag });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

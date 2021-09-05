@@ -18,6 +18,7 @@ function SpeedController(props) {
       <option value="2">2x</option>
       <option value="2.25">2.25x</option>
       <option value="2.5">2.5x</option>
+      <option value="2.75">2.75x</option>
     </select>
   );
 }
