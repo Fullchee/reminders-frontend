@@ -5,7 +5,7 @@ export function setupBackgroundYouTube() {
   const IS_YOUTUBE =
     window.location.hostname.search(/(?:^|.+\.)youtube\.com/) > -1 ||
     window.location.hostname.search(/(?:^|.+\.)youtube-nocookie\.com/) > -1;
-  const IS_MOBILE_YOUTUBE = window.location.hostname == 'm.youtube.com';
+  const IS_MOBILE_YOUTUBE = window.location.hostname === 'm.youtube.com';
   const IS_DESKTOP_YOUTUBE = IS_YOUTUBE && !IS_MOBILE_YOUTUBE;
   const IS_VIMEO = window.location.hostname.search(/(?:^|.+\.)vimeo\.com/) > -1;
 
