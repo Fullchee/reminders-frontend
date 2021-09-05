@@ -53,3 +53,20 @@ form input {
   line-height: 1.5;
   padding: 0 20px;
 }
+
+button[type="submit"] {
+  background-color: #37833b;
+  border: 0;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  margin: 8px 0;
+  padding: 14px 20px;
+  width: 100%;
+
+  &:focus,
+  &:hover {
+    background-color: #004812;
+    outline: none;
+  }
+}
