@@ -98,7 +98,10 @@ export function Form({ id }) {
   });
 
   const toggleFlag = useCallback(async () => {
-    setLink({ ...link, flag: !link.flag }, () => updateLink());
+    setLink((prevState) => {
+      toast(prevState.flag ? 'Unflagged!' : 'Flagged!');
+      return { ...prevState, flag: !prevState.flag };
+    });
   });
 
   const clearForm = useCallback(() => {
@@ -188,7 +191,6 @@ export function Form({ id }) {
       refresh(id);
     }
   }, [id]);
-  console.log('🚀 ~ file: Form.jsx ~ line 197 ~ Form ~ link', link);
 
   return (
     <div className="app container">
