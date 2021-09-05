@@ -25,4 +25,4 @@ yarn start
 ```
 
 ## TODOs
-https://github.com/Fullchee/reminders-frontend/projects/1
+https://app.asana.com/0/1200788876937280/1200788876937280
