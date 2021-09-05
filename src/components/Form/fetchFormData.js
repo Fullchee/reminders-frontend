@@ -20,6 +20,7 @@ const minifyLink = (link) => link;
 const get = async (setStatus, link) => {
   setStatus(STATUS.PENDING);
   try {
+    debugger;
     const res = await fetch(link);
     const json = await res.json();
     setStatus(STATUS.RESOLVED);
@@ -42,6 +43,7 @@ const getRandomLink = (setStatus) => async () => {
 
 const getLink = (setStatus) => async (id) => {
   setStatus(STATUS.PENDING);
+  debugger;
   const res = await fetch(process.env.REACT_APP_BACKEND_URL + `link/${id}`);
   if (res.status !== 404) {
     const link = await res.json();

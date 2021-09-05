@@ -12,3 +12,28 @@
   background-color: #333;
   border-radius: 1rem;
 }
+
+.overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  transition-delay: 1s;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.form-loading-container {
+    left: 50%;
+    margin-left: -3rem;
+    top: 50%;
+    margin-top: -3rem;
+    z-index: 100;
+    position: absolute;
+}
+

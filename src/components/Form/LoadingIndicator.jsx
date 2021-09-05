@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import './ThreeDotsWave.scss';
 
+// Learned about framer motion and this loading animation from
 // www.youtube.com/watch?v=aHqTM0WFdpk
 
 const containerVariants = {

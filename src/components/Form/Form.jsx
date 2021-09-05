@@ -39,7 +39,6 @@ export function Form({ id }) {
    */
   const refresh = useCallback(async (id) => {
     let link;
-    debugger;
     if (!Number.isNaN(parseInt(id))) {
       link = await getLink(parseInt(id));
     }
@@ -190,9 +189,10 @@ export function Form({ id }) {
 
   useEffect(() => {
     if (id && id !== link.id) {
+      debugger;
       refresh(id);
     }
-  }, [id, link.id, refresh]);
+  }, [id, link.id]);
 
   return (
     <div className="app container">
