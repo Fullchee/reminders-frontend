@@ -312,7 +312,7 @@ export function Form({ id }) {
           autoClose={2000}
         />
       </div>
-      {/* {status === STATUS.PENDING && <LoadingIndicator />} */}
+      {status === STATUS.PENDING && <LoadingIndicator />}
     </div>
   );
 }

@@ -19,10 +19,19 @@ const minifyLink = (link) => link;
 
 const get = async (setStatus, link) => {
   setStatus(STATUS.PENDING);
-  const res = await fetch(link);
-  const json = await res.json();
-  setStatus(STATUS.RESOLVED);
-  return json;
+  try {
+    const res = await fetch(link);
+    const json = await res.json();
+    setStatus(STATUS.RESOLVED);
+    return json;
+  } catch (error) {
+    debugger;
+    console.error(error);
+    setStatus(STATUS.REJECTED);
+    if (error.name === 'AbortError') {
+      debugger;
+    }
+  }
 };
 
 const getRandomLink = (setStatus) => async () => {
@@ -38,26 +47,26 @@ const getLink = (setStatus) => async (id) => {
     const link = await res.json();
     setStatus(STATUS.RESOLVED);
     return formatLink(link);
+  } else {
+    console.log('🚀 ~ file: fetchFormData.js ~ line 48 ~ getLink ~ res', res);
+    debugger;
+    setStatus(STATUS.REJECTED);
   }
 };
 
 const getKeywords = (setStatus) => async () => {
-  try {
-    const json = await get(setStatus, process.env.REACT_APP_BACKEND_URL + 'keywords');
-    let i = 0;
-    const formattedKeywords = json.map((word) => {
-      return { id: i++, label: word, value: word };
-    });
-    return formattedKeywords;
-  } catch (error) {
-    console.error(error.name);
-    if (error.name === 'AbortError') {
-    }
+  const json = await get(setStatus, process.env.REACT_APP_BACKEND_URL + 'keywords');
+  if (!json) {
+    debugger;
   }
+  let i = 0;
+  const formattedKeywords = json.map((word) => {
+    return { id: i++, label: word, value: word };
+  });
+  return formattedKeywords;
 };
 
 const sendUpdate = (setStatus) => async (link, hasLink) => {
-  setStatus(STATUS.PENDING);
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -65,13 +74,19 @@ const sendUpdate = (setStatus) => async (link, hasLink) => {
   };
 
   const api = hasLink ? 'update-link' : 'add-link';
-  const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}${api}`, requestOptions);
-  setStatus(STATUS.RESOLVED);
-  return response.json();
+  try {
+    setStatus(STATUS.PENDING);
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}${api}`, requestOptions);
+    setStatus(STATUS.RESOLVED);
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    debugger;
+    setStatus(STATUS.REJECTED);
+  }
 };
 
 const deleteLink = (setStatus) => async (link) => {
-  setStatus(STATUS.PENDING);
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -81,6 +96,7 @@ const deleteLink = (setStatus) => async (link) => {
   };
 
   try {
+    setStatus(STATUS.PENDING);
     const res = await fetch(process.env.REACT_APP_BACKEND_URL + 'delete-link', requestOptions);
     await res.json();
     setStatus(STATUS.RESOLVED);
