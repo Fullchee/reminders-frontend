@@ -80,7 +80,8 @@ const sendUpdate = (setStatus) => async (link, hasLink) => {
     setStatus(STATUS.PENDING);
     const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}${api}`, requestOptions);
     setStatus(STATUS.RESOLVED);
-    return response.json();
+    const json = await response.json();
+    return formatLink(json);
   } catch (error) {
     console.error(error);
     debugger;
