@@ -67,14 +67,14 @@ export function Form({ id }) {
     }
 
     const data = await sendUpdate(link, hasLink);
-    let message = `Added/updated link: ${link.title}`;
+    let message = `Added/updated link: ${data.title}`;
     if (!hasLink) {
       message += ` with id: ${data.id}`;
     }
     toast.success(message);
     history.push(`/link/${data.id}`);
-    setHasLink(true);
     setLink({ ...data, lastAccessed: getTimeDiff(data.last_accessed) });
+    setHasLink(true);
   };
 
   const confirmDelete = () => {
@@ -154,6 +154,7 @@ export function Form({ id }) {
     });
     setupBackgroundYouTube();
     setupKeyboardShortcuts({ updateLink, clearForm, refresh, confirmDelete, toggleFlag });
+    // TODO: remove event listeners on unmount
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

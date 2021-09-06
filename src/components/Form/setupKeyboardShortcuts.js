@@ -6,10 +6,6 @@ export function setupKeyboardShortcuts({
   toggleFlag,
 }) {
   const disableCmdS = (e) => {
-    if ((window.navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey) && e.key === 's') {
-      e.preventDefault();
-      updateLink();
-    }
     if (e.ctrlKey) {
       if (e.key === 'a') {
         e.preventDefault();
@@ -17,7 +13,9 @@ export function setupKeyboardShortcuts({
       }
       if (e.key === 's') {
         e.preventDefault();
-        updateLink();
+        // TODO: I don't know why it sets the link state to be the default link when I call updateLink()
+        // updateLink();
+        document.querySelector('#submitButton').click();
       }
       if (e.key === 'r') {
         e.preventDefault();
