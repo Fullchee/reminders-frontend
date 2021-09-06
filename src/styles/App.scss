@@ -46,6 +46,20 @@ form input {
   width: 90%;
 }
 
+label {
+  grid-column: 1 / 2;
+  text-align: left;
+}
+
+.input {
+  background: #fff;
+  border: 1px solid #9c9c9c;
+  grid-column: 2 / 3;
+  margin: auto 0;
+  margin-left: 0;
+  width: 100%;
+}
+
 .input--text {
   border-color: #eee;
   border-radius: 3px;

@@ -20,10 +20,11 @@ class LoginForm extends React.Component {
     return (
       <div className="app container">
         <div className="form-container">
-          <form onSubmit={(e) => this.props.handleLogin(e, this.state)}>
-            <h4>Log In</h4>
-            <label htmlFor="username">Username</label>
+          <form class="form" onSubmit={(e) => this.props.handleLogin(e, this.state)}>
+            <h4 style={{ textAlign: 'start'   }}>Log In</h4>
+            <label htmlFor="username">Email</label>
             <input
+              className="input input--text"
               type="text"
               name="username"
               value={this.state.username}
@@ -31,6 +32,7 @@ class LoginForm extends React.Component {
             />
             <label htmlFor="password">Password</label>
             <input
+              className="input input--text"
               type="password"
               name="password"
               value={this.state.password}
