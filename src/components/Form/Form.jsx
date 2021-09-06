@@ -3,7 +3,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import { Editor } from '@tinymce/tinymce-react';
 import { ToastContainer, toast } from 'react-toastify';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-dropdown-select';
 
 import 'react-confirm-alert/src/react-confirm-alert.css';
@@ -21,7 +21,7 @@ import { setupKeyboardShortcuts } from './setupKeyboardShortcuts';
 import './Form.scss';
 
 function connectionErrorToast() {
-  toast.error("Oops! We couldn't connect to the backend!")
+  toast.error("Oops! We couldn't connect to the backend!");
 }
 
 export function Form({ id }) {
@@ -34,7 +34,7 @@ export function Form({ id }) {
   /**
    * @param {Event (which is ignored) or an integer} id
    */
-  const refresh = useCallback(async (id) => {
+  const refresh = async (id) => {
     let link;
     if (!Number.isNaN(parseInt(id))) {
       link = await getLink(parseInt(id));
@@ -49,7 +49,7 @@ export function Form({ id }) {
     setLink(link);
     setHasLink(true);
     setStatus(false);
-  });
+  };
 
   const handleUrlChange = (event) => {
     const name = event.target.name;
@@ -61,7 +61,7 @@ export function Form({ id }) {
     setLink({ ...link, notes: content });
   };
 
-  const updateLink = useCallback(async (event) => {
+  const updateLink = async (event) => {
     if (event) {
       event.preventDefault();
     }
@@ -75,9 +75,9 @@ export function Form({ id }) {
     history.push(`/link/${data.id}`);
     setHasLink(true);
     setLink({ ...data, lastAccessed: getTimeDiff(data.last_accessed) });
-  });
+  };
 
-  const confirmDelete = useCallback(() => {
+  const confirmDelete = () => {
     confirmAlert({
       title: `Delete "${link.title}"?`,
       message: '',
@@ -96,16 +96,16 @@ export function Form({ id }) {
         },
       ],
     });
-  });
+  };
 
-  const toggleFlag = useCallback(async () => {
+  const toggleFlag = async () => {
     setLink((prevState) => {
       toast.info(prevState.flag ? 'Unflagged!' : 'Flagged!');
       return { ...prevState, flag: !prevState.flag };
     });
-  });
+  };
 
-  const clearForm = useCallback(() => {
+  const clearForm = () => {
     history.push(`/`);
 
     const keywords = hasLink ? link.keywords : [];
@@ -117,7 +117,7 @@ export function Form({ id }) {
       lastAccessed: '',
     });
     setHasLink(false);
-  });
+  };
 
   /**
    * Update the keywords of the link
@@ -161,6 +161,7 @@ export function Form({ id }) {
     if (id && id !== link.id) {
       debugger;
       refresh(id);
+      setHasLink(true);
     }
   }, [id]);
 
