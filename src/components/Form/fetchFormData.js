@@ -37,6 +37,10 @@ const get = async (setStatus, link) => {
 
 const getRandomLink = (setStatus) => async () => {
   const link = await get(setStatus, process.env.REACT_APP_BACKEND_URL + 'random-link');
+  if (!link) {
+    debugger;
+    return;
+  }
   history.push(`/link/${link.id}`);
   return formatLink(link);
 };
@@ -60,6 +64,7 @@ const getKeywords = (setStatus) => async () => {
   const json = await get(setStatus, process.env.REACT_APP_BACKEND_URL + 'keywords');
   if (!json) {
     debugger;
+    return;
   }
   let i = 0;
   const formattedKeywords = json.map((word) => {
@@ -103,11 +108,11 @@ const deleteLink = (setStatus) => async (link) => {
     const res = await fetch(process.env.REACT_APP_BACKEND_URL + 'delete-link', requestOptions);
     await res.json();
     setStatus(STATUS.RESOLVED);
-    toast(`Deleted link: ${link.title}`);
+    toast.success(`Deleted link: ${link.title}`);
   } catch (error) {
     console.error(error);
     setStatus(STATUS.REJECTED);
-    toast("Couldn't delete the link");
+    toast.error("Couldn't delete the link");
   }
 };
 

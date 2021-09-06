@@ -20,6 +20,9 @@ import { setupBackgroundYouTube } from './videoBgPlayContent';
 import { setupKeyboardShortcuts } from './setupKeyboardShortcuts';
 import './Form.scss';
 
+function connectionErrorToast() {
+  toast.error("Oops! We couldn't connect to the backend!")
+}
 
 export function Form({ id }) {
   const [keywordOptions, setKeywordOptions] = useState([]);
@@ -38,6 +41,10 @@ export function Form({ id }) {
     }
     if (!link) {
       link = await getRandomLink();
+      if (!link) {
+        connectionErrorToast();
+        return;
+      }
     }
     setLink(link);
     setHasLink(true);
@@ -64,7 +71,7 @@ export function Form({ id }) {
     if (!hasLink) {
       message += ` with id: ${data.id}`;
     }
-    toast(message);
+    toast.success(message);
     history.push(`/link/${data.id}`);
     setHasLink(true);
     setLink({ ...data, lastAccessed: getTimeDiff(data.last_accessed) });
@@ -93,7 +100,7 @@ export function Form({ id }) {
 
   const toggleFlag = useCallback(async () => {
     setLink((prevState) => {
-      toast(prevState.flag ? 'Unflagged!' : 'Flagged!');
+      toast.info(prevState.flag ? 'Unflagged!' : 'Flagged!');
       return { ...prevState, flag: !prevState.flag };
     });
   });
@@ -138,7 +145,13 @@ export function Form({ id }) {
   };
 
   useEffect(() => {
-    setKeywordOptions(getKeywords());
+    getKeywords().then((keywords) => {
+      if (!keywords) {
+        connectionErrorToast();
+      } else {
+        setKeywordOptions(keywords);
+      }
+    });
     setupBackgroundYouTube();
     setupKeyboardShortcuts({ updateLink, clearForm, refresh, confirmDelete, toggleFlag });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -183,7 +196,7 @@ export function Form({ id }) {
               onClick={(e) => {
                 e.preventDefault();
                 navigator.clipboard.writeText(link.url);
-                toast('Copied url to clipboard');
+                toast.info('Copied url to clipboard');
               }}
               className="button-link url-label"
             >
