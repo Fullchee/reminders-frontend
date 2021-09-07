@@ -121,16 +121,16 @@ export const apiCalls = (status, setStatus) => {
     const wasIdle = status === STATUS.IDLE;
     const result = fn(setStatus);
     if (wasIdle) {
-      toast('Connected to the backend!');
+      toast.success('Connected to the backend!');
     }
     return result;
   }
   return {
-    getRandomLink: idleNoMore(getRandomLink),
-    getLink: idleNoMore(getLink(setStatus)),
-    getKeywords: idleNoMore(getKeywords(setStatus)),
-    sendUpdate: idleNoMore(sendUpdate(setStatus)),
-    deleteLink: idleNoMore(deleteLink(setStatus)),
+    getRandomLink: getRandomLink(setStatus),
+    getLink: getLink(setStatus),
+    getKeywords: idleNoMore(getKeywords),
+    sendUpdate: sendUpdate(setStatus),
+    deleteLink: deleteLink(setStatus),
   };
 };
 
