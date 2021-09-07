@@ -8,7 +8,7 @@ function AudioPlayer({ url }) {
   let playerRef = useRef(null);
   const updateSpeed = (newSpeed) => {
     setSpeed(newSpeed);
-    playerRef.audio.playbackRate = newSpeed;
+    playerRef.audio.current.playbackRate = newSpeed;
   };
   return (
     <>
