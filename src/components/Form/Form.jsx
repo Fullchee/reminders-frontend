@@ -29,7 +29,7 @@ export function Form({ id }) {
   const [hasLink, setHasLink] = useState(false);
   const [link, setLink] = useState(defaultLink);
   const [status, setStatus] = useState(STATUS.IDLE);
-  const { deleteLink, getKeywords, getLink, getRandomLink, sendUpdate } = apiCalls(setStatus);
+  const { deleteLink, getKeywords, getLink, getRandomLink, sendUpdate } = apiCalls(status, setStatus);
 
   /**
    * @param {Event (which is ignored) or an integer} id
