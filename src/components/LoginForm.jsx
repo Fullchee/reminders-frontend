@@ -1,51 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-class LoginForm extends React.Component {
-  state = {
-    username: '',
-    password: '',
-  };
+export function LoginForm({ handleLogin }) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  handleChange = (e) => {
+  const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    this.setState((prevstate) => {
-      const newState = { ...prevstate };
-      newState[name] = value;
-      return newState;
-    });
+    const setState = name === 'username' ? setUsername : setPassword;
+    setState(value);
   };
 
-  render() {
-    return (
-      <div className="app container">
-        <div className="form-container">
-          <form class="form" onSubmit={(e) => this.props.handleLogin(e, this.state)}>
-            <h4 style={{ textAlign: 'start'   }}>Log In</h4>
-            <label htmlFor="username">Email</label>
-            <input
-              className="input input--text"
-              type="text"
-              name="username"
-              value={this.state.username}
-              onChange={this.handleChange}
-            />
-            <label htmlFor="password">Password</label>
-            <input
-              className="input input--text"
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={this.handleChange}
-            />
-            <button className="submit-button" type="submit">
-              Login
-            </button>
-          </form>
-        </div>
+  return (
+    <div className="app container">
+      <div className="form-container">
+        <form class="form" onSubmit={(e) => handleLogin(e, { username, password })}>
+          <h4 style={{ textAlign: 'start' }}>Log In</h4>
+          <label htmlFor="username">Email</label>
+          <input
+            className="input input--text"
+            type="text"
+            name="username"
+            value={username}
+            onChange={handleChange}
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            className="input input--text"
+            type="password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+          />
+          <button className="submit-button" type="submit">
+            Login
+          </button>
+        </form>
       </div>
-    );
-  }
+    </div>
+  );
 }
-
-export default LoginForm;
