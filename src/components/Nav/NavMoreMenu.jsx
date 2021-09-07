@@ -10,7 +10,7 @@ import refreshIcon from '../../images/renew.svg';
 import overflowIcon from '../../images/overflow-menu--vertical.svg';
 import trashIcon from '../../images/trash-can.svg';
 
-function NavMoreMenu({ onDelete, isFlagged, toggleFlag, hasLink }) {
+function NavMoreMenu({ onDelete, isFlagged, toggleFlag, hasLink, confirmLogout }) {
   const { buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(3);
   return (
     <div className="more-menu-container">
@@ -52,6 +52,16 @@ function NavMoreMenu({ onDelete, isFlagged, toggleFlag, hasLink }) {
           }}
         >
           <img src={trashIcon} alt="Delete"></img>Delete
+        </a>
+        <a
+          className={`more-menu-item delete ${hasLink ? '' : 'disable'}`}
+          {...itemProps[3]}
+          onClick={(e) => {
+            setIsOpen(false);
+            confirmLogout(e);
+          }}
+        >
+          <img src={trashIcon} alt="Delete"></img>Log out
         </a>
       </div>
     </div>

@@ -48,28 +48,45 @@ function App() {
           <Route
             exact
             path="/"
+            render={() =>
+              username ? (
+                <Form handleLogout={handleLogout} username={username} />
+              ) : (
+                <LoginForm handleLogin={handleLogin} />
+              )
+            }
+          />
+          <Route
+            exact
+            path="/login"
+            render={() =>
+              username ? (
+                <Form handleLogout={handleLogout} username={username} />
+              ) : (
+                <LoginForm handleLogin={handleLogin} />
+              )
+            }
+          />
+          <Route
+            path="/link/:id"
             render={({ match }) =>
               username ? (
                 <Form handleLogout={handleLogout} username={username} id={match.params.id} />
               ) : (
-                <Form handleLogout={handleLogout} username={username} id={match.params.id} />
-                // <LoginForm handleLogin={handleLogin} />
+                <LoginForm handleLogin={handleLogin} />
               )
             }
-          />
-          <Route exact path="/login" render={() => <LoginForm handleLogin={handleLogin} />} />
-          <Route
-            path="/link/:id"
-            render={({ match }) => (
-              <Form handleLogout={handleLogout} username={username} id={match.params.id} />
-            )}
           />
           <Route path="/search" component={SearchResults} />
           <Route
             path="/:id"
-            render={({ match }) => (
-              <Form handleLogout={handleLogout} username={username} id={match.params.id} />
-            )}
+            render={({ match }) =>
+              username ? (
+                <Form handleLogout={handleLogout} username={username} id={match.params.id} />
+              ) : (
+                <LoginForm handleLogin={handleLogin} />
+              )
+            }
           />
         </Switch>
       </Router>

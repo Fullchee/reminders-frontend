@@ -24,12 +24,15 @@ function connectionErrorToast() {
   toast.error("Oops! We couldn't connect to the backend!");
 }
 
-export function Form({ id }) {
+export function Form({ id, handleLogout }) {
   const [keywordOptions, setKeywordOptions] = useState([]);
   const [hasLink, setHasLink] = useState(false);
   const [link, setLink] = useState(defaultLink);
   const [status, setStatus] = useState(STATUS.IDLE);
-  const { deleteLink, getKeywords, getLink, getRandomLink, sendUpdate } = apiCalls(status, setStatus);
+  const { deleteLink, getKeywords, getLink, getRandomLink, sendUpdate } = apiCalls(
+    status,
+    setStatus,
+  );
 
   /**
    * @param {Event (which is ignored) or an integer} id
@@ -86,6 +89,26 @@ export function Form({ id }) {
           label: 'Yes',
           onClick: () => {
             deleteLink(link);
+          },
+        },
+        {
+          label: 'No',
+          onClick: () => {
+            return;
+          },
+        },
+      ],
+    });
+  };
+  const confirmLogout = () => {
+    confirmAlert({
+      title: `Logout?`,
+      message: '',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => {
+            handleLogout();
           },
         },
         {
@@ -175,6 +198,7 @@ export function Form({ id }) {
           clearForm={clearForm}
           toggleFlag={toggleFlag}
           isFlagged={link.flag}
+          confirmLogout={confirmLogout}
         />
         <MediaPlayer
           className="mediaPlayer"
