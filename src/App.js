@@ -20,7 +20,6 @@ function App() {
         },
         body: JSON.stringify(data),
       });
-      debugger;
       if (!res.ok) {
         // TODO: show an error message?
         toast.error('Incorrect username or password');
@@ -29,6 +28,7 @@ function App() {
       localStorage.setItem('token', json.token);
       localStorage.setItem('username', json.user.username);
       setUsername(json.user.username);
+      toast.success(`Welcome back ${json.user.username}!`);
     } catch (e) {
       debugger;
     }
