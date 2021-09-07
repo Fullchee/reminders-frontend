@@ -7,7 +7,7 @@ import history from './history';
 import { LoginForm } from './components/LoginForm';
 import SearchResults from './components/Search/SearchResults';
 
-function App(props) {
+function App() {
   const [username, setUsername] = useState(() => localStorage.getItem('username'));
 
   const handleLogin = async (e, data) => {
