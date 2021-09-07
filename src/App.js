@@ -30,6 +30,7 @@ function App() {
       setUsername(json.user.username);
       toast.success(`Welcome back ${json.user.username}!`);
     } catch (e) {
+      console.error(e);
       debugger;
     }
   };
