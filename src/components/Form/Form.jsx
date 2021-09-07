@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { confirmAlert } from 'react-confirm-alert';
 import { Editor } from '@tinymce/tinymce-react';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import Select from 'react-dropdown-select';
@@ -276,13 +276,6 @@ export function Form({ id }) {
             {hasLink ? 'Update' : 'Add'}
           </button>
         </form>
-        <ToastContainer
-          hideProgressBar={true}
-          pauseOnHover={false}
-          pauseOnFocusLoss={false}
-          draggable={false}
-          autoClose={2000}
-        />
       </div>
       {status === STATUS.PENDING && <LoadingIndicator />}
     </div>
