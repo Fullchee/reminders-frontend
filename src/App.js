@@ -13,7 +13,7 @@ function App() {
   const handleLogin = async (e, data) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:8000/token-auth/', {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}token-auth/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
