@@ -66,6 +66,12 @@ export function LoadingIndicator() {
     <div className="overlay">
       <div className="form-loading-container">
         <ThreeDotsWave />
+        <p className="loading-message">
+          Waiting for server to wake up{' '}
+          <span role="img" aria-label="sleep-emoji">
+            😴
+          </span>
+        </p>
       </div>
     </div>
   );

@@ -37,3 +37,13 @@
     position: absolute;
 }
 
+
+.loading-message {
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  transform: translateX(-40%);
+  span {
+    font-size: 36px;
+  }
+}
