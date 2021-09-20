@@ -41,52 +41,27 @@ function App() {
     setUsername('');
   };
 
+  const form = <Form handleLogout={handleLogout} username={username} />;
+  const getFormWithId = (id) => <Form handleLogout={handleLogout} username={username} id={id} />;
+  const loginForm = <LoginForm handleLogin={handleLogin} />;
+
   return (
     <>
       <Router history={history}>
         <Switch>
-          <Route
-            exact
-            path="/"
-            render={() =>
-              username ? (
-                <Form handleLogout={handleLogout} username={username} />
-              ) : (
-                <LoginForm handleLogin={handleLogin} />
-              )
-            }
-          />
-          <Route
-            exact
-            path="/login"
-            render={() =>
-              username ? (
-                <Form handleLogout={handleLogout} username={username} />
-              ) : (
-                <LoginForm handleLogin={handleLogin} />
-              )
-            }
-          />
+          {/* <Route exact path="/" render={() => (username ? form : loginForm)} /> */}
+          <Route exact path="/" render={() => form} />
+          <Route exact path="/login" render={() => (username ? form : loginForm)} />
           <Route
             path="/link/:id"
-            render={({ match }) =>
-              username ? (
-                <Form handleLogout={handleLogout} username={username} id={match.params.id} />
-              ) : (
-                <LoginForm handleLogin={handleLogin} />
-              )
-            }
+            // render={({ match }) => (username ? getFormWithId(match.params.id) : loginForm)}
+            render={({ match }) => getFormWithId(match.params.id)}
           />
           <Route path="/search" component={SearchResults} />
           <Route
             path="/:id"
-            render={({ match }) =>
-              username ? (
-                <Form handleLogout={handleLogout} username={username} id={match.params.id} />
-              ) : (
-                <LoginForm handleLogin={handleLogin} />
-              )
-            }
+            // render={({ match }) => (username ? getFormWithId(match.params.id) : loginForm)}
+            render={({ match }) => getFormWithId(match.params.id)}
           />
         </Switch>
       </Router>

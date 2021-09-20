@@ -117,18 +117,10 @@ const deleteLink = (setStatus) => async (link) => {
 };
 
 export const apiCalls = (status, setStatus) => {
-  function idleNoMore(fn) {
-    const wasIdle = status === STATUS.IDLE;
-    const result = fn(setStatus);
-    if (wasIdle) {
-      toast.success('Connected to the backend!');
-    }
-    return result;
-  }
   return {
     getRandomLink: getRandomLink(setStatus),
     getLink: getLink(setStatus),
-    getKeywords: idleNoMore(getKeywords),
+    getKeywords,
     sendUpdate: sendUpdate(setStatus),
     deleteLink: deleteLink(setStatus),
   };
