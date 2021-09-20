@@ -120,7 +120,7 @@ export const apiCalls = (status, setStatus) => {
   return {
     getRandomLink: getRandomLink(setStatus),
     getLink: getLink(setStatus),
-    getKeywords,
+    getKeywords: getKeywords(setStatus),
     sendUpdate: sendUpdate(setStatus),
     deleteLink: deleteLink(setStatus),
   };
