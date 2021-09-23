@@ -14,10 +14,7 @@ function MediaPlayer({ url }) {
       return <VideoPlayer url={url} />;
     } else if (url.includes('.mp3')) {
       return <AudioPlayer url={url} />;
-    } else if (url.includes('.jpg') || url.includes('.png') || url.includes('imgur.com')) {
-      if (!url.endsWith('.jpg')) {
-        url += '.jpg';
-      }
+    } else if (url.endsWith('.jpg') || url.endsWith('.png') || url.includes('imgur.com')) {
       return <img className="media-image" src={url} alt=""></img>;
     } else {
       return <h3>No media</h3>;
