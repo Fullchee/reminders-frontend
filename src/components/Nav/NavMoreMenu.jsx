@@ -9,6 +9,7 @@ import flagIcon from '../../images/flag.svg';
 import refreshIcon from '../../images/renew.svg';
 import overflowIcon from '../../images/overflow-menu--vertical.svg';
 import trashIcon from '../../images/trash-can.svg';
+import logoutIcon from '../../images/logout.svg';
 
 function NavMoreMenu({ onDelete, isFlagged, toggleFlag, hasLink, confirmLogout }) {
   const { buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(3);
@@ -30,7 +31,7 @@ function NavMoreMenu({ onDelete, isFlagged, toggleFlag, hasLink, confirmLogout }
             toggleFlag(e);
           }}
         >
-          <img src={flagIcon} alt="Flag"></img>
+          <img src={flagIcon} alt=""></img>
           {isFlagged ? 'Unflag' : 'Flag'}
         </a>
         <a
@@ -40,7 +41,7 @@ function NavMoreMenu({ onDelete, isFlagged, toggleFlag, hasLink, confirmLogout }
             window.location.reload();
           }}
         >
-          <img src={refreshIcon} alt="Refresh"></img>
+          <img src={refreshIcon} alt=""></img>
           Refresh
         </a>
         <a
@@ -51,7 +52,7 @@ function NavMoreMenu({ onDelete, isFlagged, toggleFlag, hasLink, confirmLogout }
             onDelete(e);
           }}
         >
-          <img src={trashIcon} alt="Delete"></img>Delete
+          <img src={trashIcon} alt=""></img>Delete
         </a>
         <a
           className={`more-menu-item delete ${hasLink ? '' : 'disable'}`}
@@ -61,7 +62,7 @@ function NavMoreMenu({ onDelete, isFlagged, toggleFlag, hasLink, confirmLogout }
             confirmLogout(e);
           }}
         >
-          <img src={trashIcon} alt="Delete"></img>Log out
+          <img src={logoutIcon} alt=""></img>Log out
         </a>
       </div>
     </div>
