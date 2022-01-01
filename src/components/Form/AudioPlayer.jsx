@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { useRef, useState } from "react";
 import ReactAudioPlayer from "react-h5-audio-player";
-import { PlayerManager } from "./PlayerManager";
+import { PlayerManager } from "./PlayerManager/PlayerManager";
 
 function AudioPlayer({ url }) {
   const [speed, setSpeed] = useState(1);

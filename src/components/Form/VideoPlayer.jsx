@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import ReactPlayer from "react-player";
-import { PlayerManager } from "./PlayerManager";
+import { PlayerManager } from "./PlayerManager/PlayerManager";
 
 function VideoPlayer({ url }) {
   const [speed, setSpeed] = useState(1);
