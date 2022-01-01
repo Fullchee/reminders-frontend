@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
-function SpeedController(props) {
+import "./SpeedController.scss";
+export function SpeedController(props) {
   return (
     <select
       className="speed-controller"
@@ -27,5 +28,3 @@ SpeedController.propTypes = {
   onChange: PropTypes.func,
   speed: PropTypes.number,
 };
-
-export default SpeedController;
