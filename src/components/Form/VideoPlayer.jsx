@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import ReactPlayer from "react-player";
-import { SpeedController } from "./SpeedController";
+import { PlayerManager } from "./PlayerManager";
 
 function VideoPlayer({ url }) {
   const [speed, setSpeed] = useState(1);
@@ -9,7 +9,7 @@ function VideoPlayer({ url }) {
   return (
     <>
       <ReactPlayer playbackRate={speed} url={url} controls={true} />
-      <SpeedController onChange={setSpeed} speed={speed} />
+      <PlayerManager onChange={setSpeed} speed={speed} />
     </>
   );
 }
