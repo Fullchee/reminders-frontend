@@ -281,9 +281,9 @@ export function Form({ id, handleLogout }) {
                   'insertdatetime media table paste code help wordcount',
                 ],
                 toolbar:
-                  `undo redo | formatselect | bold italic strikethrough |` +
-                  `alignleft aligncenter alignright |` +
-                  `bullist numlist outdent indent | removeformat | help | image`,
+                  `undo redo | formatselect | bold italic |` +
+                  `bullist numlist outdent indent | removeformat | help | image` +
+                  `alignleft aligncenter alignright |`,
               }}
               textAreaName="notes"
               value={link.notes || ''}
