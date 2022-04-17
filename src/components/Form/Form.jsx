@@ -271,7 +271,7 @@ export function Form({ id, handleLogout }) {
           <div className="text-editor">
             <Editor
               id="tiny-mce-editor"
-              apiKey="mhoop81tplrihnhuphy89bsw7qjq01dhzkjdzgb61ruf4itq"
+              apiKey={process.env.REACT_APP_TINY_MCE_API_KEY}
               init={{
                 height: 400,
                 menubar: false,
