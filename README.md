@@ -1,5 +1,7 @@
 # [Reminders](https://fullchee-reminders.netlify.app/)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/491f41eb-4181-4989-a6ed-71582e307840/deploy-status)](https://app.netlify.com/sites/fullchee-reminders/deploys)
+
 Shows a random piece of media that reminded me of who I want to be.
 
 In the day-to-day grind, it's easy to forget what's important.
