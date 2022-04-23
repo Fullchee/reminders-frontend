@@ -1,0 +1,13 @@
+.seek-buttons {
+  position: absolute;
+  bottom: -2rem;
+  height: 2rem;
+}
+
+.seek-buttons > button {
+  height: 2rem;
+  width: 50%;
+  border: none;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+  background: white;
+}
