@@ -2,7 +2,6 @@
 .env
 .idea/
 .npm/
-.vscode/
 *.tgz
 .changelog
 
