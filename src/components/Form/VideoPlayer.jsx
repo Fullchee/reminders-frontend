@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 import ReactPlayer from "react-player/youtube";
-import { PlayerManager } from "./PlayerManager/PlayerManager";
+import { SpeedController } from "./SpeedController/SpeedController";
 
 function VideoPlayer({ url }) {
   const [speed, setSpeed] = useState(1);
+  const playerRef = useRef(null);
 
   return (
     <>
-      <ReactPlayer playbackRate={speed} url={url} controls={true} />
-      <PlayerManager onChange={setSpeed} speed={speed} />
+      <ReactPlayer
+        ref={playerRef}
+        playbackRate={speed}
+        url={url}
+        controls={true}
+      />
+      <SpeedController onChange={setSpeed} speed={speed} />
     </>
   );
 }

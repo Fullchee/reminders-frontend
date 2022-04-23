@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { useRef, useState } from "react";
 import ReactAudioPlayer from "react-h5-audio-player";
-import { PlayerManager } from "./PlayerManager/PlayerManager";
+import { SpeedController } from "./SpeedController/SpeedController";
 
 function AudioPlayer({ url }) {
   const [speed, setSpeed] = useState(1);
@@ -17,7 +17,7 @@ function AudioPlayer({ url }) {
         src={url}
         progressJumpSteps={{ backward: 15000, forward: 30000 }}
       />
-      <PlayerManager onChange={updateSpeed} speed={speed} />
+      <SpeedController onChange={updateSpeed} speed={speed} />
     </>
   );
 }
