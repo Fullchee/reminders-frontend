@@ -1,7 +1,7 @@
-import history from '../../history';
-import { toast } from 'react-toastify';
-import { getTimeDiff } from '../../helper/utilities';
-import { STATUS } from './statuses';
+import history from "../../history";
+import { toast } from "react-toastify";
+import { getTimeDiff } from "../../helper/utilities";
+import { STATUS } from "./statuses";
 
 const formatLink = (link) => {
   if (!link?.keywords?.length) {
@@ -29,14 +29,17 @@ const get = async (setStatus, link) => {
     debugger;
     console.error(error);
     setStatus(STATUS.REJECTED);
-    if (error.name === 'AbortError') {
+    if (error.name === "AbortError") {
       debugger;
     }
   }
 };
 
 const getRandomLink = (setStatus) => async () => {
-  const link = await get(setStatus, process.env.REACT_APP_BACKEND_URL + 'random-link');
+  const link = await get(
+    setStatus,
+    process.env.REACT_APP_BACKEND_URL + "random-link"
+  );
   if (!link) {
     debugger;
     return;
@@ -54,14 +57,17 @@ const getLink = (setStatus) => async (id) => {
     setStatus(STATUS.RESOLVED);
     return formatLink(link);
   } else {
-    console.log('🚀 ~ file: fetchFormData.js ~ line 48 ~ getLink ~ res', res);
+    console.log("🚀 ~ file: fetchFormData.js ~ line 48 ~ getLink ~ res", res);
     debugger;
     setStatus(STATUS.REJECTED);
   }
 };
 
 const getKeywords = (setStatus) => async () => {
-  const json = await get(setStatus, process.env.REACT_APP_BACKEND_URL + 'keywords');
+  const json = await get(
+    setStatus,
+    process.env.REACT_APP_BACKEND_URL + "keywords"
+  );
   if (!json) {
     debugger;
     return;
@@ -75,15 +81,18 @@ const getKeywords = (setStatus) => async () => {
 
 const sendUpdate = (setStatus) => async (link, hasLink) => {
   const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(minifyLink({ ...link })),
   };
 
-  const api = hasLink ? 'update-link' : 'add-link';
+  const api = hasLink ? "update-link" : "add-link";
   try {
     setStatus(STATUS.PENDING);
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}${api}`, requestOptions);
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}${api}`,
+      requestOptions
+    );
     setStatus(STATUS.RESOLVED);
     const json = await response.json();
     return formatLink(json);
@@ -96,8 +105,8 @@ const sendUpdate = (setStatus) => async (link, hasLink) => {
 
 const deleteLink = (setStatus) => async (link) => {
   const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       id: link.id,
     }),
@@ -105,7 +114,10 @@ const deleteLink = (setStatus) => async (link) => {
 
   try {
     setStatus(STATUS.PENDING);
-    const res = await fetch(process.env.REACT_APP_BACKEND_URL + 'delete-link', requestOptions);
+    const res = await fetch(
+      process.env.REACT_APP_BACKEND_URL + "delete-link",
+      requestOptions
+    );
     await res.json();
     setStatus(STATUS.RESOLVED);
     toast.success(`Deleted link: ${link.title}`);
@@ -127,13 +139,14 @@ export const apiCalls = (status, setStatus) => {
 };
 
 export const defaultLink = {
-  keywords: [{ id: 12, label: 'Perspective', value: 'Perspective' }],
-  title: 'Carl Sagan - Pale Blue Dot',
-  url: 'https://www.youtube.com/watch?v=wupToqz1e2g',
+  keywords: [{ id: 12, label: "Perspective", value: "Perspective" }],
+  title: "Carl Sagan - Pale Blue Dot",
+  url: "https://www.youtube.com/watch?v=wupToqz1e2g?t=10",
   notes:
     "Look again at that dot. That's here. That's home. That's us. <div>On it everyone you love, <br>everyone you know, <br>everyone you ever heard of, <br>every human being who ever was, lived out their lives.</div>",
-  lastAccessed: '3 months ago',
+  lastAccessed: "3 months ago",
   id: 0,
   flag: false,
   views: 3,
+  startTime: 10,
 };

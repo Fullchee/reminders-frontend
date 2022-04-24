@@ -264,6 +264,18 @@ export function Form({ id, handleLogout }) {
             value={link.url || ""}
             onChange={handleUrlChange}
           />
+          <label htmlFor="startTime">Start time</label>
+          <input
+            id="startTime"
+            name="startTime"
+            type="number"
+            min="0"
+            value={link.startTime || 0}
+            className="input input--text"
+            onChange={(event) => {
+              setLink({ ...link, startTime: event.target.value });
+            }}
+          />
           <label htmlFor="keywords">Keywords</label>
           <div id="keywords" className="keywords">
             <Select
