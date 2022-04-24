@@ -6,7 +6,7 @@ import "./VideoPlayer.scss";
 
 function VideoPlayer({ url }) {
   const [speed, setSpeed] = useState(1);
-  const [playing, setPlaying] = useState(false);
+  const [playing, setPlaying] = useState(true);
   const playerRef = useRef(null);
 
   function moveForward({ seconds } = { seconds: 10 }) {
