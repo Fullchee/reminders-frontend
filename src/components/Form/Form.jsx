@@ -1,24 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { confirmAlert } from 'react-confirm-alert';
-import { Editor } from '@tinymce/tinymce-react';
-import { toast } from 'react-toastify';
-import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
-import Select from 'react-dropdown-select';
+import { confirmAlert } from "react-confirm-alert";
+import { Editor } from "@tinymce/tinymce-react";
+import { toast } from "react-toastify";
+import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
+import Select from "react-dropdown-select";
 
-import 'react-confirm-alert/src/react-confirm-alert.css';
-import 'react-toastify/dist/ReactToastify.css';
+import "react-confirm-alert/src/react-confirm-alert.css";
+import "react-toastify/dist/ReactToastify.css";
 
-import history from '../../history';
-import MediaPlayer from './MediaPlayer';
-import { LoadingIndicator } from './LoadingIndicator';
-import Nav from '../Nav/Nav';
-import { getTimeDiff, capitalizeFirstLetter } from '../../helper/utilities';
-import { defaultLink, apiCalls } from './fetchFormData';
-import { STATUS } from './statuses';
-import { setupBackgroundYouTube } from './videoBgPlayContent';
-import { setupKeyboardShortcuts } from './setupKeyboardShortcuts';
-import './Form.scss';
+import history from "../../history";
+import MediaPlayer from "./MediaPlayer";
+import { LoadingIndicator } from "./LoadingIndicator";
+import Nav from "../Nav/Nav";
+import { getTimeDiff, capitalizeFirstLetter } from "../../helper/utilities";
+import { defaultLink, apiCalls } from "./fetchFormData";
+import { STATUS } from "./statuses";
+import { setupBackgroundYouTube } from "./videoBgPlayContent";
+import { setupKeyboardShortcuts } from "./setupKeyboardShortcuts";
+import "./Form.scss";
 
 function connectionErrorToast() {
   toast.error("Oops! We couldn't connect to the backend!");
@@ -29,10 +29,13 @@ export function Form({ id, handleLogout }) {
   const [hasLink, setHasLink] = useState(false);
   const [link, setLink] = useState(defaultLink);
   const [status, setStatus] = useState(STATUS.IDLE);
-  const { deleteLink, getKeywords, getLink, getRandomLink, sendUpdate } = apiCalls(
-    status,
-    setStatus,
-  );
+  const {
+    deleteLink,
+    getKeywords,
+    getLink,
+    getRandomLink,
+    sendUpdate,
+  } = apiCalls(status, setStatus);
 
   /**
    * @param {Event (which is ignored) or an integer} id
@@ -83,16 +86,16 @@ export function Form({ id, handleLogout }) {
   const confirmDelete = () => {
     confirmAlert({
       title: `Delete "${link.title}"?`,
-      message: '',
+      message: "",
       buttons: [
         {
-          label: 'Yes',
+          label: "Yes",
           onClick: () => {
             deleteLink(link);
           },
         },
         {
-          label: 'No',
+          label: "No",
           onClick: () => {
             return;
           },
@@ -103,16 +106,16 @@ export function Form({ id, handleLogout }) {
   const confirmLogout = () => {
     confirmAlert({
       title: `Logout?`,
-      message: '',
+      message: "",
       buttons: [
         {
-          label: 'Yes',
+          label: "Yes",
           onClick: () => {
             handleLogout();
           },
         },
         {
-          label: 'No',
+          label: "No",
           onClick: () => {
             return;
           },
@@ -123,7 +126,7 @@ export function Form({ id, handleLogout }) {
 
   const toggleFlag = async () => {
     setLink((prevState) => {
-      toast.info(prevState.flag ? 'Unflagged!' : 'Flagged!');
+      toast.info(prevState.flag ? "Unflagged!" : "Flagged!");
       return { ...prevState, flag: !prevState.flag };
     });
   };
@@ -133,11 +136,11 @@ export function Form({ id, handleLogout }) {
 
     const keywords = hasLink ? link.keywords : [];
     setLink({
-      notes: '',
-      title: '',
-      url: '',
+      notes: "",
+      title: "",
+      url: "",
       keywords,
-      lastAccessed: '',
+      lastAccessed: "",
     });
     setHasLink(false);
   };
@@ -150,7 +153,7 @@ export function Form({ id, handleLogout }) {
       return a.label > b.label ? -1 : 1;
     });
     link.keywords = selected.map((keyword) => {
-      if (keyword && typeof keyword === 'object') {
+      if (keyword && typeof keyword === "object") {
         return {
           ...keyword,
           label: capitalizeFirstLetter(keyword.label),
@@ -176,7 +179,13 @@ export function Form({ id, handleLogout }) {
       }
     });
     setupBackgroundYouTube();
-    setupKeyboardShortcuts({ updateLink, clearForm, refresh, confirmDelete, toggleFlag });
+    setupKeyboardShortcuts({
+      updateLink,
+      clearForm,
+      refresh,
+      confirmDelete,
+      toggleFlag,
+    });
     // TODO: remove event listeners on unmount
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -202,19 +211,23 @@ export function Form({ id, handleLogout }) {
         />
         <MediaPlayer
           className="mediaPlayer"
-          url={link.url || ''}
+          url={link.url || ""}
           onEnded={updateLink}
         ></MediaPlayer>
         <form className="form">
-          <label htmlFor="id">ID</label>
-          <p id="id">{link.id}</p>
+          {hasLink && (
+            <>
+              <label htmlFor="id">ID</label>
+              <p id="id">{link.id}</p>
+            </>
+          )}
           <label htmlFor="title">Title</label>
           <input
             id="title"
             type="text"
             name="title"
             className="input input--text"
-            value={link.title || ''}
+            value={link.title || ""}
             onChange={handleUrlChange}
           />
           <label htmlFor="url">
@@ -222,11 +235,11 @@ export function Form({ id, handleLogout }) {
               onClick={(e) => {
                 e.preventDefault();
                 navigator.clipboard.writeText(link.url);
-                toast.info('Copied url to clipboard');
+                toast.info("Copied url to clipboard");
               }}
               className="button-link url-label"
             >
-              <p style={{ paddingRight: '4px' }}>URL </p>
+              <p style={{ paddingRight: "4px" }}>URL </p>
               <svg
                 className="clipboard"
                 viewBox="0 0 16 16"
@@ -248,7 +261,7 @@ export function Form({ id, handleLogout }) {
             type="url"
             name="url"
             className="input input--text"
-            value={link.url || ''}
+            value={link.url || ""}
             onChange={handleUrlChange}
           />
           <label htmlFor="keywords">Keywords</label>
@@ -265,7 +278,7 @@ export function Form({ id, handleLogout }) {
           <p id="lastAccessed">{link.lastAccessed}</p>
           <label htmlFor="views">Views</label>
           <p id="views">{link.views}</p>
-          <label htmlFor="notes" style={{ color: 'white' }}>
+          <label htmlFor="notes" style={{ color: "white" }}>
             Notes
           </label>
           <div className="text-editor">
@@ -276,9 +289,9 @@ export function Form({ id, handleLogout }) {
                 height: 400,
                 menubar: false,
                 plugins: [
-                  'advlist autolink lists link image charmap print preview anchor',
-                  'searchreplace visualblocks code fullscreen',
-                  'insertdatetime media table paste code help wordcount',
+                  "advlist autolink lists link image charmap print preview anchor",
+                  "searchreplace visualblocks code fullscreen",
+                  "insertdatetime media table paste code help wordcount",
                 ],
                 toolbar:
                   `undo redo | formatselect | bold italic ` +
@@ -286,7 +299,7 @@ export function Form({ id, handleLogout }) {
                   `| alignleft aligncenter alignright | help |`,
               }}
               textAreaName="notes"
-              value={link.notes || ''}
+              value={link.notes || ""}
               onEditorChange={handleEditorChange}
             />
           </div>
@@ -297,7 +310,7 @@ export function Form({ id, handleLogout }) {
             className="submit-button"
             onClick={updateLink}
           >
-            {hasLink ? 'Update' : 'Add'}
+            {hasLink ? "Update" : "Add"}
           </button>
         </form>
       </div>
