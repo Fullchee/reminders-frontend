@@ -27,7 +27,7 @@ I also use this as an alternative to getting sucked into YouTube or another soci
 
 1. Install node version 14+
 2. Install `yarn v1`
-3. Install deps
+3. Install npm dependencies
    1. `yarn`
 4. Setup local env variables
    1. `cp sample.env .env`
@@ -38,6 +38,21 @@ yarn
 yarn start
 ```
 
-## TODOs
+## Deploy
+
+- Netlify is linked with the GitHub repo
+
+## Building the Android APK
+
+1. Ensure that Android Studio is installed
+   1. `brew install --cask android-studio`
+2. Ensure that ionic is installed
+   1. `npm i -g @ionic/cli`
+3. `yarn android`
+4. In the menu bar, click `Build > Build Bundle(s) / APK
+5. ![3fa4503f917425bbee7c01d5ff2aa45a.png](3fa4503f917425bbee7c01d5ff2aa45a.png)
+6. Save the `app-debug.apk`
+
+## TODOs (Kanban Board)
 
 - on Todoist
