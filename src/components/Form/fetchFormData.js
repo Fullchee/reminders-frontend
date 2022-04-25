@@ -12,6 +12,7 @@ const formatLink = (link) => {
     return { id: i++, label: word, value: word };
   });
   link.lastAccessed = getTimeDiff(link.last_accessed);
+  link.startTime = link.start_time;
   return link;
 };
 
@@ -50,15 +51,13 @@ const getRandomLink = (setStatus) => async () => {
 
 const getLink = (setStatus) => async (id) => {
   setStatus(STATUS.PENDING);
-  debugger;
   const res = await fetch(process.env.REACT_APP_BACKEND_URL + `link/${id}`);
   if (res.status !== 404) {
     const link = await res.json();
     setStatus(STATUS.RESOLVED);
     return formatLink(link);
   } else {
-    console.log("🚀 ~ file: fetchFormData.js ~ line 48 ~ getLink ~ res", res);
-    debugger;
+    console.error("🚀 ~ file: fetchFormData.js ~ line 48 ~ getLink ~ res", res);
     setStatus(STATUS.REJECTED);
   }
 };
