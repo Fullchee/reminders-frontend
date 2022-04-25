@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 import ReactAudioPlayer from "react-h5-audio-player";
 import { SpeedController } from "./SpeedController/SpeedController";
 
-function AudioPlayer({ url }) {
+function AudioPlayer({ url, startTime }) {
   const [speed, setSpeed] = useState(1);
   let playerRef = useRef(null);
   const updateSpeed = (newSpeed) => {
@@ -16,6 +16,9 @@ function AudioPlayer({ url }) {
         ref={(c) => (playerRef = c)}
         src={url}
         progressJumpSteps={{ backward: 15000, forward: 30000 }}
+        onLoadedData={({ target }) => {
+          target.currentTime = startTime || 0;
+        }}
       />
       <SpeedController onChange={updateSpeed} speed={speed} />
     </>

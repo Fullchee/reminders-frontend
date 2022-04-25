@@ -200,7 +200,6 @@ export function Form({ id, handleLogout }) {
 
   useEffect(() => {
     if (id && id !== link.id) {
-      debugger;
       refresh(id);
       setHasLink(true);
     }
@@ -218,6 +217,7 @@ export function Form({ id, handleLogout }) {
           confirmLogout={confirmLogout}
         />
         <MediaPlayer
+          startTime={link.startTime}
           className="mediaPlayer"
           url={link.url || ""}
           onEnded={updateLink}

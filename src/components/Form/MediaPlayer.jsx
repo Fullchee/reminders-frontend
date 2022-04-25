@@ -1,22 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import 'react-h5-audio-player/lib/styles.css';
-import VideoPlayer from './VideoPlayer';
-import AudioPlayer from './AudioPlayer';
-function MediaPlayer({ url }) {
+import React from "react";
+import PropTypes from "prop-types";
+import "react-h5-audio-player/lib/styles.css";
+import VideoPlayer from "./VideoPlayer";
+import AudioPlayer from "./AudioPlayer";
+function MediaPlayer({ url, startTime }) {
   const getMediaContainer = () => {
     // initial load: it doesn't do a/th
     if (!url) {
       return <h3>No media</h3>;
     }
 
-    if (url.includes('youtu')) {
+    if (url.includes("youtu")) {
       return <VideoPlayer url={url} />;
-    } else if (url.includes('.mp3')) {
-      return <AudioPlayer url={url} />;
-    } else if (url.endsWith('.jpg') || url.endsWith('.png') || url.includes('imgur.com')) {
-      if (url.includes('imgur.com') && !url.endsWith('.jpg')) {
-        url += '.jpg'
+    } else if (url.includes(".mp3")) {
+      return <AudioPlayer url={url} startTime={startTime} />;
+    } else if (
+      url.endsWith(".jpg") ||
+      url.endsWith(".png") ||
+      url.includes("imgur.com")
+    ) {
+      if (url.includes("imgur.com") && !url.endsWith(".jpg")) {
+        url += ".jpg";
       }
       return <img className="media-image" src={url} alt=""></img>;
     } else {

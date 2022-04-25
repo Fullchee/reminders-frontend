@@ -31,7 +31,6 @@ function App() {
       toast.success(`Welcome back ${json.user.username}!`);
     } catch (e) {
       console.error(e);
-      debugger;
     }
   };
 

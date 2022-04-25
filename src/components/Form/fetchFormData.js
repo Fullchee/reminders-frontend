@@ -21,17 +21,15 @@ const minifyLink = (link) => link;
 const get = async (setStatus, link) => {
   setStatus(STATUS.PENDING);
   try {
-    debugger;
     const res = await fetch(link);
     const json = await res.json();
     setStatus(STATUS.RESOLVED);
     return json;
   } catch (error) {
-    debugger;
     console.error(error);
     setStatus(STATUS.REJECTED);
     if (error.name === "AbortError") {
-      debugger;
+      console.error("AbortError");
     }
   }
 };
@@ -42,7 +40,7 @@ const getRandomLink = (setStatus) => async () => {
     process.env.REACT_APP_BACKEND_URL + "random-link"
   );
   if (!link) {
-    debugger;
+    console.error("Couldn't find a link");
     return;
   }
   history.push(`/link/${link.id}`);
@@ -68,7 +66,7 @@ const getKeywords = (setStatus) => async () => {
     process.env.REACT_APP_BACKEND_URL + "keywords"
   );
   if (!json) {
-    debugger;
+    console.error("Couldn't find keywords");
     return;
   }
   let i = 0;
@@ -97,7 +95,6 @@ const sendUpdate = (setStatus) => async (link, hasLink) => {
     return formatLink(json);
   } catch (error) {
     console.error(error);
-    debugger;
     setStatus(STATUS.REJECTED);
   }
 };
