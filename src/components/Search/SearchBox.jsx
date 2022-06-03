@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
-const wasEnterClicked = (event) => event.key === 'Enter';
+const wasEnterClicked = (event) => event.key === "Enter";
 
 function SearchBox() {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   let history = useHistory();
 
   const search = (query) => {
-    history.push('/search?q=' + query);
+    history.push("/search?q=" + query);
   };
 
   return (
@@ -25,6 +25,11 @@ function SearchBox() {
           wasEnterClicked(event) && search(event.target.value);
         }}
       />
+      <button onClick={() => search(query)} className="search-button">
+        <span role="img" aria-label="Search">
+          🔍
+        </span>
+      </button>
     </div>
   );
 }
