@@ -1,8 +1,8 @@
-div[role='menu'] {
+div[role="menu"] {
   visibility: hidden;
 }
 
-div[role='menu'].visible {
+div[role="menu"].visible {
   visibility: visible;
 }
 
@@ -65,25 +65,24 @@ div[role='menu'].visible {
   .buttons.home-nav {
     flex-direction: column;
   }
-
-  .search-box {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .search-box .input--text {
-    top: -7px;
-    width: 90%;
-  }
 }
 
 .search-box {
   display: flex;
 
+  @media only screen and (max-width: 850px) {
+    display: flex;
+    flex-direction: row;
+  }
+
   .input--text {
     position: relative;
     top: -3px;
-    width: 500px;
+    margin-right: auto;
+    @media only screen and (max-width: 850px) {
+      top: -7px;
+      padding: 0 10px;
+    }
   }
 
   @media only screen and (max-width: 850px) {
@@ -92,7 +91,7 @@ div[role='menu'].visible {
 
   .search-button {
     display: flex;
-    justify-content: center;;
+    justify-content: center;
   }
 }
 
