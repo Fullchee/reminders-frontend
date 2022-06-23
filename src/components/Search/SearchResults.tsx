@@ -10,10 +10,7 @@ import previousIcon from "../../images/previous.svg";
 import "./Search.scss";
 
 const initialSearchResult: any = [];
-
 const SearchResults = () => {
-  // TODO: get the query from React Router ideally?
-  // const query = match.params.q;
   const query = window.location.search.slice(3);
   const [results, setResults] = useState(initialSearchResult);
 
