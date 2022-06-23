@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { confirmAlert } from "react-confirm-alert";
 import { Editor } from "@tinymce/tinymce-react";
 import { toast } from "react-toastify";
@@ -203,6 +202,7 @@ export function Form({ id, handleLogout }) {
       refresh(id);
       setHasLink(true);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (
@@ -341,5 +341,6 @@ export function Form({ id, handleLogout }) {
 }
 
 Form.propTypes = {
-  client: PropTypes.object,
-};
+  handleLogout: PropTypes.func,
+  id: PropTypes.any
+}
