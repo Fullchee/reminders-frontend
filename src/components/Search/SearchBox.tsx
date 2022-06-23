@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-const wasEnterClicked = (event) => event.key === "Enter";
+const wasEnterClicked = (event: React.KeyboardEvent<HTMLInputElement>) =>
+  event.key === "Enter";
 
 function SearchBox() {
   const [query, setQuery] = useState("");
   let history = useHistory();
 
-  const search = (query) => {
+  const search = (query: string) => {
     history.push("/search?q=" + query);
   };
 
@@ -22,7 +23,8 @@ function SearchBox() {
         placeholder="🔍  Search"
         onChange={(event) => setQuery(event.target.value)}
         onKeyUp={(event) => {
-          wasEnterClicked(event) && search(event.target.value);
+          wasEnterClicked(event) &&
+            search((event.target as HTMLInputElement).value);
         }}
       />
       <button onClick={() => search(query)} className="search-button">

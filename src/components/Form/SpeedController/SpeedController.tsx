@@ -2,14 +2,19 @@ import PropTypes from "prop-types";
 import React from "react";
 import "./SpeedController.scss";
 
-export function SpeedController(props) {
+interface SpeedControllerProps {
+  speed: number;
+  onChange: (speed: number) => void;
+}
+
+export function SpeedController({ speed, onChange }: SpeedControllerProps) {
   return (
     <select
       className="speed-controller"
       onChange={(e) => {
-        props.onChange(parseFloat(e.target.value));
+        onChange(parseFloat(e.target.value));
       }}
-      value={props.speed}
+      value={speed}
     >
       <option value="0.5">0.5x</option>
       <option value="0.9">0.9x</option>

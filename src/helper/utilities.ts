@@ -1,7 +1,7 @@
 /**
  * @param interval time interval in ms
  */
-const formatTimeInterval = (interval) => {
+const formatTimeInterval = (interval: number) => {
   const days = Math.floor(interval / (1000 * 60 * 60 * 24));
   if (days > 365) {
     return `${Math.floor(days / 365)} year(s) ago`;
@@ -15,26 +15,26 @@ const formatTimeInterval = (interval) => {
   return `${days} days ago`;
 };
 
-export const getTimeDiff = (lastAccessed) => {
+export const getTimeDiff = (lastAccessed: string) => {
   const now = new Date().getTime();
   const before = new Date(lastAccessed).getTime();
   if (Number.isNaN(before) || before === 0) {
-    return 'Never accessed before';
+    return "Never accessed before";
   }
   return formatTimeInterval(now - before);
 };
 
-export const formatViews = (views) => {
+export const formatViews = (views: number) => {
   switch (views) {
     case 0:
-      return 'No views';
+      return "No views";
     case 1:
-      return '1 view';
+      return "1 view";
     default:
       return `${views} views`;
   }
 };
 
-export const capitalizeFirstLetter = (str) => {
+export const capitalizeFirstLetter = (str: string) => {
   return str[0].toUpperCase() + str.slice(1);
 };

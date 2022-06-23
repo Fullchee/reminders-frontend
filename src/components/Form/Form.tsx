@@ -14,7 +14,7 @@ import { LoadingIndicator } from "./LoadingIndicator";
 import Nav from "../Nav/Nav";
 import { getTimeDiff, capitalizeFirstLetter } from "../../helper/utilities";
 import { defaultLink, apiCalls } from "./fetchFormData";
-import { STATUS } from "./statuses";
+import { Status } from "./statuses";
 import { setupBackgroundYouTube } from "./videoBgPlayContent";
 import { setupKeyboardShortcuts } from "./setupKeyboardShortcuts";
 import "./Form.scss";
@@ -23,11 +23,16 @@ function connectionErrorToast() {
   toast.error("Oops! We couldn't connect to the backend!");
 }
 
-export function Form({ id, handleLogout }) {
+interface FormProps {
+  id: number;
+  handleLogout: () => void;
+}
+
+export function Form({ id, handleLogout }: FormProps) {
   const [keywordOptions, setKeywordOptions] = useState([]);
   const [hasLink, setHasLink] = useState(false);
   const [link, setLink] = useState(defaultLink);
-  const [status, setStatus] = useState(STATUS.IDLE);
+  const [status, setStatus] = useState(Status.IDLE);
   const {
     deleteLink,
     getKeywords,
@@ -39,10 +44,11 @@ export function Form({ id, handleLogout }) {
   /**
    * @param {Event (which is ignored) or an integer} id
    */
-  const refresh = async (id) => {
+  const refresh = async (id: number) => {
     let link;
-    if (!Number.isNaN(parseInt(id))) {
-      link = await getLink(parseInt(id));
+    setStatus(Status.PENDING);
+    if (!Number.isNaN(parseInt(`${id}`))) {
+      link = await getLink(parseInt(`${id}`));
     }
     if (!link) {
       link = await getRandomLink();
@@ -53,20 +59,20 @@ export function Form({ id, handleLogout }) {
     }
     setLink(link);
     setHasLink(true);
-    setStatus(false);
+    setStatus(Status.RESOLVED);
   };
 
-  const handleUrlChange = (event) => {
+  const handleUrlChange = (event: any) => {
     const name = event.target.name;
     const value = event.target.value;
     setLink({ ...link, [name]: value });
   };
 
-  const handleEditorChange = (content, editor) => {
+  const handleEditorChange = (content: string, _editor: any) => {
     setLink({ ...link, notes: content });
   };
 
-  const handleStartTimeChange = (event) => {
+  const handleStartTimeChange = (event: any) => {
     setLink({
       ...link,
       startTime: event.target.value,
@@ -74,19 +80,22 @@ export function Form({ id, handleLogout }) {
     });
   };
 
-  const updateLink = async (event) => {
+  const updateLink = async (event: any) => {
     if (event) {
       event.preventDefault();
     }
 
-    const data = await sendUpdate(link, hasLink);
-    let message = `Added/updated link: ${data.title}`;
+    const backendLink = (await sendUpdate(link, hasLink)) as Link;
+    let message = `Added/updated link: ${backendLink.title}`;
     if (!hasLink) {
-      message += ` with id: ${data.id}`;
+      message += ` with id: ${backendLink.id}`;
     }
     toast.success(message);
-    history.push(`/link/${data.id}`);
-    setLink({ ...data, lastAccessed: getTimeDiff(data.last_accessed) });
+    history.push(`/link/${backendLink.id}`);
+    setLink({
+      ...backendLink,
+      lastAccessed: getTimeDiff((backendLink.last_accessed as string)),
+    });
     setHasLink(true);
   };
 
@@ -148,6 +157,8 @@ export function Form({ id, handleLogout }) {
       url: "",
       keywords,
       lastAccessed: "",
+      flag: false,
+      views: 0,
     });
     setHasLink(false);
   };
@@ -155,11 +166,11 @@ export function Form({ id, handleLogout }) {
   /**
    * Update the keywords of the link
    */
-  const keywordSelected = (selected) => {
-    selected = selected.sort((a, b) => {
+  const keywordSelected = (selectedKeywords: Keyword[]) => {
+    selectedKeywords = selectedKeywords.sort((a, b) => {
       return a.label > b.label ? -1 : 1;
     });
-    link.keywords = selected.map((keyword) => {
+    link.keywords = selectedKeywords.map((keyword: Keyword) => {
       if (keyword && typeof keyword === "object") {
         return {
           ...keyword,
@@ -202,13 +213,14 @@ export function Form({ id, handleLogout }) {
       refresh(id);
       setHasLink(true);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (
     <div className="app container">
       <div className="form-container">
         <Nav
+          hasLink={hasLink}
           refresh={refresh}
           confirmDelete={confirmDelete}
           clearForm={clearForm}
@@ -217,10 +229,10 @@ export function Form({ id, handleLogout }) {
           confirmLogout={confirmLogout}
         />
         <MediaPlayer
-          startTime={link.startTime}
-          className="mediaPlayer"
+          startTime={link.startTime || 0}
           url={link.url || ""}
-          onEnded={updateLink}
+          // TODO:
+          // onEnd={updateLink}
         ></MediaPlayer>
         <form className="form">
           {hasLink && (
@@ -319,7 +331,7 @@ export function Form({ id, handleLogout }) {
                   `| bullist numlist outdent indent | removeformat | image ` +
                   `| alignleft aligncenter alignright | help |`,
               }}
-              textAreaName="notes"
+              textareaName="notes"
               value={link.notes || ""}
               onEditorChange={handleEditorChange}
             />
@@ -335,12 +347,12 @@ export function Form({ id, handleLogout }) {
           </button>
         </form>
       </div>
-      {status === STATUS.PENDING && <LoadingIndicator />}
+      {status === Status.PENDING && <LoadingIndicator />}
     </div>
   );
 }
 
 Form.propTypes = {
   handleLogout: PropTypes.func,
-  id: PropTypes.any
-}
+  id: PropTypes.any,
+};

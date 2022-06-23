@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import './LoadingIndicator.scss';
+import React from "react";
+import { motion } from "framer-motion";
+import "./LoadingIndicator.scss";
 
 // Learned about framer motion and this loading animation from
 // www.youtube.com/watch?v=aHqTM0WFdpk
@@ -20,18 +20,18 @@ const containerVariants = {
 
 const circleVariants = {
   start: {
-    y: '0%',
+    y: "0%",
   },
   end: {
-    y: '100%',
+    y: "100%",
   },
 };
 
-const circleTransition = {
+const circleTransition: any = {
   duration: 0.5,
   repeat: Infinity,
-  repeatType: 'reverse',
-  ease: 'easeInOut',
+  repeatType: "reverse",
+  ease: "easeInOut",
 };
 
 export function ThreeDotsWave() {

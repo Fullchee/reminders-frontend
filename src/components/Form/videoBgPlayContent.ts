@@ -5,11 +5,11 @@ export function setupBackgroundYouTube() {
   const IS_YOUTUBE =
     window.location.hostname.search(/(?:^|.+\.)youtube\.com/) > -1 ||
     window.location.hostname.search(/(?:^|.+\.)youtube-nocookie\.com/) > -1;
-  const IS_MOBILE_YOUTUBE = window.location.hostname === 'm.youtube.com';
+  const IS_MOBILE_YOUTUBE = window.location.hostname === "m.youtube.com";
   const IS_DESKTOP_YOUTUBE = IS_YOUTUBE && !IS_MOBILE_YOUTUBE;
   const IS_VIMEO = window.location.hostname.search(/(?:^|.+\.)vimeo\.com/) > -1;
 
-  const IS_ANDROID = window.navigator.userAgent.indexOf('Android') > -1;
+  const IS_ANDROID = window.navigator.userAgent.indexOf("Android") > -1;
 
   // Page Visibility API
   if (IS_ANDROID || !IS_DESKTOP_YOUTUBE) {
@@ -18,23 +18,24 @@ export function setupBackgroundYouTube() {
       // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Sharing_objects_with_page_scripts
       Object.defineProperties(document.wrappedJSObject, {
         hidden: { value: false },
-        visibilityState: { value: 'visible' },
+        visibilityState: { value: "visible" },
       });
-    } else {
-      var a = Node.prototype.addEventListener;
-      Node.prototype.addEventListener = function (e) {
-        if (e !== 'visibilitychange' && e !== 'webkitvisibilitychange') {
-          a.apply(this, arguments);
-        }
-      };
     }
   }
 
-  window.addEventListener('visibilitychange', (evt) => evt.stopImmediatePropagation(), true);
+  window.addEventListener(
+    "visibilitychange",
+    (evt) => evt.stopImmediatePropagation(),
+    true
+  );
 
   // Fullscreen API
   if (IS_VIMEO) {
-    window.addEventListener('fullscreenchange', (evt) => evt.stopImmediatePropagation(), true);
+    window.addEventListener(
+      "fullscreenchange",
+      (evt) => evt.stopImmediatePropagation(),
+      true
+    );
   }
 
   // User activity tracking
@@ -46,22 +47,22 @@ export function setupBackgroundYouTube() {
 function pressKey() {
   const keyCodes = [18];
   let key = keyCodes[getRandomInt(0, keyCodes.length)];
-  sendKeyEvent('keydown', key);
-  sendKeyEvent('keyup', key);
+  sendKeyEvent("keydown", key);
+  sendKeyEvent("keyup", key);
 }
 
-function sendKeyEvent(aEvent, aKey) {
+function sendKeyEvent(eventName: string, keyboardKey: number) {
   document.dispatchEvent(
-    new KeyboardEvent(aEvent, {
+    new KeyboardEvent(eventName, {
       bubbles: true,
       cancelable: true,
-      keyCode: aKey,
-      which: aKey,
-    }),
+      keyCode: keyboardKey,
+      which: keyboardKey,
+    })
   );
 }
 
-function loop(aCallback, aDelay, aJitter) {
+function loop(aCallback: () => void, aDelay: number, aJitter: number) {
   let jitter = getRandomInt(-aJitter / 2, aJitter / 2);
   let delay = Math.max(aDelay + jitter, 0);
 
@@ -71,7 +72,7 @@ function loop(aCallback, aDelay, aJitter) {
   }, delay);
 }
 
-function getRandomInt(aMin, aMax) {
+function getRandomInt(aMin: number, aMax: number) {
   let min = Math.ceil(aMin);
   let max = Math.floor(aMax);
   return Math.floor(Math.random() * (max - min)) + min;
