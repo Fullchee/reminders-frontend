@@ -3,7 +3,13 @@ import PropTypes from "prop-types";
 import "react-h5-audio-player/lib/styles.css";
 import VideoPlayer from "./VideoPlayer";
 import AudioPlayer from "./AudioPlayer";
-function MediaPlayer({ url, startTime }) {
+
+interface MediaPlayerProps {
+  url: string;
+  startTime: number;
+}
+
+function MediaPlayer({ url, startTime }: MediaPlayerProps) {
   const getMediaContainer = () => {
     // initial load: it doesn't do a/th
     if (!url) {

@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import PropTypes from "prop-types";
 import ReactPlayer from "react-player/youtube";
 import { SpeedController } from "./SpeedController/SpeedController";
 import "./VideoPlayer.scss";
