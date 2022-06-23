@@ -12,9 +12,11 @@ function MediaPlayer({ url, startTime }) {
 
     if (url.includes("youtu")) {
       return <VideoPlayer url={url} />;
-    } else if (url.includes(".mp3")) {
+    }
+    if (url.includes(".mp3")) {
       return <AudioPlayer url={url} startTime={startTime} />;
-    } else if (
+    }
+    if (
       url.endsWith(".jpg") ||
       url.endsWith(".png") ||
       url.includes("imgur.com")
@@ -23,9 +25,8 @@ function MediaPlayer({ url, startTime }) {
         url += ".jpg";
       }
       return <img className="media-image" src={url} alt=""></img>;
-    } else {
-      return <h3>No media</h3>;
     }
+    return <h3>No media</h3>;
   };
   return <div className="media-player">{getMediaContainer()}</div>;
 }
