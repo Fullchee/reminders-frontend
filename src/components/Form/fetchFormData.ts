@@ -56,7 +56,6 @@ const getLink = (setStatus: (s: Status) => void) => async (id: number) => {
     setStatus(Status.RESOLVED);
     return formatLink(link);
   } else {
-    console.error("🚀 ~ file: fetchFormData.js ~ line 48 ~ getLink ~ res", res);
     setStatus(Status.REJECTED);
   }
 };
