@@ -3,6 +3,7 @@ import SearchBox from "./SearchBox";
 import { Tooltip } from "react-tippy";
 // @ts-ignore
 import Ripple from "react-touch-ripple";
+import { Link as RRLink } from "react-router-dom";
 
 import { formatViews, getTimeDiff } from "../../helper/utilities";
 import previousIcon from "../../images/previous.svg";
@@ -29,10 +30,9 @@ const SearchResults = () => {
       return <p>No results</p>;
     }
     return results.map((link: Link) => {
-      // TODO: use <Link> instead of needing to refresh
       return (
         <div className="search-result-item" key={link.id}>
-          <a className="search-result-item-link" href={`/link/${link.id}`}>
+          <RRLink className="search-result-item-link" to={`/link/${link.id}`}>
             <h3 className="search-result-item__title">{link.title}</h3>
             {/* <p className="search-result-item__url" className="search-item-url">
               {result.url}
@@ -55,7 +55,7 @@ const SearchResults = () => {
             <p className="search-result-item__text">
               {formatViews(link.views)}
             </p>
-          </a>
+          </RRLink>
         </div>
       );
     });
