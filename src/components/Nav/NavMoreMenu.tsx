@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React, { MouseEventHandler } from "react";
 // @ts-ignore
 import Ripple from "react-touch-ripple";
@@ -84,11 +83,5 @@ function NavMoreMenu({
     </div>
   );
 }
-
-NavMoreMenu.propTypes = {
-  onDelete: PropTypes.func,
-  toggleFlag: PropTypes.func,
-  isFlagged: PropTypes.bool,
-};
 
 export default NavMoreMenu;

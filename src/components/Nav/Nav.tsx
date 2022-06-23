@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React, { MouseEventHandler } from "react";
 // @ts-ignore
 import Ripple from "react-touch-ripple";
@@ -61,13 +60,5 @@ function Nav({
     </nav>
   );
 }
-
-Nav.propTypes = {
-  clearForm: PropTypes.func,
-  confirmDelete: PropTypes.func,
-  isFlagged: PropTypes.bool,
-  refresh: PropTypes.func,
-  toggleFlag: PropTypes.func,
-};
 
 export default Nav;

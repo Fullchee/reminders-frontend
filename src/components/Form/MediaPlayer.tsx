@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import "react-h5-audio-player/lib/styles.css";
 import VideoPlayer from "./VideoPlayer";
 import AudioPlayer from "./AudioPlayer";
@@ -36,9 +35,5 @@ function MediaPlayer({ url, startTime }: MediaPlayerProps) {
   };
   return <div className="media-player">{getMediaContainer()}</div>;
 }
-
-MediaPlayer.propTypes = {
-  url: PropTypes.string,
-};
 
 export default MediaPlayer;

@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React, { useRef, useState } from "react";
 import ReactAudioPlayer from "react-h5-audio-player";
 import { SpeedController } from "./SpeedController/SpeedController";
@@ -29,9 +28,5 @@ function AudioPlayer({ url, startTime }: AudioPlayerProps) {
     </>
   );
 }
-
-AudioPlayer.propTypes = {
-  url: PropTypes.string,
-};
 
 export default AudioPlayer;

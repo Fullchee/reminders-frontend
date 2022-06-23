@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React from "react";
 import "./SpeedController.scss";
 
@@ -29,8 +28,3 @@ export function SpeedController({ speed, onChange }: SpeedControllerProps) {
     </select>
   );
 }
-
-SpeedController.propTypes = {
-  onChange: PropTypes.func,
-  speed: PropTypes.number,
-};
