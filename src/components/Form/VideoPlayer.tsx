@@ -4,12 +4,13 @@ import ReactPlayer from "react-player/youtube";
 import { SpeedController } from "./SpeedController/SpeedController";
 import "./VideoPlayer.scss";
 
-function VideoPlayer({ url }) {
+function VideoPlayer({ url }: { url: string }) {
   const [speed, setSpeed] = useState(1);
   const [playing, setPlaying] = useState(false);
   const playerRef = useRef(null);
 
   function moveForward({ seconds } = { seconds: 10 }) {
+    // @ts-ignore
     playerRef.current.seekTo(playerRef.current.getCurrentTime() + seconds);
     setPlaying(true);
   }
@@ -23,16 +24,12 @@ function VideoPlayer({ url }) {
         controls={true}
       />
       <SpeedController onChange={setSpeed} speed={speed} />
-      <div class="seek-buttons">
+      <div className="seek-buttons">
         <button onClick={() => moveForward({ seconds: -5 })}>&lt;</button>
         <button onClick={() => moveForward({ seconds: 10 })}>&gt;</button>
       </div>
     </>
   );
 }
-
-VideoPlayer.propTypes = {
-  url: PropTypes.string,
-};
 
 export default VideoPlayer;
