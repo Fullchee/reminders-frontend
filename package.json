@@ -28,6 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "local-start": "REACT_APP_BACKEND_URL=http://localhost:8000/ && npm start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
