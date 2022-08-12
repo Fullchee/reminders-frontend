@@ -8,12 +8,6 @@ module.exports = {
       version: "detect",
     },
   },
-  globals: {
-    module: "readonly",
-    require: "readonly",
-    process: "readonly",
-    __dirname: "readonly",
-  },
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -23,6 +17,10 @@ module.exports = {
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly",
+    module: "readonly",
+    require: "readonly",
+    process: "readonly",
+    __dirname: "readonly",
   },
   parser: "@typescript-eslint/parser",
   parserOptions: {
