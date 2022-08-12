@@ -3,6 +3,17 @@ module.exports = {
     browser: true,
     es6: true,
   },
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
+  globals: {
+    module: "readonly",
+    require: "readonly",
+    process: "readonly",
+    __dirname: "readonly",
+  },
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
