@@ -1,0 +1,10 @@
+{
+    "files.exclude": {
+        "android": true,
+        "build": true
+    },
+    "workbench.colorCustomizations": {
+        "titleBar.activeBackground": "#333",
+        "titleBar.activeForeground": "#f1c15d"
+    }
+}
