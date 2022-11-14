@@ -1,13 +1,13 @@
 import { confirmAlert } from "react-confirm-alert";
 import { toast } from "react-toastify";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import LoadingBar from "react-top-loading-bar";
 
 import "react-confirm-alert/src/react-confirm-alert.css";
 import "react-toastify/dist/ReactToastify.css";
 
 import history from "../../history";
 import MediaPlayer from "./MediaPlayer";
-import { LoadingIndicator } from "./LoadingIndicator";
 import Nav from "../Nav/Nav";
 import { getTimeDiff, capitalizeFirstLetter } from "../../helper/utilities";
 import { defaultLink, apiCalls } from "./fetchFormData";
@@ -38,6 +38,7 @@ export function FormContainer({ id, handleLogout }: FormContainerProps) {
     getRandomLink,
     sendUpdate,
   } = apiCalls(status, setStatus);
+  const ref = useRef(null);
 
   /**
    * @param {Event (which is ignored) or an integer} id
@@ -45,6 +46,11 @@ export function FormContainer({ id, handleLogout }: FormContainerProps) {
   const refresh = async (id: number) => {
     let link;
     setStatus(Status.PENDING);
+    // @ts-ignore
+    if (ref?.current?.staticStart) {
+      // @ts-ignore
+      ref.current.staticStart();
+    }
     if (!Number.isNaN(parseInt(`${id}`))) {
       link = await getLink(parseInt(`${id}`));
     }
@@ -58,6 +64,11 @@ export function FormContainer({ id, handleLogout }: FormContainerProps) {
     setLink(link);
     setHasLink(true);
     setStatus(Status.RESOLVED);
+    // @ts-ignore
+    if (ref?.current?.complete) {
+      // @ts-ignore
+      ref.current.complete();
+    }
   };
 
   const handleUrlChange = (event: any) => {
@@ -66,7 +77,7 @@ export function FormContainer({ id, handleLogout }: FormContainerProps) {
     setLink({ ...link, [name]: value });
   };
 
-  const handleEditorChange = (content: string, _editor: any) => {
+  const handleEditorChange = (content: string) => {
     setLink({ ...link, notes: content });
   };
 
@@ -216,6 +227,7 @@ export function FormContainer({ id, handleLogout }: FormContainerProps) {
 
   return (
     <div className="app container">
+      <LoadingBar color="#4158d0" ref={ref} />
       <div className="form-container">
         <Nav
           hasLink={hasLink}
@@ -244,7 +256,6 @@ export function FormContainer({ id, handleLogout }: FormContainerProps) {
           updateLink={updateLink}
         />
       </div>
-      {status === Status.PENDING && <LoadingIndicator />}
     </div>
   );
 }
