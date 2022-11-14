@@ -79,6 +79,8 @@ div[role="menu"].visible {
     position: relative;
     top: -3px;
     margin-right: auto;
+    min-width: 100%;
+
     @media only screen and (max-width: 850px) {
       top: -7px;
       padding: 0 10px;
