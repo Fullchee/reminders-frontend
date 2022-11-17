@@ -18,7 +18,7 @@ import "./Form.scss";
 import { Form } from "./Form";
 
 function connectionErrorToast() {
-  toast.error("Oops! We couldn't connect to the backend!");
+  toast.error("We couldn't connect to the backend!");
 }
 
 interface FormContainerProps {
@@ -31,13 +31,8 @@ export function FormContainer({ id, handleLogout }: FormContainerProps) {
   const [hasLink, setHasLink] = useState(false);
   const [link, setLink] = useState(defaultLink);
   const [status, setStatus] = useState(Status.IDLE);
-  const {
-    deleteLink,
-    getKeywords,
-    getLink,
-    getRandomLink,
-    sendUpdate,
-  } = apiCalls(status, setStatus);
+  const { deleteLink, getKeywords, getLink, getRandomLink, sendUpdate } =
+    apiCalls(status, setStatus);
   const ref = useRef(null);
 
   /**
@@ -224,6 +219,10 @@ export function FormContainer({ id, handleLogout }: FormContainerProps) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
+
+  useEffect(() => {
+    document.title = `${link.title} - Reminders`;
+  }, [link.title]);
 
   return (
     <div className="app container">
