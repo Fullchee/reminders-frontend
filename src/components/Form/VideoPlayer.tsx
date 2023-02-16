@@ -19,7 +19,11 @@ function VideoPlayer({ url }: { url: string }) {
         playing={playing}
         ref={playerRef}
         playbackRate={speed}
-        url={url}
+        url={
+          url.includes("youtube.com/shorts")
+            ? url.replace("youtube.com/shorts", "youtu.be")
+            : url
+        }
         controls={true}
       />
       <SpeedController onChange={setSpeed} speed={speed} />
