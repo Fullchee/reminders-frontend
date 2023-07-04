@@ -1,21 +1,22 @@
+import React, { useEffect, useRef, useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import { toast } from "react-toastify";
-import React, { useEffect, useRef, useState } from "react";
 import LoadingBar from "react-top-loading-bar";
 
 import "react-confirm-alert/src/react-confirm-alert.css";
 import "react-toastify/dist/ReactToastify.css";
 
+import { capitalizeFirstLetter, getTimeDiff } from "../../helper/utilities";
 import history from "../../history";
-import MediaPlayer from "./MediaPlayer";
 import Nav from "../Nav/Nav";
-import { getTimeDiff, capitalizeFirstLetter } from "../../helper/utilities";
-import { defaultLink, apiCalls } from "./fetchFormData";
+import { Form } from "./Form";
+import "./Form.scss";
+import MediaPlayer from "./MediaPlayer";
+import { apiCalls } from "./fetchFormData";
+import { defaultLink } from "./formConstants";
+import { setupKeyboardShortcuts } from "./setupKeyboardShortcuts";
 import { Status } from "./statuses";
 import { setupBackgroundYouTube } from "./videoBgPlayContent";
-import { setupKeyboardShortcuts } from "./setupKeyboardShortcuts";
-import "./Form.scss";
-import { Form } from "./Form";
 
 function connectionErrorToast() {
   toast.error("We couldn't connect to the backend!");

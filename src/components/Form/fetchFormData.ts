@@ -11,7 +11,7 @@ const formatLink = (link: Link) => {
   link.keywords = link.keywords.map((word: string) => {
     return { id: i++, label: word, value: word };
   });
-  link.lastAccessed = getTimeDiff((link.last_accessed as string));
+  link.lastAccessed = getTimeDiff(link.last_accessed as string);
   link.startTime = link.start_time;
   return link;
 };
@@ -76,31 +76,29 @@ const getKeywords = (setStatus: (s: Status) => void) => async () => {
   return formattedKeywords;
 };
 
-const sendUpdate = (setStatus: (s: Status) => void) => async (
-  link: Link,
-  hasLink: boolean
-) => {
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(minifyLink({ ...link })),
-  };
+const sendUpdate =
+  (setStatus: (s: Status) => void) => async (link: Link, hasLink: boolean) => {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(minifyLink({ ...link })),
+    };
 
-  const api = hasLink ? "update-link" : "add-link";
-  try {
-    setStatus(Status.PENDING);
-    const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}${api}`,
-      requestOptions
-    );
-    setStatus(Status.RESOLVED);
-    const json = await response.json();
-    return formatLink(json);
-  } catch (error) {
-    console.error(error);
-    setStatus(Status.REJECTED);
-  }
-};
+    const api = hasLink ? "update-link" : "add-link";
+    try {
+      setStatus(Status.PENDING);
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}${api}`,
+        requestOptions
+      );
+      setStatus(Status.RESOLVED);
+      const json = await response.json();
+      return formatLink(json);
+    } catch (error) {
+      console.error(error);
+      setStatus(Status.REJECTED);
+    }
+  };
 
 const deleteLink = (setStatus: (s: Status) => void) => async (link: Link) => {
   const requestOptions = {
@@ -135,17 +133,4 @@ export const apiCalls = (status: Status, setStatus: (s: Status) => void) => {
     sendUpdate: sendUpdate(setStatus),
     deleteLink: deleteLink(setStatus),
   };
-};
-
-export const defaultLink: Link = {
-  keywords: [{ id: 12, label: "Perspective", value: "Perspective" }],
-  title: "Carl Sagan - Pale Blue Dot",
-  url: "https://www.youtube.com/watch?v=wupToqz1e2g?t=10",
-  notes:
-    "Look again at that dot. That's here. That's home. That's us. <div>On it everyone you love, <br>everyone you know, <br>everyone you ever heard of, <br>every human being who ever was, lived out their lives.</div>",
-  lastAccessed: "3 months ago",
-  id: 0,
-  flag: false,
-  views: 3,
-  startTime: 10,
 };
