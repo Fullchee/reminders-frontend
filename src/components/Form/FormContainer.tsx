@@ -1,13 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
-import { toast } from "react-toastify";
-import LoadingBar from "react-top-loading-bar";
-
 import "react-confirm-alert/src/react-confirm-alert.css";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import LoadingBar from "react-top-loading-bar";
 import { capitalizeFirstLetter, getTimeDiff } from "../../helper/utilities";
-import history from "../../history";
 import Nav from "../Nav/Nav";
 import { Form } from "./Form";
 import "./Form.scss";
@@ -17,17 +14,19 @@ import { defaultLink } from "./formConstants";
 import { setupKeyboardShortcuts } from "./setupKeyboardShortcuts";
 import { Status } from "./statuses";
 import { setupBackgroundYouTube } from "./videoBgPlayContent";
+import { useNavigate } from "react-router-dom";
 
 function connectionErrorToast() {
   toast.error("We couldn't connect to the backend!");
 }
 
 interface FormContainerProps {
-  id: number;
-  handleLogout: () => void;
+  id?: number;
+  handleLogout?: () => void;
 }
 
 export function FormContainer({ id, handleLogout }: FormContainerProps) {
+  const navigate = useNavigate();
   const [keywordOptions, setKeywordOptions] = useState([]);
   const [hasLink, setHasLink] = useState(false);
   const [link, setLink] = useState(defaultLink);
@@ -96,7 +95,7 @@ export function FormContainer({ id, handleLogout }: FormContainerProps) {
       message += ` with id: ${backendLink.id}`;
     }
     toast.success(message);
-    history.push(`/link/${backendLink.id}`);
+    navigate(`/link/${backendLink.id}`);
     setLink({
       ...backendLink,
       lastAccessed: getTimeDiff(backendLink.last_accessed as string),
@@ -132,7 +131,8 @@ export function FormContainer({ id, handleLogout }: FormContainerProps) {
         {
           label: "Yes",
           onClick: () => {
-            handleLogout();
+            alert("not implemented");
+            // handleLogout();
           },
         },
         {
@@ -153,7 +153,7 @@ export function FormContainer({ id, handleLogout }: FormContainerProps) {
   };
 
   const clearForm = () => {
-    history.push(`/`);
+    navigate(`/`);
 
     const keywords = hasLink ? link.keywords : [];
     setLink({

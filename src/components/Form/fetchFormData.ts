@@ -1,4 +1,3 @@
-import history from "../../history";
 import { toast } from "react-toastify";
 import { getTimeDiff } from "../../helper/utilities";
 import { Status } from "./statuses";
@@ -44,7 +43,9 @@ const getRandomLink = (setStatus: (s: Status) => void) => async () => {
     console.error("Couldn't find a link");
     return;
   }
-  history.push(`/link/${link.id}`);
+  // TODO: turn this into a hook
+  // const navigate = useNavigate();
+  // useNavigate(`/link/${link.id}`);
   return formatLink(link);
 };
 
