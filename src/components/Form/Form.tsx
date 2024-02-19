@@ -110,7 +110,7 @@ export function Form({
       <div className="text-editor">
         <Editor
           id="tiny-mce-editor"
-          apiKey={import.meta.env.REACT_APP_TINY_MCE_API_KEY}
+          apiKey={import.meta.env.VITE_TINY_MCE_API_KEY}
           init={{
             height: 400,
             menubar: false,
