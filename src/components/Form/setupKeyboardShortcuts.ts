@@ -1,5 +1,5 @@
 interface SetupShortcutProps {
-  updateLink: any;
+  updateLink?: any;
   clearForm: () => void;
   refresh: any;
   confirmDelete: () => void;
@@ -7,7 +7,6 @@ interface SetupShortcutProps {
 }
 
 export function setupKeyboardShortcuts({
-  updateLink,
   clearForm,
   refresh,
   confirmDelete,

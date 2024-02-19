@@ -1,13 +1,13 @@
 import React, { ChangeEventHandler } from "react";
 import Select from "react-dropdown-select";
 import { Editor } from "@tinymce/tinymce-react";
-import { Toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 interface FormProps {
   link: Link;
   hasLink: boolean;
   handleUrlChange: any;
-  toast: Toast;
+  toast: typeof toast;
   handleStartTimeChange: ChangeEventHandler<HTMLInputElement>;
   keywordOptions: Keyword[];
   keywordSelected: (selectedKeywords: Keyword[]) => void;

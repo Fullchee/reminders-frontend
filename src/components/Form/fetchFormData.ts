@@ -125,7 +125,7 @@ const deleteLink = (setStatus: (s: Status) => void) => async (link: Link) => {
   }
 };
 
-export const apiCalls = (status: Status, setStatus: (s: Status) => void) => {
+export const apiCalls = (_: Status, setStatus: (s: Status) => void) => {
   return {
     getRandomLink: getRandomLink(setStatus),
     getLink: getLink(setStatus),
