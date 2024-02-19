@@ -1,3 +1,4 @@
+import { Keyword, Link } from "@src/types";
 import React, { useEffect, useRef, useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
@@ -6,7 +7,6 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingBar from "react-top-loading-bar";
 import { capitalizeFirstLetter, getTimeDiff } from "../../helper/utilities";
-import { Keyword, Link } from "../../types";
 import Nav from "../Nav/Nav";
 import { Form } from "./Form";
 import "./Form.scss";
