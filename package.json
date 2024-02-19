@@ -26,6 +26,9 @@
     "react-top-loading-bar": "^2.3.1"
   },
   "devDependencies": {
+    "@capacitor/android": "^5.7.0",
+    "@capacitor/cli": "^5.7.0",
+    "@capacitor/core": "^5.7.0",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
@@ -34,6 +37,15 @@
     "eslint": "^8.56.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "husky": "^9.0.11",
+    "postcss-normalize": "^10.0.1",
+    "prettier": "^3.2.5",
+    "pretty-quick": "^4.0.0",
+    "sass": "^1.71.0",
+    "stylelint": "^16.2.1",
+    "stylelint-config-sass-guidelines": "^11.0.0",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-prettier": "^5.0.0",
     "typescript": "^5.2.2",
     "vite": "^5.1.0"
   }
