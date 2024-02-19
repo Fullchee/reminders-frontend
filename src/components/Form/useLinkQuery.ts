@@ -1,11 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import axios, { AxiosResponse } from "axios";
 import { Link } from "../../types";
 import { useEffect } from "react";
 import { getTimeDiff } from "@src/helper/utilities";
 import { useNavigate } from "react-router-dom";
 
-/** TODO: move this logic to the backend so the backend and frontend Link don't diverge */
+/** TODO: move this logic to the backend so the backend and frontend Link types don't diverge */
 export const formatLink = (link: Link) => {
   if (!link?.keywords?.length) {
     link.keywords = [];
@@ -21,19 +21,24 @@ export const formatLink = (link: Link) => {
 
 export const useRandomLink = () => {
   const link = useQuery({
+    enabled: false, // only run on button click
     queryKey: ["random-link"],
-    queryFn: async (): Promise<Link> => {
+    queryFn: async (): Promise<AxiosResponse<Link>> => {
       return axios.get(`${import.meta.env.VITE_BACKEND_URL}random-link`);
     },
   });
 
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   useEffect(() => {
-    if (link.data?.id) {
-      navigate(`/link/${link.data?.id}`);
-      // set the queryClient["link", linkId]
+    if (link.data?.data?.id) {
+      queryClient.setQueryData(
+        ["link", link.data.data.id],
+        formatLink(link.data.data),
+      );
+      navigate(`/link/${link.data.data.id}`);
     }
-  }, [navigate, link.data]);
+  }, [navigate, link.data, queryClient]);
   return link;
 };
 

@@ -6,12 +6,12 @@ import shuffle from "../../images/shuffle.svg";
 import SearchBox from "../Search/SearchBox";
 import "./Nav.scss";
 import NavMoreMenu from "./NavMoreMenu";
+import { useRandomLink } from "@src/components/Form/useLinkQuery";
 
 interface NavProps {
   clearForm: MouseEventHandler;
   confirmDelete: MouseEventHandler;
   isFlagged: boolean;
-  refresh: any;
   toggleFlag: MouseEventHandler;
   hasLink: boolean;
   confirmLogout: MouseEventHandler;
@@ -21,18 +21,18 @@ function Nav({
   clearForm,
   confirmDelete,
   isFlagged,
-  refresh,
   toggleFlag,
   hasLink,
   confirmLogout,
 }: NavProps) {
+  const link = useRandomLink();
   return (
     <nav className="buttons home-nav">
       <SearchBox />
       <div className="buttons__icons">
         {/* @ts-ignore */}
         <Tooltip title="Random" touchHold="true">
-          <button id="random" onClick={refresh}>
+          <button id="random" onClick={() => link.refetch()}>
             <img src={shuffle} alt="random" />
           </button>
         </Tooltip>
