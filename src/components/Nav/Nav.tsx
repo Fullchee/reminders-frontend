@@ -1,12 +1,11 @@
 import React, { MouseEventHandler } from "react";
 import { Tooltip } from "react-tippy";
 import "react-tippy/dist/tippy.css";
-
-import SearchBox from "../Search/SearchBox";
-import NavMoreMenu from "./NavMoreMenu";
 import addIcon from "../../images/add.svg";
 import shuffle from "../../images/shuffle.svg";
+import SearchBox from "../Search/SearchBox";
 import "./Nav.scss";
+import NavMoreMenu from "./NavMoreMenu";
 
 interface NavProps {
   clearForm: MouseEventHandler;

@@ -1,20 +1,7 @@
 import { toast } from "react-toastify";
-import { getTimeDiff } from "../../helper/utilities";
 import { Status } from "./statuses";
 import { Link } from "../../types";
-
-const formatLink = (link: Link) => {
-  if (!link?.keywords?.length) {
-    link.keywords = [];
-  }
-  let i = 0;
-  link.keywords = link.keywords.map((word: string) => {
-    return { id: i++, label: word, value: word };
-  });
-  link.lastAccessed = getTimeDiff(link.last_accessed as string);
-  link.startTime = link.start_time;
-  return link;
-};
+import { formatLink } from "@src/components/Form/useLinkQuery";
 
 const minifyLink = (link: Link) => link;
 
