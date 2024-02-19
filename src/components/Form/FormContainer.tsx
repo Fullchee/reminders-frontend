@@ -22,10 +22,9 @@ function connectionErrorToast() {
 
 interface FormContainerProps {
   id?: number;
-  handleLogout?: () => void;
 }
 
-export function FormContainer({ id, handleLogout }: FormContainerProps) {
+export function FormContainer({ id }: FormContainerProps) {
   const navigate = useNavigate();
   const [keywordOptions, setKeywordOptions] = useState([]);
   const [hasLink, setHasLink] = useState(false);
