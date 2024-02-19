@@ -1,21 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export function LoginForm({ handleLogin }) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    const setState = name === 'username' ? setUsername : setPassword;
+    const setState = name === "username" ? setUsername : setPassword;
     setState(value);
   };
 
   return (
     <div className="app container">
       <div className="form-container">
-        <form class="form" onSubmit={(e) => handleLogin(e, { username, password })}>
-          <h4 style={{ textAlign: 'start' }}>Log In</h4>
+        <form
+          class="form"
+          onSubmit={(e) => handleLogin(e, { username, password })}
+        >
+          <h4 style={{ textAlign: "start" }}>Log In</h4>
           <label htmlFor="username">Email</label>
           <input
             className="input input--text"

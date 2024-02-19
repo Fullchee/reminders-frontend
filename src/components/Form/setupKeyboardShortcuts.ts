@@ -23,7 +23,7 @@ export function setupKeyboardShortcuts({
         // TODO: I don't know why it sets the link state to be the default link when I call updateLink()
         // updateLink();
         const submitButton = document.querySelector(
-          "#submitButton"
+          "#submitButton",
         ) as HTMLButtonElement;
         submitButton.click();
       }
@@ -45,7 +45,7 @@ export function setupKeyboardShortcuts({
 
   setTimeout(() => {
     const iframe = document.querySelector(
-      "iframe#tiny-mce-editor_ifr"
+      "iframe#tiny-mce-editor_ifr",
     ) as HTMLIFrameElement;
     if (iframe?.contentDocument) {
       iframe.contentDocument.body.addEventListener("keydown", disableCmdS);

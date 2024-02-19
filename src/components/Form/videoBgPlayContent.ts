@@ -6,7 +6,7 @@ export function setupBackgroundYouTube() {
   window.addEventListener(
     "visibilitychange",
     (evt) => evt.stopImmediatePropagation(),
-    true
+    true,
   );
   handleVimeo();
 }
@@ -52,7 +52,7 @@ function sendKeyEvent(eventName: string, keyboardKey: number) {
       cancelable: true,
       keyCode: keyboardKey,
       which: keyboardKey,
-    })
+    }),
   );
 }
 
@@ -81,7 +81,7 @@ function handleVimeo() {
     window.addEventListener(
       "fullscreenchange",
       (evt) => evt.stopImmediatePropagation(),
-      true
+      true,
     );
   }
 }

@@ -19,7 +19,7 @@ const SearchResults = () => {
         res.json().then((data: any) => {
           setResults(data);
         });
-      }
+      },
     );
   }, [query]);
 
