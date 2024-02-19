@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import ReactAudioPlayer from "react-h5-audio-player";
+import H5AudioPlayer from "react-h5-audio-player";
 import { SpeedController } from "./SpeedController/SpeedController";
 
 interface AudioPlayerProps {
@@ -9,14 +9,17 @@ interface AudioPlayerProps {
 
 function AudioPlayer({ url, startTime }: AudioPlayerProps) {
   const [speed, setSpeed] = useState(1);
+  // let playerRef: H5AudioPlayer
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let playerRef: any = useRef(null);
+  console.log("🚀 ~ AudioPlayer ~ playerRef:", playerRef);
   const updateSpeed = (newSpeed: number) => {
     setSpeed(newSpeed);
     playerRef.audio.current.playbackRate = newSpeed;
   };
   return (
     <>
-      <ReactAudioPlayer
+      <H5AudioPlayer
         ref={(c) => (playerRef = c)}
         src={url}
         progressJumpSteps={{ backward: 15000, forward: 30000 }}
