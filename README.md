@@ -56,13 +56,21 @@ yarn start
 
 ## Dependencies
 
-- react query
+- @capacitor
+  - to build the android app
+- react v18
+- react query v5
   - async state management
   - dev tools is a dependency because it's an actual component that gets stripped on prod
-- tinymce
+- react-router-dom v6
+- tinymce v4
   - text editor
-- vite
+- vite v5
   - needed to build, Netlify doesn't install dev dependencies in the build
+
+### Dependencies that can be removed
+
+- framer motion
 
 ---
 
