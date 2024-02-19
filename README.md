@@ -50,9 +50,14 @@ yarn start
 5. ![3fa4503f917425bbee7c01d5ff2aa45a.png](3fa4503f917425bbee7c01d5ff2aa45a.png)
 6. Save the `app-debug.apk`
 
-## TODOs (Kanban Board)
+## Kanban board
 
-- on Todoist
+- [Trello](https://trello.com/b/DG63L6yU/reminders)
+
+## Dependencies
+
+- vite
+  - needed to build, Netlify doesn't install dev dependencies in the build
 
 ---
 
