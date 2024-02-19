@@ -56,6 +56,11 @@ yarn start
 
 ## Dependencies
 
+- react query
+  - async state management
+  - dev tools is a dependency because it's an actual component that gets stripped on prod
+- tinymce
+  - text editor
 - vite
   - needed to build, Netlify doesn't install dev dependencies in the build
 
