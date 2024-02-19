@@ -22,13 +22,8 @@
 
 ## Install
 
-1. Install node version 14+
-2. Install `yarn v1`
-3. Install npm dependencies
-   1. `yarn`
-4. Setup local env variables
-   1. `cp sample.env .env`
-   2. Update the env var
+1. Install the node version in `.nvmrc`
+2. Run `./setup.sh`
 
 ```bash
 yarn
