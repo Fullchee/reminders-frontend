@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./styles/App.scss";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { FormContainer } from "./components/Form/FormContainer";
 import history from "./history";
@@ -56,7 +56,7 @@ function App() {
   return (
     <>
       <Router history={history}>
-        <Switch>
+        <Routes>
           {/* <Route exact path="/" render={() => (username ? form : loginForm)} /> */}
           <Route exact path="/" render={() => form} />
           <Route
@@ -75,7 +75,7 @@ function App() {
             // render={({ match }) => (username ? getFormWithId(match.params.id) : loginForm)}
             render={({ match }) => getFormWithId(match.params.id)}
           />
-        </Switch>
+        </Routes>
       </Router>
       <ToastContainer
         hideProgressBar={true}
