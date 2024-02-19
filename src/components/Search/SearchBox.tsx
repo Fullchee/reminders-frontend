@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const wasEnterClicked = (event: React.KeyboardEvent<HTMLInputElement>) =>
   event.key === "Enter";
 
 function SearchBox() {
   const [query, setQuery] = useState("");
-  let history = useHistory();
+  const navigate = useNavigate();
 
   const search = (query: string) => {
-    history.push("/search?q=" + query);
+    navigate("/search?q=" + query);
   };
 
   return (
