@@ -1,3 +1,3 @@
 npm i -g netlify-cli
 npm i
-cp sample.env .env
+git update-index --assume-unchanged .env
