@@ -1,5 +1,4 @@
 // empty export is intentional: https://stackoverflow.com/a/12709880/8479344
-// eslint-disable-next-line import/prefer-default-export
 export {};
 
 declare global {

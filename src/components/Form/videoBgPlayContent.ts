@@ -6,7 +6,7 @@ export function setupBackgroundYouTube() {
   window.addEventListener(
     "visibilitychange",
     (evt) => evt.stopImmediatePropagation(),
-    true,
+    true
   );
   handleVimeo();
 }
@@ -40,7 +40,7 @@ function handleYouTube() {
 
 function pressKey() {
   const keyCodes = [18];
-  let key = keyCodes[getRandomInt(0, keyCodes.length)];
+  const key = keyCodes[getRandomInt(0, keyCodes.length)];
   sendKeyEvent("keydown", key);
   sendKeyEvent("keyup", key);
 }
@@ -52,13 +52,13 @@ function sendKeyEvent(eventName: string, keyboardKey: number) {
       cancelable: true,
       keyCode: keyboardKey,
       which: keyboardKey,
-    }),
+    })
   );
 }
 
 function loop(aCallback: () => void, aDelay: number, aJitter: number) {
-  let jitter = getRandomInt(-aJitter / 2, aJitter / 2);
-  let delay = Math.max(aDelay + jitter, 0);
+  const jitter = getRandomInt(-aJitter / 2, aJitter / 2);
+  const delay = Math.max(aDelay + jitter, 0);
 
   window.setTimeout(() => {
     aCallback();
@@ -67,8 +67,8 @@ function loop(aCallback: () => void, aDelay: number, aJitter: number) {
 }
 
 function getRandomInt(aMin: number, aMax: number) {
-  let min = Math.ceil(aMin);
-  let max = Math.floor(aMax);
+  const min = Math.ceil(aMin);
+  const max = Math.floor(aMax);
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
@@ -81,7 +81,7 @@ function handleVimeo() {
     window.addEventListener(
       "fullscreenchange",
       (evt) => evt.stopImmediatePropagation(),
-      true,
+      true
     );
   }
 }
