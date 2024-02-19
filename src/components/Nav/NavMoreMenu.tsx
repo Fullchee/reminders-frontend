@@ -1,6 +1,4 @@
 import React, { MouseEventHandler } from "react";
-// @ts-ignore
-import Ripple from "react-touch-ripple";
 import { Tooltip } from "react-tippy";
 import "react-tippy/dist/tippy.css";
 import useDropdownMenu from "react-accessible-dropdown-menu-hook";
@@ -31,11 +29,9 @@ function NavMoreMenu({
     <div className="more-menu-container">
       {/* @ts-ignore */}
       <Tooltip title="More" touchHold="true">
-        <Ripple>
-          <button id="overflow" {...buttonProps}>
-            <img src={overflowIcon} alt="Click for more" />
-          </button>
-        </Ripple>
+        <button id="overflow" {...buttonProps}>
+          <img src={overflowIcon} alt="Click for more" />
+        </button>
       </Tooltip>
       <div className={`${isOpen ? "visible" : ""} more-menu`} role="menu">
         <a

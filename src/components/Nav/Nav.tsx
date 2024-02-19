@@ -1,6 +1,4 @@
 import React, { MouseEventHandler } from "react";
-// @ts-ignore
-import Ripple from "react-touch-ripple";
 import { Tooltip } from "react-tippy";
 import "react-tippy/dist/tippy.css";
 
@@ -35,19 +33,15 @@ function Nav({
       <div className="buttons__icons">
         {/* @ts-ignore */}
         <Tooltip title="Random" touchHold="true">
-          <Ripple>
-            <button id="random" onClick={refresh}>
-              <img src={shuffle} alt="random" />
-            </button>
-          </Ripple>
+          <button id="random" onClick={refresh}>
+            <img src={shuffle} alt="random" />
+          </button>
         </Tooltip>
         {/* @ts-ignore */}
         <Tooltip title="Add" touchHold="true">
-          <Ripple>
-            <button id="add" onClick={clearForm}>
-              <img src={addIcon} alt="add" />
-            </button>
-          </Ripple>
+          <button id="add" onClick={clearForm}>
+            <img src={addIcon} alt="add" />
+          </button>
         </Tooltip>
         <NavMoreMenu
           isFlagged={isFlagged}

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SearchBox from "./SearchBox";
 import { Tooltip } from "react-tippy";
-// @ts-ignore
-import Ripple from "react-touch-ripple";
 import { Link as RRLink } from "react-router-dom";
 
 import { formatViews, getTimeDiff } from "../../helper/utilities";
@@ -21,7 +19,7 @@ const SearchResults = () => {
         res.json().then((data: any) => {
           setResults(data);
         });
-      },
+      }
     );
   }, [query]);
 
@@ -67,11 +65,9 @@ const SearchResults = () => {
         <nav className="buttons">
           {/* @ts-ignore */}
           <Tooltip title="Back" touchHold="true">
-            <Ripple>
-              <button id="back" onClick={() => (window.location.href = "/")}>
-                <img src={previousIcon} alt="back" />
-              </button>
-            </Ripple>
+            <button id="back" onClick={() => (window.location.href = "/")}>
+              <img src={previousIcon} alt="back" />
+            </button>
           </Tooltip>
           <SearchBox />
         </nav>
