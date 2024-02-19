@@ -9,21 +9,21 @@ import SearchResults from "./components/Search/SearchResults";
 
 function App() {
   const [username, setUsername] = useState(() =>
-    localStorage.getItem("username")
+    localStorage.getItem("username"),
   );
 
   const handleLogin = async (e, data) => {
     e.preventDefault();
     try {
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}token-auth/`,
+        `${import.meta.env.VITE_BACKEND_URL}token-auth/`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
-        }
+        },
       );
       if (!res.ok) {
         // TODO: show an error message?

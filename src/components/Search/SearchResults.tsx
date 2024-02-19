@@ -16,12 +16,12 @@ const SearchResults = () => {
   const [results, setResults] = useState(initialSearchResult);
 
   useEffect(() => {
-    fetch(process.env.REACT_APP_BACKEND_URL + "search?q=" + query).then(
+    fetch(import.meta.env.VITE_BACKEND_URL + "search?q=" + query).then(
       (res) => {
         res.json().then((data: any) => {
           setResults(data);
         });
-      }
+      },
     );
   }, [query]);
 

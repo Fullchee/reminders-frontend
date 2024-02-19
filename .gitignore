@@ -1,15 +1,24 @@
-.DS_Store
-.env
-.idea/
-.npm/
-*.tgz
-.changelog
-
-build
-lerna-debug.log
-my-app*
-node_modules/
+# Logs
+logs
+*.log
 npm-debug.log*
-template/src/__tests__/__snapshots__/
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

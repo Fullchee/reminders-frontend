@@ -1,12 +1,7 @@
 {
-  "files.exclude": {
-    "android": true,
-    "build": true
-  },
   "workbench.colorCustomizations": {
-    "titleBar.activeBackground": "#333",
-    "titleBar.activeForeground": "#f1c15d",
-    "statusBar.background": "#333",
-    "statusBar.foreground": "#f1c15d"
+    "activityBar.background": "#4E0F59",
+    "titleBar.activeBackground": "#6D157D",
+    "titleBar.activeForeground": "#FEFCFE"
   }
 }
