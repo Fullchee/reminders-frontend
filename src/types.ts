@@ -1,10 +1,10 @@
-interface Keyword {
+export type Keyword = {
   id: number;
   label: string;
   value: string;
-}
+};
 
-interface Link {
+export type Link = {
   keywords: any;
   title: string;
   url: string;
@@ -17,4 +17,4 @@ interface Link {
   start_time?: number;
   lastAccessed?: string;
   last_accessed?: string;
-}
+};

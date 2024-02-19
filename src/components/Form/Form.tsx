@@ -1,7 +1,8 @@
+import { Editor } from "@tinymce/tinymce-react";
 import React, { ChangeEventHandler } from "react";
 import Select from "react-dropdown-select";
-import { Editor } from "@tinymce/tinymce-react";
 import { toast } from "react-toastify";
+import { Keyword, Link } from "../../types";
 
 interface FormProps {
   link: Link;

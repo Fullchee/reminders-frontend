@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingBar from "react-top-loading-bar";
 import { capitalizeFirstLetter, getTimeDiff } from "../../helper/utilities";
+import { Keyword, Link } from "../../types";
 import Nav from "../Nav/Nav";
 import { Form } from "./Form";
 import "./Form.scss";
@@ -14,7 +16,6 @@ import { defaultLink } from "./formConstants";
 import { setupKeyboardShortcuts } from "./setupKeyboardShortcuts";
 import { Status } from "./statuses";
 import { setupBackgroundYouTube } from "./videoBgPlayContent";
-import { useNavigate } from "react-router-dom";
 
 function connectionErrorToast() {
   toast.error("We couldn't connect to the backend!");

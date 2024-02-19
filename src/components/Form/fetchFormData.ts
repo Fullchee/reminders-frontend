@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import { getTimeDiff } from "../../helper/utilities";
 import { Status } from "./statuses";
+import { Link } from "../../types";
 
 const formatLink = (link: Link) => {
   if (!link?.keywords?.length) {

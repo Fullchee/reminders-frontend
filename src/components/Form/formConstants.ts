@@ -1,3 +1,5 @@
+import { Link } from "../../types";
+
 export const defaultLink: Link = {
   keywords: [{ id: 12, label: "Mindfulness", value: "Mindfulness" }],
   title: "David Foster Wallace - This is Water",
