@@ -38,7 +38,7 @@ const get = async (setStatus: (s: Status) => void, linkUrl: string) => {
 const getRandomLink = (setStatus: (s: Status) => void) => async () => {
   const link = await get(
     setStatus,
-    process.env.REACT_APP_BACKEND_URL + "random-link"
+    import.meta.env.VITE_BACKEND_URL + "random-link"
   );
   if (!link) {
     console.error("Couldn't find a link");
@@ -50,7 +50,7 @@ const getRandomLink = (setStatus: (s: Status) => void) => async () => {
 
 const getLink = (setStatus: (s: Status) => void) => async (id: number) => {
   setStatus(Status.PENDING);
-  const res = await fetch(process.env.REACT_APP_BACKEND_URL + `link/${id}`);
+  const res = await fetch(import.meta.env.VITE_BACKEND_URL + `link/${id}`);
   if (res.status !== 404) {
     const link = await res.json();
     setStatus(Status.RESOLVED);
@@ -63,7 +63,7 @@ const getLink = (setStatus: (s: Status) => void) => async (id: number) => {
 const getKeywords = (setStatus: (s: Status) => void) => async () => {
   const json = await get(
     setStatus,
-    process.env.REACT_APP_BACKEND_URL + "keywords"
+    import.meta.env.VITE_BACKEND_URL + "keywords"
   );
   if (!json) {
     console.error("Couldn't find keywords");
@@ -88,7 +88,7 @@ const sendUpdate =
     try {
       setStatus(Status.PENDING);
       const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}${api}`,
+        `${import.meta.env.VITE_BACKEND_URL}${api}`,
         requestOptions
       );
       setStatus(Status.RESOLVED);
@@ -112,7 +112,7 @@ const deleteLink = (setStatus: (s: Status) => void) => async (link: Link) => {
   try {
     setStatus(Status.PENDING);
     const res = await fetch(
-      process.env.REACT_APP_BACKEND_URL + "delete-link",
+      import.meta.env.VITE_BACKEND_URL + "delete-link",
       requestOptions
     );
     await res.json();
