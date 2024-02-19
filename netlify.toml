@@ -1,9 +1,9 @@
-[build]	
+[build]
     command = "yarn build"
     build = "build"
 
-[build.environment]	
-    NODE_ENV = "development"	
+[build.environment]
+    NODE_ENV = "development"
 
-[context.production.environment]	
+[context.production.environment]
     NODE_ENV = "production"
