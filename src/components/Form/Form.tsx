@@ -1,8 +1,8 @@
+import KeywordSelect from "@src/components/Form/Keywords/KeywordSelect";
+import { Link } from "@src/types";
 import { Editor } from "@tinymce/tinymce-react";
 import React, { ChangeEventHandler } from "react";
-import Select from "react-dropdown-select";
 import { toast } from "react-toastify";
-import { Keyword, Link } from "../../types";
 
 interface FormProps {
   link: Link;
@@ -10,8 +10,6 @@ interface FormProps {
   handleUrlChange: any;
   toast: typeof toast;
   handleStartTimeChange: ChangeEventHandler<HTMLInputElement>;
-  keywordOptions: Keyword[];
-  keywordSelected: (selectedKeywords: Keyword[]) => void;
   handleEditorChange: (content: string, _editor: any) => void;
   updateLink: any;
 }
@@ -22,8 +20,6 @@ export function Form({
   handleUrlChange,
   toast,
   handleStartTimeChange,
-  keywordOptions,
-  keywordSelected,
   handleEditorChange,
   updateLink,
 }: FormProps) {
@@ -85,7 +81,7 @@ export function Form({
             id="startTime"
             name="startTime"
             type="number"
-            value={link.startTime}
+            value={link.start_time}
             className="input input--text"
             onChange={handleStartTimeChange}
           />
@@ -93,16 +89,10 @@ export function Form({
       )}
       <label htmlFor="keywords">Keywords</label>
       <div id="keywords" className="keywords">
-        <Select
-          values={link.keywords}
-          multi={true}
-          options={keywordOptions || []}
-          onChange={keywordSelected}
-          create={true}
-        />
+        <KeywordSelect selected={link.keywords} />
       </div>
-      <label htmlFor="lastAccessed">Last accessed</label>
-      <p id="lastAccessed">{link.lastAccessed}</p>
+      <label htmlFor="last-accessed">Last accessed</label>
+      <p id="last-accessed">{link.last_accessed}</p>
       <label htmlFor="views">Views</label>
       <p id="views">{link.views}</p>
       <label htmlFor="notes" style={{ color: "white" }}>

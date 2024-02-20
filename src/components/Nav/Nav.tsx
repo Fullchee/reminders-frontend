@@ -17,7 +17,7 @@ interface NavProps {
   confirmLogout: MouseEventHandler;
 }
 
-function Nav({
+export function Nav({
   clearForm,
   confirmDelete,
   isFlagged,
@@ -53,5 +53,3 @@ function Nav({
     </nav>
   );
 }
-
-export default Nav;

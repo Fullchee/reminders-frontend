@@ -1,4 +1,14 @@
-import { Keyword, Link } from "@src/types";
+import { Form } from "@src/components/Form/Form";
+import "@src/components/Form/Form.scss";
+import MediaPlayer from "@src/components/Form/MediaPlayer";
+import { apiCalls } from "@src/components/Form/fetchFormData";
+import { defaultLink } from "@src/components/Form/formConstants";
+import { setupKeyboardShortcuts } from "@src/components/Form/setupKeyboardShortcuts";
+import { Status } from "@src/components/Form/statuses";
+import { setupBackgroundYouTube } from "@src/components/Form/videoBgPlayContent";
+import { Nav } from "@src/components/Nav/Nav";
+import { getTimeDiff } from "@src/helper/utilities";
+import { Link } from "@src/types";
 import React, { useEffect, useRef, useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
@@ -6,16 +16,6 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingBar from "react-top-loading-bar";
-import { capitalizeFirstLetter, getTimeDiff } from "../../helper/utilities";
-import Nav from "../Nav/Nav";
-import { Form } from "./Form";
-import "./Form.scss";
-import MediaPlayer from "./MediaPlayer";
-import { apiCalls } from "./fetchFormData";
-import { defaultLink } from "./formConstants";
-import { setupKeyboardShortcuts } from "./setupKeyboardShortcuts";
-import { Status } from "./statuses";
-import { setupBackgroundYouTube } from "./videoBgPlayContent";
 
 function connectionErrorToast() {
   toast.error("We couldn't connect to the backend!");
@@ -27,12 +27,13 @@ interface FormContainerProps {
 
 export function FormContainer({ id }: FormContainerProps) {
   const navigate = useNavigate();
-  const [keywordOptions, setKeywordOptions] = useState([]);
   const [hasLink, setHasLink] = useState(false);
   const [link, setLink] = useState(defaultLink);
   const [status, setStatus] = useState(Status.IDLE);
-  const { deleteLink, getKeywords, getLink, getRandomLink, sendUpdate } =
-    apiCalls(status, setStatus);
+  const { deleteLink, getLink, getRandomLink, sendUpdate } = apiCalls(
+    status,
+    setStatus,
+  );
   const ref = useRef(null);
 
   /**
@@ -79,7 +80,6 @@ export function FormContainer({ id }: FormContainerProps) {
   const handleStartTimeChange = (event: any) => {
     setLink({
       ...link,
-      startTime: event.target.value,
       start_time: event.target.value,
     });
   };
@@ -98,7 +98,7 @@ export function FormContainer({ id }: FormContainerProps) {
     navigate(`/link/${backendLink.id}`);
     setLink({
       ...backendLink,
-      lastAccessed: getTimeDiff(backendLink.last_accessed as string),
+      last_accessed: getTimeDiff(backendLink.last_accessed as string),
     });
     setHasLink(true);
   };
@@ -161,46 +161,15 @@ export function FormContainer({ id }: FormContainerProps) {
       title: "",
       url: "",
       keywords,
-      lastAccessed: "",
+      last_accessed: "",
       flag: false,
       views: 0,
+      start_time: 0,
     });
     setHasLink(false);
   };
 
-  /**
-   * Update the keywords of the link
-   */
-  const keywordSelected = (selectedKeywords: Keyword[]) => {
-    selectedKeywords = selectedKeywords.sort((a, b) => {
-      return a.label > b.label ? -1 : 1;
-    });
-    link.keywords = selectedKeywords.map((keyword: Keyword) => {
-      if (keyword && typeof keyword === "object") {
-        return {
-          ...keyword,
-          label: capitalizeFirstLetter(keyword.label),
-          value: capitalizeFirstLetter(keyword.value),
-        };
-      } else {
-        return {
-          id: keyword,
-          value: keyword,
-          label: keyword,
-        };
-      }
-    });
-    setLink(link);
-  };
-
   useEffect(() => {
-    getKeywords().then((keywords) => {
-      if (!keywords) {
-        connectionErrorToast();
-      } else {
-        setKeywordOptions(keywords);
-      }
-    });
     setupBackgroundYouTube();
     setupKeyboardShortcuts({
       updateLink,
@@ -239,7 +208,7 @@ export function FormContainer({ id }: FormContainerProps) {
           confirmLogout={confirmLogout}
         />
         <MediaPlayer
-          startTime={link.startTime || 0}
+          startTime={link.start_time || 0}
           url={link.url || ""}
           // TODO:
           // onEnd={updateLink}
@@ -250,8 +219,6 @@ export function FormContainer({ id }: FormContainerProps) {
           handleUrlChange={handleUrlChange}
           toast={toast}
           handleStartTimeChange={handleStartTimeChange}
-          keywordOptions={keywordOptions}
-          keywordSelected={keywordSelected}
           handleEditorChange={handleEditorChange}
           updateLink={updateLink}
         />

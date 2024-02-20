@@ -5,17 +5,11 @@ import { useEffect } from "react";
 import { getTimeDiff } from "@src/helper/utilities";
 import { useNavigate } from "react-router-dom";
 
-/** TODO: move this logic to the backend so the backend and frontend Link types don't diverge */
 export const formatLink = (link: Link) => {
   if (!link?.keywords?.length) {
     link.keywords = [];
   }
-  let i = 0;
-  link.keywords = link.keywords.map((word: string) => {
-    return { id: i++, label: word, value: word };
-  });
-  link.lastAccessed = getTimeDiff(link.last_accessed as string);
-  link.startTime = link.start_time;
+  link.last_accessed = getTimeDiff(link.last_accessed as string);
   return link;
 };
 
@@ -43,9 +37,9 @@ export const useRandomLink = () => {
 };
 
 export const useLinkQuery = (linkId: number) => {
-  return useQuery<Link>({
+  return useQuery({
     queryKey: ["link", linkId],
-    queryFn: async () => {
+    queryFn: async (): Promise<AxiosResponse<Link>> => {
       return axios.get(`${import.meta.env.VITE_BACKEND_URL}link/${linkId}}`);
     },
   });

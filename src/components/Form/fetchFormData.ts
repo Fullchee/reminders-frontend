@@ -49,22 +49,6 @@ const getLink = (setStatus: (s: Status) => void) => async (id: number) => {
   }
 };
 
-const getKeywords = (setStatus: (s: Status) => void) => async () => {
-  const json = await get(
-    setStatus,
-    import.meta.env.VITE_BACKEND_URL + "keywords",
-  );
-  if (!json) {
-    console.error("Couldn't find keywords");
-    return;
-  }
-  let i = 0;
-  const formattedKeywords = json.map((word: string) => {
-    return { id: i++, label: word, value: word };
-  });
-  return formattedKeywords;
-};
-
 const sendUpdate =
   (setStatus: (s: Status) => void) => async (link: Link, hasLink: boolean) => {
     const requestOptions = {
@@ -118,7 +102,6 @@ export const apiCalls = (_: Status, setStatus: (s: Status) => void) => {
   return {
     getRandomLink: getRandomLink(setStatus),
     getLink: getLink(setStatus),
-    getKeywords: getKeywords(setStatus),
     sendUpdate: sendUpdate(setStatus),
     deleteLink: deleteLink(setStatus),
   };

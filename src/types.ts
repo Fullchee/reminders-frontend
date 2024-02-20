@@ -1,11 +1,10 @@
 export type Keyword = {
-  id: number;
   label: string;
   value: string;
 };
 
 export type Link = {
-  keywords: any;
+  keywords: string[];
   title: string;
   url: string;
   notes: string;
@@ -13,8 +12,6 @@ export type Link = {
   flag: boolean;
   views: number;
   // in seconds
-  startTime?: number;
   start_time?: number;
-  lastAccessed?: string;
   last_accessed?: string;
 };

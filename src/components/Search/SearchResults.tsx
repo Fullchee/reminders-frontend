@@ -1,12 +1,10 @@
+import { formatViews, getTimeDiff } from "@src/helper/utilities";
+import previousIcon from "@src/images/previous.svg";
 import React, { useEffect, useState } from "react";
-import SearchBox from "./SearchBox";
-import { Tooltip } from "react-tippy";
 import { Link as RRLink } from "react-router-dom";
-
-import { formatViews, getTimeDiff } from "../../helper/utilities";
-import previousIcon from "../../images/previous.svg";
-
+import { Tooltip } from "react-tippy";
 import "./Search.scss";
+import SearchBox from "./SearchBox";
 
 const initialSearchResult: any = [];
 const SearchResults = () => {
