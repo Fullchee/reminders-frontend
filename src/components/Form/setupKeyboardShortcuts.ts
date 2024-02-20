@@ -6,6 +6,10 @@ interface SetupShortcutProps {
   toggleFlag: () => void;
 }
 
+/**
+ * TODO: move these into a useEffect wherever these functions are defined in the future
+ * @deprecated
+ */
 export function setupKeyboardShortcuts({
   clearForm,
   refresh,

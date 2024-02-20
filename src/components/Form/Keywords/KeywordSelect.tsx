@@ -1,8 +1,12 @@
 import { useKeywordQuery } from "@src/components/Form/Keywords/useKeywordQuery";
 import { capitalizeFirstLetter } from "@src/helper/utilities";
-import { Keyword } from "@src/types";
 import React, { useMemo } from "react";
 import Select from "react-dropdown-select";
+
+type Keyword = {
+  label: string;
+  value: string;
+};
 
 /**
  * TODO: pass this to the form somehow and figure out how to work with forms and react query

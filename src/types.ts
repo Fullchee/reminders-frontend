@@ -1,8 +1,3 @@
-export type Keyword = {
-  label: string;
-  value: string;
-};
-
 export type Link = {
   keywords: string[];
   title: string;

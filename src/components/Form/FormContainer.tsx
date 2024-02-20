@@ -3,7 +3,6 @@ import "@src/components/Form/Form.scss";
 import MediaPlayer from "@src/components/Form/MediaPlayer";
 import { apiCalls } from "@src/components/Form/fetchFormData";
 import { defaultLink } from "@src/components/Form/formConstants";
-import { setupKeyboardShortcuts } from "@src/components/Form/setupKeyboardShortcuts";
 import { Status } from "@src/components/Form/statuses";
 import { setupBackgroundYouTube } from "@src/components/Form/videoBgPlayContent";
 import { Nav } from "@src/components/Nav/Nav";
@@ -17,55 +16,13 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingBar from "react-top-loading-bar";
 
-function connectionErrorToast() {
-  toast.error("We couldn't connect to the backend!");
-}
-
-interface FormContainerProps {
-  id?: number;
-}
-
-export function FormContainer({ id }: FormContainerProps) {
+export function FormContainer() {
   const navigate = useNavigate();
   const [hasLink, setHasLink] = useState(false);
   const [link, setLink] = useState(defaultLink);
   const [status, setStatus] = useState(Status.IDLE);
-  const { deleteLink, getLink, getRandomLink, sendUpdate } = apiCalls(
-    status,
-    setStatus,
-  );
+  const { deleteLink, sendUpdate } = apiCalls(status, setStatus);
   const ref = useRef(null);
-
-  /**
-   * @param {Event (which is ignored) or an integer} id
-   */
-  const refresh = async (id: number) => {
-    let link;
-    setStatus(Status.PENDING);
-    // @ts-ignore
-    if (ref?.current?.staticStart) {
-      // @ts-ignore
-      ref.current.staticStart();
-    }
-    if (!Number.isNaN(parseInt(`${id}`))) {
-      link = await getLink(parseInt(`${id}`));
-    }
-    if (!link) {
-      link = await getRandomLink();
-      if (!link) {
-        connectionErrorToast();
-        return;
-      }
-    }
-    setLink(link);
-    setHasLink(true);
-    setStatus(Status.RESOLVED);
-    // @ts-ignore
-    if (ref?.current?.complete) {
-      // @ts-ignore
-      ref.current.complete();
-    }
-  };
 
   const handleUrlChange = (event: any) => {
     const name = event.target.name;
@@ -171,24 +128,7 @@ export function FormContainer({ id }: FormContainerProps) {
 
   useEffect(() => {
     setupBackgroundYouTube();
-    setupKeyboardShortcuts({
-      updateLink,
-      clearForm,
-      refresh,
-      confirmDelete,
-      toggleFlag,
-    });
-    // TODO: remove event listeners on unmount
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    if (id && id !== link.id) {
-      refresh(id);
-      setHasLink(true);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
 
   useEffect(() => {
     document.title = `${link.title} - Reminders`;
@@ -200,7 +140,6 @@ export function FormContainer({ id }: FormContainerProps) {
       <div className="form-container">
         <Nav
           hasLink={hasLink}
-          refresh={refresh}
           confirmDelete={confirmDelete}
           clearForm={clearForm}
           toggleFlag={toggleFlag}

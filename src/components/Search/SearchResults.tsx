@@ -5,6 +5,7 @@ import { Link as RRLink } from "react-router-dom";
 import { Tooltip } from "react-tippy";
 import "./Search.scss";
 import SearchBox from "./SearchBox";
+import { Link } from "@src/types";
 
 const initialSearchResult: any = [];
 const SearchResults = () => {
