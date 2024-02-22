@@ -45,7 +45,6 @@ const SearchResults = () => {
               ))}
             </div>
             <p className="search-result-item__text">
-              {/* TODO: distinguish between BackendLink and Link */}
               Last accessed {getTimeDiff(link.last_accessed as string)}
             </p>
             <p className="search-result-item__text">

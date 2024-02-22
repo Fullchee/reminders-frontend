@@ -15,7 +15,7 @@ const get = async (setStatus: (s: Status) => void, linkUrl: string) => {
   } catch (error) {
     console.error(error);
     setStatus(Status.REJECTED);
-    // @ts-ignore
+    // @ts-expect-error - this code will be removed
     if (error.name === "AbortError") {
       console.error("AbortError");
     }

@@ -9,7 +9,7 @@ function VideoPlayer({ url }: { url: string }) {
   const playerRef = useRef(null);
 
   function moveForward({ seconds } = { seconds: 10 }) {
-    // @ts-ignore
+    // @ts-expect-error - I don't care to figure out the type of the useRef
     playerRef.current.seekTo(playerRef.current.getCurrentTime() + seconds);
     setPlaying(true);
   }
