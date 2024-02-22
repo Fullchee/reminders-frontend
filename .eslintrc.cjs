@@ -7,7 +7,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
     "plugin:@tanstack/eslint-plugin-query/recommended",
-    // "plugin:jsx-a11y/recommended",
+    "plugin:jsx-a11y/recommended",
   ],
   ignorePatterns: ["dist"],
   parser: "@typescript-eslint/parser",

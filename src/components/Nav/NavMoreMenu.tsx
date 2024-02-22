@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { MouseEventHandler } from "react";
 import useDropdownMenu from "react-accessible-dropdown-menu-hook";
 
