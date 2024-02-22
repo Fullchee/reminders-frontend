@@ -7,11 +7,11 @@ import { toast } from "react-toastify";
 interface FormProps {
   link: Link;
   hasLink: boolean;
-  handleUrlChange: any;
+  handleUrlChange: ChangeEventHandler<HTMLInputElement>;
   toast: typeof toast;
   handleStartTimeChange: ChangeEventHandler<HTMLInputElement>;
-  handleEditorChange: (content: string, _editor: any) => void;
-  updateLink: any;
+  handleEditorChange: (content: string) => void;
+  updateLink: (e: React.MouseEvent<HTMLButtonElement>) => Promise<void>;
 }
 
 export function Form({
