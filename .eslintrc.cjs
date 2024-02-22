@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true },
+  env: { browser: true, es2020: true, node: true },
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -8,7 +8,7 @@ module.exports = {
     "plugin:@tanstack/eslint-plugin-query/recommended",
     // "plugin:jsx-a11y/recommended",
   ],
-  ignorePatterns: ["dist", ".eslintrc.cjs"],
+  ignorePatterns: ["dist"],
   parser: "@typescript-eslint/parser",
   plugins: ["react-refresh"],
   rules: {
