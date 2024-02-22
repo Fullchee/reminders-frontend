@@ -1,7 +1,7 @@
 interface SetupShortcutProps {
-  updateLink?: any;
+  updateLink?: () => void;
   clearForm: () => void;
-  refresh: any;
+  refresh: () => void;
   confirmDelete: () => void;
   toggleFlag: () => void;
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { Transition, motion } from "framer-motion";
 import "./LoadingIndicator.scss";
 
 // Learned about framer motion and this loading animation from
@@ -27,7 +27,7 @@ const circleVariants = {
   },
 };
 
-const circleTransition: any = {
+const circleTransition: Transition = {
   duration: 0.5,
   repeat: Infinity,
   repeatType: "reverse",

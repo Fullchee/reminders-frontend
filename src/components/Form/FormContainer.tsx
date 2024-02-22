@@ -24,7 +24,7 @@ export function FormContainer() {
   const { deleteLink, sendUpdate } = apiCalls(status, setStatus);
   const ref = useRef(null);
 
-  const handleUrlChange = (event: any) => {
+  const handleUrlChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name = event.target.name;
     const value = event.target.value;
     setLink({ ...link, [name]: value });
@@ -34,14 +34,16 @@ export function FormContainer() {
     setLink({ ...link, notes: content });
   };
 
-  const handleStartTimeChange = (event: any) => {
+  const handleStartTimeChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     setLink({
       ...link,
-      start_time: event.target.value,
+      start_time: Number(event.target.value),
     });
   };
 
-  const updateLink = async (event: any) => {
+  const updateLink = async (event: React.MouseEvent<HTMLButtonElement>) => {
     if (event) {
       event.preventDefault();
     }

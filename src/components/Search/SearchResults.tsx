@@ -6,7 +6,7 @@ import "./Search.scss";
 import SearchBox from "./SearchBox";
 import { Link } from "@src/types";
 
-const initialSearchResult: any = [];
+const initialSearchResult: Link[] = [];
 const SearchResults = () => {
   const query = window.location.search.slice(3);
   const [results, setResults] = useState(initialSearchResult);
@@ -14,7 +14,7 @@ const SearchResults = () => {
   useEffect(() => {
     fetch(import.meta.env.VITE_BACKEND_URL + "search?q=" + query).then(
       (res) => {
-        res.json().then((data: any) => {
+        res.json().then((data: Link[]) => {
           setResults(data);
         });
       },

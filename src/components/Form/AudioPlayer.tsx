@@ -23,6 +23,8 @@ function AudioPlayer({ url, startTime }: AudioPlayerProps) {
         ref={(c) => (playerRef = c)}
         src={url}
         progressJumpSteps={{ backward: 15000, forward: 30000 }}
+        // library doesn't have great types
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onLoadedData={({ target }: { target: any }) => {
           target.currentTime = startTime || 0;
         }}
