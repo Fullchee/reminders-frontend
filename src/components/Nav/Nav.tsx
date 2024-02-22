@@ -1,6 +1,4 @@
 import React, { MouseEventHandler } from "react";
-import { Tooltip } from "react-tippy";
-import "react-tippy/dist/tippy.css";
 import addIcon from "../../images/add.svg";
 import shuffle from "../../images/shuffle.svg";
 import SearchBox from "../Search/SearchBox";
@@ -30,18 +28,12 @@ export function Nav({
     <nav className="buttons home-nav">
       <SearchBox />
       <div className="buttons__icons">
-        {/* @ts-ignore */}
-        <Tooltip title="Random" touchHold="true">
-          <button id="random" onClick={() => link.refetch()}>
-            <img src={shuffle} alt="random" />
-          </button>
-        </Tooltip>
-        {/* @ts-ignore */}
-        <Tooltip title="Add" touchHold="true">
-          <button id="add" onClick={clearForm}>
-            <img src={addIcon} alt="add" />
-          </button>
-        </Tooltip>
+        <button id="random" title="Random" onClick={() => link.refetch()}>
+          <img src={shuffle} alt="random" />
+        </button>
+        <button id="add" title="Add" onClick={clearForm}>
+          <img src={addIcon} alt="add" />
+        </button>
         <NavMoreMenu
           isFlagged={isFlagged}
           onDelete={confirmDelete}

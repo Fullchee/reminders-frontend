@@ -2,7 +2,6 @@ import { formatViews, getTimeDiff } from "@src/helper/utilities";
 import previousIcon from "@src/images/previous.svg";
 import React, { useEffect, useState } from "react";
 import { Link as RRLink } from "react-router-dom";
-import { Tooltip } from "react-tippy";
 import "./Search.scss";
 import SearchBox from "./SearchBox";
 import { Link } from "@src/types";
@@ -62,12 +61,13 @@ const SearchResults = () => {
     <div className="app container">
       <div className="form-container">
         <nav className="buttons">
-          {/* @ts-ignore */}
-          <Tooltip title="Back" touchHold="true">
-            <button id="back" onClick={() => (window.location.href = "/")}>
-              <img src={previousIcon} alt="back" />
-            </button>
-          </Tooltip>
+          <button
+            id="back"
+            title="Back"
+            onClick={() => (window.location.href = "/")}
+          >
+            <img src={previousIcon} alt="back" />
+          </button>
           <SearchBox />
         </nav>
         <div className="search-results">{renderSearchResults()}</div>

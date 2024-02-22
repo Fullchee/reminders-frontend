@@ -1,6 +1,4 @@
 import React, { MouseEventHandler } from "react";
-import { Tooltip } from "react-tippy";
-import "react-tippy/dist/tippy.css";
 import useDropdownMenu from "react-accessible-dropdown-menu-hook";
 
 import flagIcon from "../../images/flag.svg";
@@ -27,12 +25,9 @@ function NavMoreMenu({
   const { buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(3);
   return (
     <div className="more-menu-container">
-      {/* @ts-ignore */}
-      <Tooltip title="More" touchHold="true">
-        <button id="overflow" {...buttonProps}>
-          <img src={overflowIcon} alt="Click for more" />
-        </button>
-      </Tooltip>
+      <button id="overflow" title="More" {...buttonProps}>
+        <img src={overflowIcon} alt="Click for more" />
+      </button>
       <div className={`${isOpen ? "visible" : ""} more-menu`} role="menu">
         <a
           className={`more-menu-item ${isFlagged ? "is-flagged" : ""}`}
