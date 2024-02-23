@@ -22,7 +22,7 @@
 
 ## Install
 
-1. Install the node version in `.nvmrc`
+1. Install `fnm` or another node manager to install the right `.node-version`
 2. Run `./setup.sh`
 
 ```bash
