@@ -138,10 +138,7 @@ export function Form({
               "visualblocks",
               "wordcount",
             ],
-            toolbar:
-              `undo redo | formatselect | bold italic ` +
-              `| bullist numlist outdent indent | removeformat | image ` +
-              `| alignleft aligncenter alignright`,
+            toolbar: `undo redo | bullist nulist accordian outdent indent | bold italic | image | formatselect removeformat `,
           }}
           textareaName="notes"
           value={link.notes || ""}
