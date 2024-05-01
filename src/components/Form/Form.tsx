@@ -124,7 +124,6 @@ export function Form({
               "code",
               "code",
               "fullscreen",
-              "help",
               "image",
               "insertdatetime",
               "link",
