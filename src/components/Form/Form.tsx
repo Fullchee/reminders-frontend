@@ -124,6 +124,7 @@ export function Form({
               "code",
               "code",
               "fullscreen",
+              "help",
               "image",
               "insertdatetime",
               "link",
@@ -137,7 +138,7 @@ export function Form({
               "visualblocks",
               "wordcount",
             ],
-            toolbar: `undo redo | bullist nulist accordian outdent indent | bold italic | image | formatselect removeformat `,
+            toolbar: `undo redo | bullist nulist accordian outdent indent | bold italic | image | formatselect removeformat | help `,
           }}
           textareaName="notes"
           value={link.notes || ""}
