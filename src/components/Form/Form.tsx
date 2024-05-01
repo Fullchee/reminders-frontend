@@ -141,7 +141,7 @@ export function Form({
             toolbar:
               `undo redo | formatselect | bold italic ` +
               `| bullist numlist outdent indent | removeformat | image ` +
-              `| alignleft aligncenter alignright | help |`,
+              `| alignleft aligncenter alignright`,
           }}
           textareaName="notes"
           value={link.notes || ""}
